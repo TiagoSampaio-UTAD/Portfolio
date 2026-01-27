@@ -1,0 +1,181 @@
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> RESET E CONFIGURAÇÕES GERAIS >>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./img/fundo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> SELETOR DE IDIOMAS (FIXO) >>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+.lang-switcher {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: 0.3s;
+    font-size: 0.8rem;
+}
+
+    .lang-btn.active {
+        opacity: 1;
+        border-bottom: 1px solid white;
+    }
+
+.pipe {
+    color: white;
+    margin: 0 5px;
+    opacity: 0.3;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> MENU DE NAVEGAÇÃO (TOPO ESPALHADO) >>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+.nav-menu {
+    width: 100%; /* Ocupa a largura total para espalhar os itens */
+    padding: 20px 0;
+}
+
+    .nav-menu ul {
+        display: flex;
+        justify-content: space-around; /* ESPALHA os títulos pelo topo */
+        align-items: center;
+        list-style: none;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .nav-menu li a {
+        text-decoration: none;
+        color: white;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0.8;
+        transition: 0.3s;
+    }
+
+        .nav-menu li a:hover {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> PERFIL (FOTO E NOME CENTRALIZADOS) >>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+header .center-top {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.center img {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    object-fit: cover;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> CONTEÚDO PRINCIPAL (TEXTO À ESQUERDA) >>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+.main-content {
+    width: 100%; /* Ocupa tudo para podermos controlar a margem */
+    text-align: left;
+    padding: 20px;
+    /* Aqui ajustamos o quão encostado à esquerda o bloco todo fica */
+    margin-left: 5%;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-left: 4px solid rgba(255,255,255,0.3);
+    padding-left: 15px;
+}
+
+.text-block p {
+    text-align: left;
+    max-width: 600px;
+    line-height: 1.4;
+    color: #bbb;
+    margin-bottom: 5px; /* Frases bem juntas como pediste */
+    font-size: 0.95rem;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> FOOTER (REDES SOCIAIS) >>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+footer {
+    margin-top: 80px;
+    padding-bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+    .social-links img {
+        width: 35px;
+        height: auto;
+        filter: brightness(0) invert(1); /* Deixa os logos brancos e sem gradiente */
+        opacity: 0.7;
+        transition: 0.3s ease;
+    }
+
+        .social-links img:hover {
+            transform: translateY(-5px);
+            opacity: 1;
+        }
+
+    .social-links p {
+        display: none; /* Esconde o texto dos links */
+    }
