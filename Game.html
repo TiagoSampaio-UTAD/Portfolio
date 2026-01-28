@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Jogos - BioSite</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./img/FundoTokyoGhoul.jpg');
+            background-size: cover;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        .container {
+            display: flex;
+            width: 90vw;
+            gap: 15px;
+            perspective: 1000px; /* Necessário para o efeito 3D */
+        }
+
+        /* ESTRUTURA DO PAINEL */
+        .panel {
+            height: 70vh;
+            flex: 0.5;
+            cursor: pointer;
+            position: relative;
+            transition: flex .7s cubic-bezier(.47, 1.64, .41, .8);
+        }
+
+            .panel.active {
+                flex: 5;
+            }
+
+        /* CONTENTOR PARA O FLIP */
+        .panel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        /* Aciona o flip apenas quando estiver ativo e for clicado novamente */
+        .panel.active.flipped .panel-inner {
+            transform: rotateY(180deg);
+        }
+
+        .panel-front, .panel-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+
+        /* FACE DA FRENTE */
+        .panel-front {
+            background-size: cover;
+            background-position: center;
+        }
+
+            .panel-front::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            }
+
+        .panel h3 {
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            font-size: 2rem;
+            z-index: 2;
+            opacity: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .panel.active h3 {
+            opacity: 1;
+            transition: opacity 0.3s ease-in 0.4s;
+        }
+
+        /* FACE DE TRÁS (ESTATÍSTICAS) */
+        .panel-back {
+            background: #0f0f0f;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            justify-content: space-between;
+        }
+
+        .stats-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .ranks-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .rank-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+            .rank-box img {
+                width: 60px;
+                margin: 10px 0;
+            }
+
+        .data-footer {
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .data-item p {
+            color: #888;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .data-item span {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        /* Estilos para a Secção de Memórias */
+        .memories-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 100px auto;
+            padding-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            overflow: visible;
+        }
+
+        .memory-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            width: 100%;
+        }
+
+            /* A linha que liga os blocos */
+            .memory-item::after {
+                content: '';
+                position: absolute;
+                width: 4px;
+                height: 100px;
+                background: white;
+                bottom: -90px;
+            }
+
+            .memory-item:nth-child(odd) {
+                flex-direction: row;
+            }
+
+            .memory-item:nth-child(even) {
+                flex-direction: row-reverse;
+                text-align: right;
+            }
+
+            /* Posicionamento da linha alternado */
+            .memory-item:nth-child(odd)::after {
+                left: 80px;
+                transform: rotate(15deg);
+            }
+
+            .memory-item:nth-child(even)::after {
+                right: 80px;
+                transform: rotate(-15deg);
+            }
+
+            .memory-item:last-child::after {
+                display: none;
+            }
+
+        .memory-img {
+            width: 180px;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            border: 8px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        /* Efeito de imagem "torta" como na referência */
+        .memory-item:nth-child(odd) .memory-img {
+            transform: rotate(-10deg);
+        }
+
+        .memory-item:nth-child(even) .memory-img {
+            transform: rotate(10deg);
+        }
+
+        .memory-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .memory-text p {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* Ajuste no body para permitir scroll */
+        body {
+            overflow-y: auto !important;
+            height: auto;
+            min-height: 100vh;
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="./Index.html" class="back-link">← Voltar</a>
+
+    <div class="container">
+
+        <div class="panel">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/Minecraft.jpg')">
+                    <h3>Minecraft</h3>
+                </div>
+                <div class="panel-back">
+                    <div class="stats-header">Minecraft Survival</div>
+                    <div class="ranks-grid">
+                        <div class="rank-box">
+                            <p>Mundo</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3522/3522108.png" style="filter:invert(1)" alt="Grass">
+                            <p>Hardcore</p>
+                        </div>
+                    </div>
+                    <div class="data-footer">
+                        <div class="data-item"><p>Anos</p><span>+10</span></div>
+                        <div class="data-item"><p>Items</p><span>Full Netherite</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel active" id="rl-panel">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/RocketLeague.png')">
+                    <h3>Rocket League</h3>
+                </div>
+                <div class="panel-back">
+                    <div class="stats-header">Rocket League</div>
+                    <div class="ranks-grid">
+                        <div class="rank-box">
+                            <p>Solo</p>
+                            <img src="./img/Platina3.png" alt="D3">
+                            <p>Platinum III</p>
+                        </div>
+                        <div class="rank-box">
+                            <p>Duos</p>
+                            <img src="./img/Dima3.png" alt="D3">
+                            <p>Diamond III</p>
+                        </div>
+                        <div class="rank-box">
+                            <p>Trios</p>
+                            <img src="./img/Dima2.png" alt="D3">
+                            <p>Diamond II</p>
+                        </div>
+                    </div>
+                    <div class="data-footer">
+                        <div class="data-item"><p>Goals</p><span>5661</span></div>
+                        <div class="data-item"><p>Assists</p><span>2938</span></div>
+                        <div class="data-item"><p>Defenses</p><span>5154</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/Phasmophobia.webp')">
+                    <h3>Phasmophobia</h3>
+                </div>
+
+                <div class="panel-back">
+                    <div style="display: flex; justify-content: space-between; padding: 10px 15px 0;">
+                        <div class="stats-header" style="margin: 0;">Professional Investigator</div>
+                        <div style="color: #ffffff; font-size: 0.7rem; border: 1px solid #ffffff; padding: 2px 5px; border-radius: 4px;">
+                            ACHIEVEMENTS: 54/54
+                        </div>
+                    </div>
+
+                    <div class="ranks-grid" style="margin: 15px 0;">
+                        <div class="rank-box">
+                            <p>Most Played Location</p>
+                            <img src="./img/TanglewoodDrive.jpg" alt="Tanglewood" style="width: 130px; height: auto; margin: 8px 0;">
+                            <p>6 Tanglewood Drive</p>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+
+                    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px 10px; text-align: center;">
+
+                        <div class="stat-group">
+                            <p style="font-size: 0.75rem; text-transform: uppercase; color: #aaa;">Ghosts Identified</p>
+                            <span style="font-size: 1.3rem; font-weight: bold; display: block;">707</span>
+                        </div>
+
+                        <div class="stat-group">
+                            <p style="font-size: 0.75rem; text-transform: uppercase; color: #aaa;">Misidentified</p>
+                            <span style="font-size: 1.3rem; font-weight: bold; display: block;">692</span>
+                        </div>
+
+                        <div class="stat-group">
+                            <p style="font-size: 0.75rem; text-transform: uppercase; color: #aaa;">Objectives Done</p>
+                            <span style="font-size: 1.3rem; font-weight: bold; display: block;">2,213</span>
+                        </div>
+
+                        <div class="stat-group">
+                            <p style="font-size: 0.75rem; text-transform: uppercase; color: #aaa;">Total Photos</p>
+                            <span style="font-size: 1.3rem; font-weight: bold; display: block;">5,539</span>
+                        </div>
+
+                        <div class="stat-group">
+                            <p style="font-size: 0.75rem; text-transform: uppercase; color: #aaa;">Total Deaths</p>
+                            <span style="font-size: 1.3rem; font-weight: bold; display: block; color: #ff4d4d;">618</span>
+                        </div>
+
+                        <div class="stat-group">
+                            <p style="font-size: 0.75rem; text-transform: uppercase; color: #aaa;">Most Deaths To</p>
+                            <span style="font-size: 1.1rem; font-weight: bold; display: block; color: #ffb84d;">Poltergeist</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="memories-section">
+        <div class="memory-item">
+            <div class="memory-img" style="background-image: url('./img/Phasmophobia.webp');"></div>
+            <div class="memory-text">
+                <h2>Phasmophobia</h2>
+                <p>Mais do que um jogo de terror, uma jornada de 224 horas. Entre 707 fantasmas identificados e muitos sustos na Tanglewood Drive, cada caça foi uma lembrança única.</p>
+            </div>
+        </div>
+
+        <div class="memory-item">
+            <div class="memory-img" style="background-image: url('./img/Minecraft.jpg');"></div>
+            <div class="memory-text">
+                <h2>Minecraft</h2>
+                <p>Dez anos de história em blocos. Onde a sobrevivência hardcore e a armadura de Netherite são apenas troféus de uma era de exploração sem fim.</p>
+            </div>
+        </div>
+
+        <div class="memory-item">
+            <div class="memory-img" style="background-image: url('./img/RocketLeague.png');"></div>
+            <div class="memory-text">
+                <h2>Rocket League</h2>
+                <p>A adrenalina de subir até Diamond III. Mais de 5000 golos marcados e defesas impossíveis que ficaram gravadas na memória da arena.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const $panels = document.querySelectorAll('.panel');
+
+        $panels.forEach(($panel) => {
+            $panel.addEventListener('click', () => {
+                // Se clicar num painel que já está ativo, ele faz o flip
+                if ($panel.classList.contains('active')) {
+                    $panel.classList.toggle('flipped');
+                } else {
+                    // Se clicar num painel fechado, abre-o e fecha os outros (resetando o flip)
+                    removeActiveClasses();
+                    $panel.classList.add('active');
+                }
+            });
+        });
+
+        function removeActiveClasses() {
+            $panels.forEach(($panel) => {
+                $panel.classList.remove('active');
+                $panel.classList.remove('flipped');
+            });
+        }
+    </script>
+</body>
+</html>
