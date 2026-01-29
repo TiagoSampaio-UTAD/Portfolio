@@ -22,6 +22,7 @@
             color: white;
             overflow-x: hidden;
             padding-bottom: 150px;
+            transition: background 0.8s ease;
         }
 
         .back-link {
@@ -36,68 +37,41 @@
             z-index: 1001;
         }
 
-        /* --- CONTAINER DOS CARDS SUPERIORES --- */
-        .container {
+        /* =========================================
+           NOVO ESTILO DOS PANELS (CORRIGIDO)
+           ========================================= */
+        .panels-wrapper {
             display: flex;
-            width: 95vw;
-            height: 75vh;
-            gap: 15px;
-            margin: 80px auto;
-            perspective: 2000px;
+            align-items: center;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 100px 42vw; /* Centraliza o primeiro e último card */
+            gap: 40px;
+            height: 650px;
+            scrollbar-width: none;
         }
 
-        /* Container principal dos panels */
-        .panels-container {
-            display: flex;
-            width: 90vw;
-            height: 400px;
-            gap: 10px;
-            margin: 50px auto;
-        }
+            .panels-wrapper::-webkit-scrollbar {
+                display: none;
+            }
 
-        /* Estilo individual de cada painel */
         .panel {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100%;
-            border-radius: 20px;
-            color: #fff;
+            flex: 0 0 350px; /* Largura fixa para não esmagar */
+            height: 500px;
+            perspective: 1000px;
+            scroll-snap-align: center;
+            transition: all 0.5s ease;
+            opacity: 0.2;
+            transform: scale(0.8);
+            filter: grayscale(100%) blur(2px);
             cursor: pointer;
-            flex: 0.5;
-            position: relative;
-            transition: all 700ms ease-in;
-            /* Filtro para unificar o tom quando fechado */
-            filter: grayscale(100%) brightness(0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-            /* Quando o painel está ativo (expandido) */
             .panel.active {
-                flex: 5;
-                filter: grayscale(0%) brightness(1);
-                border: 1px solid rgba(255, 255, 255, 0.4);
-            }
-
-            /* Estilização do texto dentro do painel */
-            .panel h3 {
-                font-size: 24px;
-                position: absolute;
-                bottom: 20px;
-                left: 20px;
-                margin: 0;
-                opacity: 0;
-                background: rgba(0, 0, 0, 0.6);
-                backdrop-filter: blur(5px);
-                padding: 10px 20px;
-                border-radius: 10px;
-                transform: translateY(20px);
-                transition: all 0.3s ease-in 0.4s; /* Delay para o texto aparecer após expandir */
-            }
-
-            .panel.active h3 {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1.1);
+                filter: grayscale(0%) blur(0px);
+                z-index: 10;
             }
 
         .panel-inner {
@@ -108,7 +82,7 @@
             transform-style: preserve-3d;
         }
 
-        .panel.active.flipped .panel-inner {
+        .panel.flipped .panel-inner {
             transform: rotateY(180deg);
         }
 
@@ -118,8 +92,8 @@
             height: 100%;
             backface-visibility: hidden;
             border-radius: 25px;
+            border: 2px solid rgba(255,255,255,0.1);
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .panel-front {
@@ -129,39 +103,39 @@
 
             .panel-front h3 {
                 position: absolute;
-                bottom: 30px;
-                left: 30px;
-                font-size: 2.5rem;
-                opacity: 0;
-                transition: 0.3s;
+                bottom: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(5px);
+                padding: 20px;
+                text-align: center;
+                font-size: 1.5rem;
+                margin: 0;
             }
-
-        .panel.active .panel-front h3 {
-            opacity: 1;
-        }
 
         .panel-back {
             background: #0a0a0a;
             transform: rotateY(180deg);
-            padding: 30px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
         }
 
         /* Stats Styles */
         .stats-header {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
             margin-bottom: 15px;
             border-bottom: 1px solid #333;
             padding-bottom: 10px;
+            text-align: center;
         }
 
         .ranks-grid {
             display: flex;
             justify-content: space-around;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .rank-box {
@@ -170,20 +144,28 @@
             padding: 10px;
             border-radius: 15px;
             flex: 1;
+            font-size: 0.8rem;
         }
 
             .rank-box img {
-                width: 60px;
+                width: 45px;
                 height: auto;
-                margin: 10px 0;
+                margin: 8px 0;
             }
+
+        .date-label {
+            font-size: 0.75rem;
+            color: #bbb;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
 
         .data-footer {
             display: flex;
             justify-content: space-around;
             margin-top: auto;
             background: rgba(255,255,255,0.05);
-            padding: 15px;
+            padding: 12px;
             border-radius: 15px;
         }
 
@@ -202,7 +184,41 @@
                 font-weight: bold;
             }
 
-        /* --- NOVA TIMELINE (ESTILO MOCKUP: CORDA + NEON) --- */
+        /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        >>>>>> SELETOR DE IDIOMAS (FIXO) >>>>>>>>>>>>>>>>>>>>
+        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: 0.3s;
+            font-size: 0.8rem;
+        }
+
+            .lang-btn.active {
+                opacity: 1;
+                border-bottom: 1px solid white;
+            }
+
+        .pipe {
+            color: white;
+            margin: 0 5px;
+            opacity: 0.3;
+        }
+
+        /* --- TIMELINE E ESFERA (MANTIDOS IGUAIS) --- */
         .timeline-wrapper {
             position: relative;
             max-width: 1000px;
@@ -213,17 +229,14 @@
         .section-title {
             text-align: center;
             font-size: 3rem;
+            margin-top: 50px; 
             margin-bottom: 80px;
             letter-spacing: 5px;
             font-weight: 700;
             text-transform: uppercase;
-            position: relative;
-            z-index: 10;
-            /* Efeito Glassmorphism para o título */
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            display: block;
             width: fit-content;
             padding: 10px 40px;
             margin-left: auto;
@@ -233,15 +246,63 @@
 
         .rope-vertical {
             position: absolute;
-            top: 120px; /* Começa abaixo do título */
+            top: 160px;
             bottom: 0;
             left: 50%;
-            width: 16px;
+            width: 20px;
             transform: translateX(-50%);
-            background: repeating-linear-gradient(45deg, #5c3a1e, #5c3a1e 10px, #8b5a2b 10px, #8b5a2b 20px);
+            /* Textura de Sisal Torcido */
+            background: repeating-linear-gradient(45deg, rgba(0,0,0,0.4) 0px, rgba(0,0,0,0.4) 8px, transparent 8px, transparent 16px), linear-gradient(to right, #3e2716 0%, #8b5a2b 25%, #b38b67 50%, #8b5a2b 75%, #3e2716 100%);
             border-radius: 10px;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.8);
+            /* Filtros para realismo e fios soltos (blur suave na borda) */
+            filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.8)) contrast(1.2);
             z-index: 1;
+        }
+
+            /* Efeito de Fiados/Pelos Soltos */
+            .rope-vertical::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: repeating-radial-gradient(circle, #b38b67 1px, transparent 2px);
+                background-size: 5px 15px;
+                opacity: 0.3;
+                filter: blur(0.5px);
+            }
+
+        .rope-connector {
+            position: absolute;
+            top: 50%;
+            height: 12px;
+            background: repeating-linear-gradient(90deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 6px, transparent 6px, transparent 12px), linear-gradient(to bottom, #3e2716 0%, #8b5a2b 50%, #3e2716 100%);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 36px;
+            height: 46px;
+            /* Simula a sobreposição física do nó direito */
+            background: linear-gradient(90deg, transparent 40%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.5) 55%, transparent 60%), repeating-linear-gradient(0deg, #3e2716 0px, #8b5a2b 3px, #b38b67 5px, #3e2716 8px);
+            border-radius: 8px;
+            transform: translateY(-50%);
+            z-index: 5;
+            box-shadow: 3px 5px 10px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.5);
+            border: 1px solid #2a1a0e;
+        }
+
+        /* Posicionamento ajustado */
+        .timeline-row.left .timeline-content::after {
+            right: -66px;
+        }
+
+        .timeline-row.right .timeline-content::after {
+            left: -66px;
         }
 
         .timeline-row {
@@ -252,7 +313,6 @@
             z-index: 2;
         }
 
-            /* Alternância: Row Esquerda vs Row Direita */
             .timeline-row.left {
                 justify-content: flex-start;
                 padding-right: 50%;
@@ -263,15 +323,13 @@
                 padding-left: 50%;
             }
 
-        /* Card Container */
         .timeline-content {
             position: relative;
             width: 90%;
             max-width: 480px;
-            margin: 0 50px; /* Espaço para a corda conectora */
+            margin: 0 50px;
         }
 
-        /* O Estilo do Card (Glow Branco Neon) */
         .glow-card {
             background: #000;
             border: 3px solid #fff;
@@ -280,7 +338,6 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            /* Efeito de brilho externo e interno */
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
             transition: transform 0.3s;
         }
@@ -298,70 +355,25 @@
                 border: 1px solid #555;
             }
 
-        .text-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .date-label {
-            font-size: 0.75rem;
-            color: #bbb;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        .game-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .game-desc {
-            font-size: 0.95rem;
-            color: #ccc;
-            line-height: 1.4;
-        }
-
-        /* A Corda Conectora (Horizontal) */
-        .rope-connector {
-            position: absolute;
-            top: 50%;
-            height: 12px;
-            width: 60px;
-            background: repeating-linear-gradient(45deg, #5c3a1e, #5c3a1e 5px, #8b5a2b 5px, #8b5a2b 10px);
-            box-shadow: 0 5px 5px rgba(0,0,0,0.5);
-            z-index: -1;
-            border-radius: 5px;
-        }
-
-        /* Posicionamento dos Conectores */
         .timeline-row.left .rope-connector {
             right: -55px;
-            top: 50%;
             transform: translateY(-50%) rotate(10deg);
             width: 110px;
         }
 
         .timeline-row.right .rope-connector {
             left: -55px;
-            top: 50%;
             transform: translateY(-50%) rotate(-10deg);
             width: 110px;
         }
 
-
-        /* --- GALERIA ESFERA --- */
         #dome-section {
-            position: relative;
             width: 100%;
             height: 1000px;
-            margin-top: 50px;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow: hidden;
         }
 
         .gallery-title {
@@ -369,9 +381,10 @@
             margin: 50px 0;
             text-transform: uppercase;
             letter-spacing: 8px;
-            text-align: center;
-            position: relative; /* Adicione isto */
-            z-index: 100; /* Adicione isto para garantir que vença a esfera */
+            z-index: 100;
+            backface-visibility: hidden; /* Não renderiza o que está de costas para a câmara */
+            will-change: transform; /* Prepara a GPU para a animação */
+            transform-style: preserve-3d;
         }
 
         .sphere-root {
@@ -415,9 +428,18 @@
                 transform: scale(1.1);
             }
 
-        /* --- MODAL ZOOM --- */
+        .game-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+            
+        /* --- NOVO SISTEMA DE ZOOM (MODAL) --- */
         #custom-viewer {
-            display: none;
+            display: none; /* Escondido por defeito */
+
             position: fixed;
             top: 0;
             left: 0;
@@ -427,6 +449,7 @@
             z-index: 999999;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
         }
 
             #custom-viewer .content-wrapper {
@@ -440,17 +463,19 @@
             #custom-viewer img, #custom-viewer video {
                 max-width: 100%;
                 max-height: 100%;
-                object-fit: contain;
-                border: 2px solid #fff;
+                object-fit: contain; /* Mostra a imagem completa sem cortes */
+
+                border: 1px solid #333;
+                box-shadow: 0 0 50px rgba(0,0,0,1);
                 animation: zoomAnim 0.3s ease-out;
             }
 
         @keyframes zoomAnim {
+
             from {
                 transform: scale(0.8);
                 opacity: 0;
             }
-
             to {
                 transform: scale(1);
                 opacity: 1;
@@ -468,35 +493,48 @@
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="header-container container">
+            <nav class="nav-top">
+                <div class="language">
+                    <div class="lang-switcher">
+                        <button class="lang-btn pt active" data-lang="pt">PT</button>
+                        <span class="pipe">|</span>
+                        <button class="lang-btn en" data-lang="en">EN</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-    <a href="./Index.html" class="back-link">← Voltar</a>
-    <div class="container">
-        <div class="panel active">
+    <h2 class="section-title">Games</h2>
+    <div class="panels-wrapper" id="panels-track">
+        <div class="panel active" data-bg="./img/MineL.png">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/Minecraft.jpg')"><h3>Minecraft</h3></div>
+                <div class="panel-front" style="background-image: url('./img/MLogo.jpg')"><h3>Minecraft</h3></div>
                 <div class="panel-back">
                     <div class="stats-header">Minecraft Survival</div>
                     <div class="ranks-grid">
-                        <div class="rank-box"><p>Mundo</p><img src="https://cdn-icons-png.flaticon.com/512/3522/3522108.png" style="filter:invert(1)"><p>Hardcore</p></div>
+                        <div class="rank-box"><p class="lang" data-lang-en="World" data-lang-pt="Mundo">World</p><img src="https://cdn-icons-png.flaticon.com/512/3522/3522108.png" style="filter:invert(1)"><p>Hardcore</p></div>
                     </div>
                     <div class="data-footer">
-                        <div class="data-item"><p>Anos</p><span>+10</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Years" data-lang-pt="Anos">Years</p><span>+10</span></div>
                         <div class="data-item"><p>Items</p><span>Full Netherite</span></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/C2SLogo.png">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/C2S.png')"><h3>Cell to Singularity</h3></div>
+                <div class="panel-front" style="background-image: url('./img/C2S.png')"><h3>Cell to Singularity - Evolution Never Ends</h3></div>
                 <div class="panel-back">
-                    <div class="stats-header">Evolution Progress</div>
+                    <div class="stats-header"><p class="lang" data-lang-en="Evolution Progress" data-lang-pt="Progresso da Evolução">Evolution Progress</p></div>
                     <div class="ranks-grid">
                         <div class="rank-box">
-                            <p>Era Atual</p>
+                            <p class="lang" data-lang-en="Actual Era" data-lang-pt="Era Atual">Actual Era</p>
                             <img src="https://cdn-icons-png.flaticon.com/512/2072/2072130.png" style="filter:invert(1); width: 50px;">
-                            <p>Singularidade</p>
+                            <p class="lang" data-lang-en="Singularity" data-lang-pt="Singularidade">Singularity</p>
                         </div>
                     </div>
                     <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
@@ -507,11 +545,32 @@
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/CTLogo.jpg">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/GWYFs.jpg')"><h3>Golf With Friends</h3></div>
+                <div class="panel-front" style="background-image: url('./img/CT.jpg')">
+                    <h3 class="lang" data-lang-en="Chained Together" data-lang-pt="Chained Together">Chained Together</h3>
+                </div>
                 <div class="panel-back">
-                    <div class="stats-header">Pro Golfer</div>
+                    <div class="stats-header lang" data-lang-en="Escape Status" data-lang-pt="Status de Fuga">Escape Status</div>
+                    <div class="ranks-grid">
+                        <div class="rank-box">
+                            <p class="lang" data-lang-en="Mode" data-lang-pt="Modo">Mode</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/5065/5065077.png" style="filter:invert(1); width: 40px;">
+                            <p>Lava / Hard</p>
+                        </div>
+                    </div>
+                    <div class="data-footer">
+                        <div class="data-item"><p class="lang" data-lang-en="Height" data-lang-pt="Altura">Height</p><span>3600m</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" data-bg="./img/GWYF.avif">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/GWYFs.jpg')"><h3>Golf With Your Friends</h3></div>
+                <div class="panel-back">
+                    <div class="stats-header"><p class="lang" data-lang-en="Pro Golfer" data-lang-pt="Golfista Profissional">Pro Golfer</p></div>
                     <div class="ranks-grid">
                         <div class="rank-box">
                             <p>Hole-in-One</p>
@@ -520,14 +579,14 @@
                         </div>
                     </div>
                     <div class="data-footer">
-                        <div class="data-item"><p>Best</p><span>Albatross</span></div>
-                        <div class="data-item"><p>Maps</p><span>12/12</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Best" data-lang-pt="Melhor">Best</p><span>Albatross</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Maps" data-lang-pt="Mapas">Maps</p><span>12/12</span></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/HFLogo.jpg">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/House.jpg')"><h3>House Flipper</h3></div>
                 <div class="panel-back">
@@ -541,9 +600,39 @@
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/HFFLogo.png">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/Over.jpg')"><h3>Overwatch 2</h3></div>
+                <div class="panel-front" style="background-image: url('./img/HumanFallFlat.jpg')">
+                    <h3>Human Fall Flat</h3>
+                </div>
+                <div class="panel-back">
+                    <div class="stats-header lang" data-lang-en="Master of Physics" data-lang-pt="Mestre da Física">Master of Physics</div>
+                    <div class="data-footer">
+                        <div class="data-item"><p class="lang" data-lang-en="Levels" data-lang-pt="Níveis">Levels</p><span>100%</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Skins" data-lang-pt="Skins">Skins</p><span>Custom</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" data-bg="./img/MLU.webp">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/MLULogo.webp')">
+                    <h3>My Little Universe</h3>
+                </div>
+                <div class="panel-back">
+                    <div class="stats-header lang" data-lang-en="God Mode" data-lang-pt="Modo Deus">God Mode</div>
+                    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
+                        <div class="stat-group"><p class="lang" data-lang-en="Planets" data-lang-pt="Planetas">Planetas</p><span>9/9</span></div>
+                        <div class="stat-group"><p class="lang" data-lang-en="Resources" data-lang-pt="Recursos">Recursos</p><span>Max</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" data-bg="./img/Over.jpg">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/OverLogo.jpg')"><h3>Overwatch 2</h3></div>
                 <div class="panel-back">
                     <div class="stats-header">Grandmaster</div>
                     <div class="ranks-grid">
@@ -557,7 +646,15 @@
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/PW.jpg">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/PWLogo.jpg')">
+                    <h3>The Past Within</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" data-bg="./img/PDLogo.jpg">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/PD.jpg')"><h3>PayDay 2</h3></div>
                 <div class="panel-back">
@@ -573,7 +670,7 @@
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/PLogo.jpg">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/Phasmophobia.webp')"><h3>Phasmophobia</h3></div>
                 <div class="panel-back">
@@ -581,9 +678,11 @@
                         <div class="stats-header">Professional Investigator</div>
                         <div style="border: 1px solid #fff; padding: 2px 8px; font-size: 0.7rem; border-radius: 4px;">ACHIEVEMENTS: 54/54</div>
                     </div>
+
                     <div class="ranks-grid" style="margin: 20px 0;">
                         <div class="rank-box"><p>Most Played Location</p><img src="./img/TanglewoodDrive.jpg" style="width: 140px; border-radius: 10px;"><p>6 Tanglewood Drive</p></div>
                     </div>
+
                     <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;">
                         <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">GHOSTS IDENTIFIED</p><span>707</span></div>
                         <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">MISIDENTIFIED</p><span>692</span></div>
@@ -596,7 +695,7 @@
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/PCLogo.jpg">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/PC.jpg')"><h3>Pickcrafter</h3></div>
                 <div class="panel-back">
@@ -610,28 +709,27 @@
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/RocketLeague.png">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/RocketLeague.png')"><h3>Rocket League</h3></div>
+                <div class="panel-front" style="background-image: url('./img/RLLogo.jpg')"><h3>Rocket League</h3></div>
                 <div class="panel-back">
                     <div class="stats-header">Rocket League</div>
                     <div class="ranks-grid">
-                        <div class="rank-box"><p>Solo</p><img src="./img/Platina3.png"><p>Platinum III</p></div>
-                        <div class="rank-box"><p>Duos</p><img src="./img/Dima3.png"><p>Diamond III</p></div>
-                        <div class="rank-box"><p>Trios</p><img src="./img/Dima2.png"><p>Diamond II</p></div>
+                        <div class="rank-box"><p>Solo</p><img src="./img/Platina3.png" style="width:30px;"><p>Platinum III</p></div>
+                        <div class="rank-box"><p>Duos</p><img src="./img/Dima3.png" style="width:30px;"><p>Diamond III</p></div>
+                        <div class="rank-box"><p>Trios</p><img src="./img/Dima2.png" style="width:30px;"><p>Diamond II</p></div>
                     </div>
                     <div class="data-footer">
                         <div class="data-item"><p>Goals</p><span>5661</span></div>
-                        <div class="data-item"><p>Assists</p><span>2938</span></div>
                         <div class="data-item"><p>Saves</p><span>5154</span></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-bg="./img/TOT (2).jpg">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/TOT.jpg')"><h3>Outlast Trials</h3></div>
+                <div class="panel-front" style="background-image: url('./img/TOT.jpg')"><h3>The Outlast Trials</h3></div>
                 <div class="panel-back">
                     <div class="stats-header">Program X</div>
                     <div class="rank-box" style="margin-bottom: 10px;">
@@ -645,7 +743,16 @@
             </div>
         </div>
 
+        <div class="panel" data-bg="./img/WROEF.jpg">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/WROEF (2).jpg')">
+                    <h3>What Remains of Edith Finch</h3>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 
     <div class="timeline-wrapper">
         <h2 class="section-title">Favorite Games</h2>
@@ -673,7 +780,7 @@
                     <img src="./img/WROEFLogo.jpg" alt="Edith Finch">
                     <div class="text-group">
                         <span class="date-label">GIANT SPARROW</span>
-                        <div class="game-title">Edith Finch</div>
+                        <div class="game-title">What Remains of Edith Finch</div>
                         <div class="game-desc">Uma coleção de contos estranhos sobre uma família amaldiçoada, focada em narrativa e atmosfera imersiva.</div>
                     </div>
                 </div>
@@ -687,7 +794,7 @@
                     <img src="./img/TOTLogo.jpg" alt="Outlast">
                     <div class="text-group">
                         <span class="date-label">RED BARRELS</span>
-                        <div class="game-title">Outlast Trials</div>
+                        <div class="game-title">The Outlast Trials</div>
                         <div class="game-desc">Survival horror cooperativo onde pacientes enfrentam provações físicas e psicológicas em experimentos da era da Guerra Fria.</div>
                     </div>
                 </div>
@@ -750,19 +857,51 @@
     </div>
 
     <script>
-        // CONTROLO DOS CARDS (TOPO)
+
+        const track = document.getElementById('panels-track');
         const panels = document.querySelectorAll('.panel');
+
+        function updateActivePanel() {
+            if (!track) return;
+            const centerX = window.innerWidth / 2;
+            let closestPanel = null;
+            let minDistance = Infinity;
+
+            panels.forEach(panel => {
+                const rect = panel.getBoundingClientRect();
+                const panelCenter = rect.left + rect.width / 2;
+                const distance = Math.abs(panelCenter - centerX);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestPanel = panel;
+                }
+            });
+
+            panels.forEach(p => {
+                p.classList.remove('active');
+                if (p !== closestPanel) p.classList.remove('flipped');
+            });
+
+            if (closestPanel) {
+                closestPanel.classList.add('active');
+                const bg = closestPanel.getAttribute('data-bg');
+                document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('${bg}')`;
+            }
+        }
+
         panels.forEach(p => p.addEventListener('click', () => {
             if (p.classList.contains('active')) p.classList.toggle('flipped');
-            else { panels.forEach(x => x.classList.remove('active', 'flipped')); p.classList.add('active'); }
+            else p.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }));
 
-        // CONFIGURAÇÃO GALERIA 3D (ESFERA)
-        const container = document.getElementById('sphere-container');
+        if (track) track.addEventListener('scroll', updateActivePanel);
+
+        // 2. GALERIA 3D - FOCO EM PERFORMANCE DE TRANSIÇÃO
+        const sphereContainer = document.getElementById('sphere-container');
         const viewer = document.getElementById('custom-viewer');
         const viewerContent = document.getElementById('viewer-content');
+        const domeSection = document.getElementById('dome-section');
 
-        // Mantive a tua lista completa de ficheiros
         const minhasImagens = [
             './img/CS.png', './img/DD.png', './img/DIR.png', './img/ETB.png', './img/ETB1.png', './img/ETB2.png', './img/FNAFSOTM.png', './img/GI.png', './img/GI0.png', './img/GI1.png',
             './img/GI2.png', './img/GI3.png', './img/GTA.png', './img/GWYF.png', './img/HF.png', './img/HFF.png', './img/HFF1.png', './img/KF.png', './img/KF1.png', './img/L4D2.png',
@@ -774,45 +913,78 @@
             './img/RL (3).mp4', './img/RL (4).mp4', './img/RL (5).mp4', './img/RL (6).mp4', './img/VAVA.mp4', './img/VAVA (1).mp4', './img/VAVA (2).mp4', './img/VAVA (3).mp4', './img/VAVA (4).mp4', './img/VAVA (5).mp4'
         ];
 
-        const cols = 20, rows = 5, radius = 650; // Ajustei rows para 5 para acomodar tantos ficheiros
+        const cols = 20, radius = 650;
+        let isGalleryInView = false; // Controlo de visibilidade
 
-        for (let i = 0; i < minhasImagens.length; i++) {
+        minhasImagens.forEach((src, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
+            item.style.backfaceVisibility = 'hidden'; // Não renderiza o que está de costas
 
-            const col = i % cols, row = Math.floor(i / cols);
-            const angle = col * (360 / cols), yPos = (row - 2) * 130; // Centralizar verticalmente
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+            const angle = col * (360 / cols);
+            const yPos = (row - 2) * 130;
 
-            item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px) translateY(${yPos}px)`;
+            // Usa translate3d para ativar a Placa de Vídeo
+            item.style.transform = `rotateY(${angle}deg) translate3d(0, ${yPos}px, ${radius}px)`;
 
-            const src = minhasImagens[i];
             const isVideo = src.match(/\.(mp4|webm|ogg|mov)$/i);
             const media = document.createElement(isVideo ? 'video' : 'img');
+
             media.src = src;
-            if (isVideo) { media.muted = true; media.loop = true; media.autoplay = true; media.setAttribute('playsinline', ''); }
+            if (isVideo) {
+                media.muted = true;
+                media.loop = true;
+                media.setAttribute('playsinline', '');
+                media.setAttribute('preload', 'none'); // CRÍTICO: Não carrega nada até mandarmos
+            } else {
+                media.loading = 'lazy';
+            }
 
             item.appendChild(media);
-            container.appendChild(item);
+            sphereContainer.appendChild(item);
 
-            item.addEventListener('click', (e) => {
+            item.onclick = (e) => {
                 e.stopPropagation();
                 viewerContent.innerHTML = '';
                 const clone = media.cloneNode(true);
-                if (isVideo) { clone.muted = false; clone.controls = true; }
+                if (isVideo) { clone.muted = false; clone.controls = true; clone.play(); }
                 viewerContent.appendChild(clone);
                 viewer.style.display = 'flex';
                 isPaused = true;
+            };
+        });
+
+        // OTIMIZAÇÃO: Só ativa os vídeos e a animação quando chegas à galeria
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isGalleryInView = entry.isIntersecting;
+                const videos = sphereContainer.querySelectorAll('video');
+
+                if (isGalleryInView) {
+                    videos.forEach(v => {
+                        v.setAttribute('preload', 'auto');
+                        v.play().catch(() => { }); // Só dá play quando vês a galeria
+                    });
+                } else {
+                    videos.forEach(v => v.pause()); // Pausa tudo quando sais da zona para parar o lag
+                }
             });
-        }
+        }, { threshold: 0.1 });
 
-        viewer.onclick = () => { viewer.style.display = 'none'; viewerContent.innerHTML = ''; isPaused = false; };
-        document.querySelector('.close-btn').onclick = () => { viewer.style.display = 'none'; isPaused = false; };
+        observer.observe(domeSection);
 
-        // ANIMAÇÃO ROTAÇÃO
+        // 3. ANIMAÇÃO DA ESFERA
         let rotationY = 0, isDragging = false, isPaused = false, startX = 0;
-        function animate() {
-            if (!isDragging && !isPaused) { rotationY -= 0.05; container.style.transform = `rotateY(${rotationY}deg)`; }
-            requestAnimationFrame(animate);
+
+        function animateSphere() {
+            // Só consome processador se a galeria estiver visível
+            if (!isDragging && !isPaused && isGalleryInView) {
+                rotationY -= 0.03;
+                sphereContainer.style.transform = `rotateY(${rotationY}deg) translateZ(0)`;
+            }
+            requestAnimationFrame(animateSphere);
         }
 
         const sphereRoot = document.getElementById('sphere-root');
@@ -821,10 +993,35 @@
             if (!isDragging) return;
             rotationY += (e.clientX - startX) * 0.1;
             startX = e.clientX;
-            container.style.transform = `rotateY(${rotationY}deg)`;
+            sphereContainer.style.transform = `rotateY(${rotationY}deg) translateZ(0)`;
         };
         window.onmouseup = () => { isDragging = false; };
-        animate();
+
+        window.addEventListener('load', () => {
+            updateActivePanel();
+            animateSphere();
+        });
+
+        viewer.onclick = () => { viewer.style.display = 'none'; viewerContent.innerHTML = ''; isPaused = false; };
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang'); // 'en' ou 'pt'
+
+                // Seleciona todos os elementos com a classe 'lang'
+                document.querySelectorAll('.lang').forEach(el => {
+                    // Vai buscar o texto correspondente ao atributo data-lang-en ou data-lang-pt
+                    const text = el.getAttribute(`data-lang-${lang}`);
+                    if (text) {
+                        el.textContent = text;
+                    }
+                });
+
+                // Opcional: Marcar o botão ativo visualmente
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
 
     </script>
 </body>
