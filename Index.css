@@ -384,61 +384,88 @@ h3 {
     font-weight: bold;
     display: none;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}   
+}
 
-/* Layout da Secção */
 .music-layout {
     display: flex;
-    gap: 20px;
     align-items: flex-start;
     width: 100%;
-    max-width: 1400px; /* Aumentado para dar mais folga */
+    max-width: 1300px;
     margin: 40px auto;
-    padding: 0 5%;
+    gap: 0;
 }
 
 .music-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    transition: all 0.5s ease; /* Animação suave na reorganização */
-    flex: 1;
+    flex: 1; /* Isto faz a grid esticar-se sempre que possível */
+    transition: all 0.4s ease;
 }
+
+/* Quando o painel está aberto (Classe aplicada no layout) */
 .music-layout.panel-open .music-grid {
     grid-template-columns: repeat(2, 1fr);
+    flex: 0 0 60%; /* Ocupa 60% e deixa 40% para a lista */
 }
-/* Painel de Músicas */
+
 .tracklist-panel {
-    width: 0;
-    opacity: 0;
-    overflow: hidden;
+    display: none; /* ESCONDE TOTALMENTE por padrão */
+    flex-direction: column;
     background: rgba(15, 15, 15, 0.95);
     backdrop-filter: blur(15px);
     border-radius: 15px;
-    transition: width 0.5s ease, opacity 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
+    /* Quando ativo: muda para flex para aparecer e ganhar largura */
     .tracklist-panel.active {
-        width: 400px; /* Largura do painel da imagem */
-        padding: 25px;
+        display: flex;
+        width: 35%; /* Largura fixa relativa */
         opacity: 1;
-        margin-left: 20px;
+        padding: 25px;
+        margin-left: 30px; /* Cria o espaço entre grid e lista */
     }
 
 .tracklist-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-}
+    flex-shrink: 0; /* Impede que o cabeçalho seja esmagado pelo scroll */
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
 
 #tracks-ul {
-    list-style: none; /* Remove os pontos/bullets */
+    list-style: none;
     padding: 0;
-    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
 }
+
+    #tracks-ul::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    #tracks-ul::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    #tracks-ul::-webkit-scrollbar-thumb {
+        background: #1DB954;
+        border-radius: 10px;
+    }
+
+        #tracks-ul::-webkit-scrollbar-thumb:hover {
+            background: rgba(29, 185, 84, 0.8);
+        }
 
     #tracks-ul li {
         display: flex;
@@ -479,7 +506,9 @@ h3 {
 
 .track-info {
     display: flex;
-    flex-direction: column; /* Coloca o nome do artista por baixo */
+    flex-direction: column;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .track-name {

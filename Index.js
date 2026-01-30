@@ -108,22 +108,28 @@ function showTracks(albumKey) {
     const ul = document.getElementById('tracks-ul');
     const data = albumData[albumKey];
 
-    // 1. Adiciona a classe para reorganizar os álbuns 2 a 2
+    // 1. Reorganiza a grid
     layout.classList.add('panel-open');
 
-    // 2. Preenche os dados
-    document.getElementById('album-title').innerText = data.title;
-    ul.innerHTML = data.tracks.map(t =>
-        `<li onclick="playSpotify('${t.id}')">
-        <div class="track-info">
-            <span class="track-name">${t.name}</span>
-            <span class="track-artist">${t.artist}</span>
-        </div>
-    </li>`
-    ).join('');
+    // 2. Prepara e mostra o painel
+    container.style.display = 'flex';
+    setTimeout(() => {
+        container.classList.add('active');
+    }, 10);
 
-    // 3. Abre o painel
-    container.classList.add('active');
+    document.getElementById('album-title').innerText = data.title;
+
+    // 3. Renderiza a lista (Ordenada de A-Z como pediste)
+    const sortedTracks = data.tracks.sort((a, b) => a.name.localeCompare(b.name));
+
+    ul.innerHTML = sortedTracks.map(t => `
+        <li onclick="playSpotify('${t.id}')" style="cursor:pointer">
+            <div class="track-info">
+                <span style="color:#fff; font-size:14px">▶ ${t.name}</span>
+                <span style="color:rgba(255,255,255,0.4); font-size:11px; margin-left:18px">${t.artist || ''}</span>
+            </div>
+        </li>
+    `).join('');
 }
 
 function playSpotify(id) {
@@ -133,15 +139,21 @@ function playSpotify(id) {
         width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
     playerContainer.classList.add('active');
 }
-
 function closeTracks() {
     const layout = document.querySelector('.music-layout');
     const container = document.getElementById('tracklist-container');
 
-    // Remove as classes para os álbuns voltarem ao normal
-    layout.classList.remove('panel-open');
     container.classList.remove('active');
+    layout.classList.remove('panel-open');
+
+    // Espera a animação de fade acabar (300ms) para remover o espaço de vez
+    setTimeout(() => {
+        container.style.display = 'none';
+    }, 300);
+
+    document.getElementById('spotify-player-container').innerHTML = '';
 }
+
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 >>>>>> SNAKE GHOUL BACKGROUND >>>>>>>>>>>>>>>>>>>>>>>
