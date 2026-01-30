@@ -1,0 +1,415 @@
+﻿<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Vibes - Tiago Sampaio</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(rgba(0,0,0,0.94), rgba(0,0,0,0.94)), url('./img/fundo.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+        }
+
+        .back-btn {
+            color: #888;
+            text-decoration: none;
+            border: 1px solid #444;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+            .back-btn:hover {
+                color: #fff;
+                border-color: #fff;
+                background: rgba(255,255,255,0.05);
+            }
+
+        /* GRID CONFIGURADA PARA 2 POR LINHA */
+        .grid-vibes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-vibes {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .lang-block {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 30px 20px 20px;
+            position: relative;
+        }
+
+        .lang-label {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #fff;
+            color: #000;
+            padding: 2px 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .project-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #eee;
+        }
+
+        .project-desc {
+            font-size: 0.75rem;
+            color: #666;
+            display: block;
+        }
+
+        .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            margin-left: 10px;
+        }
+
+        .btn-code {
+            color: #569cd6;
+        }
+
+        .btn-run {
+            color: #4ec9b0;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 8px currentColor;
+        }
+
+        /* TERMINAL STYLE */
+        #viewer {
+            margin-top: 40px;
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 8px;
+            display: none;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .display-top {
+            background: #252526;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            height: 380px;
+            overflow-y: auto;
+            background: #000;
+        }
+
+        #display-content {
+            white-space: pre-wrap;
+            margin: 0;
+            line-height: 1.5;
+            color: #d4d4d4;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .prompt {
+            color: #4ec9b0;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        #terminal-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+            font-family: inherit;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            color: #ff5f56;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Code Vibes <small style="font-size: 0.4em; opacity: 0.5;"></small></h1>
+            <a href="Index.html" class="back-btn">← Sair</a>
+        </header>
+
+        <main class="grid-vibes">
+            <div class="lang-block">
+                <div class="lang-label">C</div>
+                <div class="project-item">
+                    <div><span class="project-name">Matrix.c</span><span class="project-desc">Fluxo de dados binários.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('c_matrix')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('C', 'matrix')">[Run]</button>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div><span class="project-name">Memory.c</span><span class="project-desc">Simulador de RAM Pointers.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('c_mem')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('C', 'mem')">[Run]</button>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div><span class="project-name">Physic.c</span><span class="project-desc">Cálculo de Gravidade.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('c_phys')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('C', 'phys')">[Run]</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lang-block">
+                <div class="lang-label">C#</div>
+                <div class="project-item">
+                    <div><span class="project-name">Bank.cs</span><span class="project-desc">ATM Simulator.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('cs_bank')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('C#', 'bank')">[Run]</button>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div><span class="project-name">GameStat.cs</span><span class="project-desc">XP & Level System.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('cs_game')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('C#', 'game')">[Run]</button>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div><span class="project-name">Temp.cs</span><span class="project-desc">Celsius Converter.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('cs_temp')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('C#', 'temp')">[Run]</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lang-block">
+                <div class="lang-label">Java</div>
+                <div class="project-item">
+                    <div><span class="project-name">Binary.java</span><span class="project-desc">Base Numeric Converter.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('java_bin')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('Java', 'bin')">[Run]</button>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div><span class="project-name">Thread.java</span><span class="project-desc">Multi-tasking simulation.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('java_thread')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('Java', 'thread')">[Run]</button>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div><span class="project-name">Lotto.java</span><span class="project-desc">Random Key Generator.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('java_lotto')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('Java', 'lotto')">[Run]</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lang-block">
+                <div class="lang-label">Python</div>
+                <div class="project-item">
+                    <div><span class="project-name">Secure.py</span><span class="project-desc">Password Strength.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('py_sec')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('Python', 'sec')">[Run]</button>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div><span class="project-name">Stocks.py</span><span class="project-desc">Compound Interest.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('py_stock')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('Python', 'stock')">[Run]</button>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div><span class="project-name">AI_Bot.py</span><span class="project-desc">Simple Chat Logic.</span></div>
+                    <div class="actions">
+                        <button class="btn btn-code" onclick="show('py_ai')">[Code]</button>
+                        <button class="btn btn-run" onclick="run('Python', 'ai')">[Run]</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="viewer">
+            <div class="display-top">
+                <span id="display-title">Terminal</span>
+                <span class="close-btn" onclick="hide()">X</span>
+            </div>
+            <div class="terminal-body" onclick="document.getElementById('terminal-input').focus()">
+                <pre id="display-content"></pre>
+                <div class="input-line" id="input-area" style="display: none;">
+                    <span class="prompt" id="current-prompt">></span>
+                    <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const db = {
+            'c_matrix': 'while(1) { printf("%d", rand() % 2); }',
+            'c_mem': 'int a = 10; printf("%p", (void*)&a);',
+            'c_phys': 'v = g * t; // g=9.8m/s²',
+            'cs_bank': 'balance += depositAmount;',
+            'cs_game': 'if(xp >= 100) { level++; xp = 0; }',
+            'cs_temp': 'F = (C * 9/5) + 32;',
+            'java_bin': 'Integer.toBinaryString(n);',
+            'java_thread': 'new Thread(() -> { ... }).start();',
+            'java_lotto': 'Random r = new Random(); r.nextInt(50);',
+            'py_sec': 'return len(p) > 8 and any(c.isdigit() for c in p)',
+            'py_stock': 'A = P * (1 + r/n)**(nt)',
+            'py_ai': 'if "olá" in msg: print("Boas!")'
+        };
+
+        let activeLang = ""; let activeProj = ""; let balance = 1250; let xp = 0; let level = 1;
+
+        function show(id) {
+            hide();
+            const v = document.getElementById('viewer');
+            const c = document.getElementById('display-content');
+            document.getElementById('display-title').innerText = "Source Code Viewer";
+            document.getElementById('input-area').style.display = "none";
+            c.innerText = db[id]; c.style.color = "#569cd6"; v.style.display = 'block';
+        }
+
+        function run(lang, proj) {
+            activeLang = lang; activeProj = proj;
+            const v = document.getElementById('viewer');
+            const c = document.getElementById('display-content');
+            const ia = document.getElementById('input-area');
+            const pr = document.getElementById('current-prompt');
+
+            v.style.display = 'block'; ia.style.display = "flex";
+            c.style.color = "#4ec9b0"; pr.innerText = lang === 'Python' ? ">>>" : lang === 'C' ? "$" : ">";
+
+            if (proj === 'matrix') {
+                ia.style.display = "none"; c.innerText = "Matrix Initialized...\n";
+                let i = 0; let int = setInterval(() => { c.innerText += Math.round(Math.random()); if (i++ > 400) { clearInterval(int); c.innerText += "\n[STREAM ENDED]"; } document.querySelector('.terminal-body').scrollTop = 9999; }, 5);
+            } else if (proj === 'mem') { c.innerText = "C-Memory Map:\n0x7ffee3b2a -> [Allocated]\nDigite 'alloc' para novo ponteiro:"; }
+            else if (proj === 'bank') { c.innerText = `C# Bank. Saldo Atual: ${balance}€\nComandos: deposit [valor], withdraw [valor]`; }
+            else if (proj === 'game') { c.innerText = `Level: ${level} | XP: ${xp}/100\nEscreve 'farm' para ganhar experiência!`; }
+            else if (proj === 'bin') { c.innerText = "Java Binary Converter. Digite um número decimal:"; }
+            else if (proj === 'sec') { c.innerText = "Python Security. Digite uma password para teste:"; }
+            else if (proj === 'stock') { c.innerText = "Juros Compostos. Digite: [Capital] [Taxa %] [Anos]"; }
+            else if (proj === 'ai') { c.innerText = "Python AI: Olá! Pergunta-me 'quem és' ou 'horas'."; }
+            else if (proj === 'phys') { c.innerText = "Gravidade (g=9.8). Digite o tempo de queda (s):"; }
+            else if (proj === 'temp') { c.innerText = "Conversor C# -> Digite graus Celsius:"; }
+            else if (proj === 'thread') { c.innerText = "Multi-thread Java. Digite 'start' para lançar tarefa."; }
+            else if (proj === 'lotto') { c.innerText = "Java Lotto. Digite 'gerar' para chave da sorte."; }
+
+            document.getElementById('terminal-input').value = "";
+            document.getElementById('terminal-input').focus();
+            v.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('terminal-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const val = this.value.trim().toLowerCase();
+                const c = document.getElementById('display-content');
+                const p = document.getElementById('current-prompt').innerText;
+                let res = "";
+
+                if (activeProj === 'bank') {
+                    let a = parseFloat(val.split(' ')[1]);
+                    if (val.includes('deposit')) { balance += a; res = `Sucesso. Saldo: ${balance}€`; }
+                    else if (val.includes('withdraw')) { balance -= a; res = `Sucesso. Saldo: ${balance}€`; }
+                } else if (activeProj === 'game') {
+                    if (val === 'farm') { xp += 35; if (xp >= 100) { level++; xp = 0; res = "LEVEL UP! Nível " + level; } else res = `XP +35 (${xp}/100)`; }
+                } else if (activeProj === 'bin') {
+                    let n = parseInt(val); res = isNaN(n) ? "Erro" : `BIN: ${n.toString(2)} | HEX: ${n.toString(16).toUpperCase()}`;
+                } else if (activeProj === 'sec') {
+                    res = (val.length > 8 && /[0-9]/.test(val)) ? "FORTE 🟢" : "FRACA 🔴";
+                } else if (activeProj === 'ai') {
+                    if (val.includes('quem')) res = "Sou um Chatbot simples em Python.";
+                    else if (val.includes('horas')) res = new Date().toLocaleTimeString();
+                    else res = "Comando não reconhecido.";
+                } else if (activeProj === 'phys') {
+                    res = `Velocidade Final: ${(parseFloat(val) * 9.8).toFixed(2)} m/s`;
+                } else if (activeProj === 'temp') {
+                    res = `${(parseFloat(val) * 1.8 + 32).toFixed(2)} °F`;
+                } else if (activeProj === 'lotto') {
+                    if (val === 'gerar') { let n = []; while (n.length < 5) { let r = Math.floor(Math.random() * 50) + 1; if (!n.includes(r)) n.push(r); } res = "Chave: " + n.join(" - "); }
+                } else if (activeProj === 'mem') {
+                    if (val === 'alloc') res = "Alocado em: 0x" + Math.random().toString(16).slice(2, 10);
+                } else if (activeProj === 'stock') {
+                    let pts = val.split(' '); let cap = parseFloat(pts[0]); let tax = parseFloat(pts[1]) / 100; let yrs = parseFloat(pts[2]);
+                    res = `Montante: ${(cap * Math.pow(1 + tax, yrs)).toFixed(2)}€`;
+                } else if (activeProj === 'start') { res = "Thread ID " + Math.floor(Math.random() * 1000) + " concluída."; }
+
+                c.innerText += `\n${p} ${val}\n${res}\n`;
+                this.value = "";
+                document.querySelector('.terminal-body').scrollTop = 9999;
+            }
+        });
+
+        function hide() { document.getElementById('viewer').style.display = 'none'; }
+    </script>
+</body>
+</html>

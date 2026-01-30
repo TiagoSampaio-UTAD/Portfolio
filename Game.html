@@ -125,6 +125,7 @@
         .stats-header {
             font-size: 1.3rem;
             font-weight: bold;
+            margin-top: 10px;
             margin-bottom: 15px;
             border-bottom: 1px solid #333;
             padding-bottom: 10px;
@@ -490,6 +491,33 @@
             color: white;
             cursor: pointer;
         }
+
+        /* Posicionamento do contador de Achievements */
+        .achievement-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+            .achievement-badge.complete {
+                background: #ffd700;
+                color: #000;
+            }
+
+        .panel-back {
+            position: relative; /* Para o badge se posicionar corretamente */
+        }
+
     </style>
 </head>
 <body>
@@ -498,149 +526,57 @@
             <nav class="nav-top">
                 <div class="language">
                     <div class="lang-switcher">
-                        <button class="lang-btn pt active" data-lang="pt">PT</button>
+                        <button class="lang-btn pt" data-lang="pt">PT</button>
                         <span class="pipe">|</span>
-                        <button class="lang-btn en" data-lang="en">EN</button>
+                        <button class="lang-btn en active" data-lang="en">EN</button>
                     </div>
                 </div>
             </nav>
         </div>
     </header>
 
-    <h2 class="section-title">Games</h2>
+    <h2 class="section-title">
+        <p class="lang" data-lang-en="Games" data-lang-pt="Jogos">Games</p>
+    </h2>
+
     <div class="panels-wrapper" id="panels-track">
         <div class="panel active" data-bg="./img/MineL.png">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/MLogo.jpg')"><h3>Minecraft</h3></div>
+                <div class="panel-front" style="background-image: url('./img/MineL.jpg')"><h3>Minecraft</h3></div>
                 <div class="panel-back">
-                    <div class="stats-header">Minecraft Survival</div>
+                    <div class="stats-header lang" data-lang-en="Minecraft Builder" data-lang-pt="Construtor de Minecraft">Minecraft Builder</div>
+                    <div class="xp-bar-container"><div class="xp-bar-fill" style="width: 100%;"></div></div>
                     <div class="ranks-grid">
-                        <div class="rank-box"><p class="lang" data-lang-en="World" data-lang-pt="Mundo">World</p><img src="https://cdn-icons-png.flaticon.com/512/3522/3522108.png" style="filter:invert(1)"><p>Hardcore</p></div>
+                        <div class="rank-box">
+                            <p class="lang" data-lang-en="World" data-lang-pt="Mundo">World</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3522/3522108.png" style="filter:invert(1)">
+                            <p>Hardcore</p>
+                        </div>
                     </div>
                     <div class="data-footer">
                         <div class="data-item"><p class="lang" data-lang-en="Years" data-lang-pt="Anos">Years</p><span>+10</span></div>
-                        <div class="data-item"><p>Items</p><span>Full Netherite</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Items" data-lang-pt="Itens">Items</p><span>Full Netherite</span></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/C2SLogo.png">
+        <div class="panel" data-bg="./img/DsDLogo.jpg">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/C2S.png')"><h3>Cell to Singularity - Evolution Never Ends</h3></div>
+                <div class="panel-front" style="background-image: url('./img/DLogo.jpg')"><h3>Death's Door</h3></div>
                 <div class="panel-back">
-                    <div class="stats-header"><p class="lang" data-lang-en="Evolution Progress" data-lang-pt="Progresso da Evolução">Evolution Progress</p></div>
+                    <div class="achievement-badge complete">🏆 24/24 (100%)</div>
+                    <div class="stats-header lang" data-lang-en="The Reaper's Task" data-lang-pt="A Tarefa do Ceifeiro">The Reaper's Task</div>
+                    <div class="xp-bar-container"><div class="xp-bar-fill" style="width: 100%; background: #ffd700;"></div></div>
                     <div class="ranks-grid">
                         <div class="rank-box">
-                            <p class="lang" data-lang-en="Actual Era" data-lang-pt="Era Atual">Actual Era</p>
-                            <img src="https://cdn-icons-png.flaticon.com/512/2072/2072130.png" style="filter:invert(1); width: 50px;">
-                            <p class="lang" data-lang-en="Singularity" data-lang-pt="Singularidade">Singularity</p>
-                        </div>
-                    </div>
-                    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">ENTROPIA</p><span>1.5Qa/s</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">REBOOTS</p><span>42</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/CTLogo.jpg">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/CT.jpg')">
-                    <h3 class="lang" data-lang-en="Chained Together" data-lang-pt="Chained Together">Chained Together</h3>
-                </div>
-                <div class="panel-back">
-                    <div class="stats-header lang" data-lang-en="Escape Status" data-lang-pt="Status de Fuga">Escape Status</div>
-                    <div class="ranks-grid">
-                        <div class="rank-box">
-                            <p class="lang" data-lang-en="Mode" data-lang-pt="Modo">Mode</p>
-                            <img src="https://cdn-icons-png.flaticon.com/512/5065/5065077.png" style="filter:invert(1); width: 40px;">
-                            <p>Lava / Hard</p>
+                            <p class="lang" data-lang-en="Weapon" data-lang-pt="Arma">Weapon</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3067/3067866.png"><p>Reaper's Sword</p>
                         </div>
                     </div>
                     <div class="data-footer">
-                        <div class="data-item"><p class="lang" data-lang-en="Height" data-lang-pt="Altura">Height</p><span>3600m</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/GWYF.avif">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/GWYFs.jpg')"><h3>Golf With Your Friends</h3></div>
-                <div class="panel-back">
-                    <div class="stats-header"><p class="lang" data-lang-en="Pro Golfer" data-lang-pt="Golfista Profissional">Pro Golfer</p></div>
-                    <div class="ranks-grid">
-                        <div class="rank-box">
-                            <p>Hole-in-One</p>
-                            <img src="https://cdn-icons-png.flaticon.com/512/1610/1610331.png" style="filter:invert(1); width: 40px;">
-                            <span>124 Total</span>
-                        </div>
-                    </div>
-                    <div class="data-footer">
-                        <div class="data-item"><p class="lang" data-lang-en="Best" data-lang-pt="Melhor">Best</p><span>Albatross</span></div>
-                        <div class="data-item"><p class="lang" data-lang-en="Maps" data-lang-pt="Mapas">Maps</p><span>12/12</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/HFLogo.jpg">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/House.jpg')"><h3>House Flipper</h3></div>
-                <div class="panel-back">
-                    <div class="stats-header">Renovator Expert</div>
-                    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center; margin-top: 20px;">
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">VENDIDAS</p><span>28</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">LUCRO</p><span style="color:#4dff88">$1.2M</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">PINTURA</p><span>4,500m²</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/HFFLogo.png">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/HumanFallFlat.jpg')">
-                    <h3>Human Fall Flat</h3>
-                </div>
-                <div class="panel-back">
-                    <div class="stats-header lang" data-lang-en="Master of Physics" data-lang-pt="Mestre da Física">Master of Physics</div>
-                    <div class="data-footer">
-                        <div class="data-item"><p class="lang" data-lang-en="Levels" data-lang-pt="Níveis">Levels</p><span>100%</span></div>
-                        <div class="data-item"><p class="lang" data-lang-en="Skins" data-lang-pt="Skins">Skins</p><span>Custom</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/MLU.webp">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/MLULogo.webp')">
-                    <h3>My Little Universe</h3>
-                </div>
-                <div class="panel-back">
-                    <div class="stats-header lang" data-lang-en="God Mode" data-lang-pt="Modo Deus">God Mode</div>
-                    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
-                        <div class="stat-group"><p class="lang" data-lang-en="Planets" data-lang-pt="Planetas">Planetas</p><span>9/9</span></div>
-                        <div class="stat-group"><p class="lang" data-lang-en="Resources" data-lang-pt="Recursos">Recursos</p><span>Max</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/Over.jpg">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/OverLogo.jpg')"><h3>Overwatch 2</h3></div>
-                <div class="panel-back">
-                    <div class="stats-header">Grandmaster</div>
-                    <div class="ranks-grid">
-                        <div class="rank-box"><p>Damage</p><img src="https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/70/Rank_Grandmaster_Icon.png" style="width: 40px;"><p>GM 4</p></div>
-                    </div>
-                    <div class="data-footer">
-                        <div class="data-item"><p>Win Rate</p><span>58%</span></div>
-                        <div class="data-item"><p>Main</p><span>Genji</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Soul" data-lang-pt="Alma">Soul</p><span>True Ending</span></div>
+                        <div class="data-item"><p>Status</p><span style="color:#ffd700">Platinum</span></div>
                     </div>
                 </div>
             </div>
@@ -648,80 +584,20 @@
 
         <div class="panel" data-bg="./img/PW.jpg">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/PWLogo.jpg')">
-                    <h3>The Past Within</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/PDLogo.jpg">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/PD.jpg')"><h3>PayDay 2</h3></div>
+                <div class="panel-front" style="background-image: url('./img/TPWRL.png')"><h3>The Past Within</h3></div>
                 <div class="panel-back">
-                    <div class="stats-header">Infamy Level: XXV</div>
+                    <div class="achievement-badge complete">🏆 24/24 (100%)</div>
+                    <div class="stats-header">Co-op Puzzle</div>
+                    <div class="xp-bar-container"><div class="xp-bar-fill" style="width: 100%; background: #4dff88;"></div></div>
                     <div class="ranks-grid">
-                        <div class="rank-box"><p>Role</p><img src="https://cdn-icons-png.flaticon.com/512/1111/1111513.png" style="filter:invert(1); width: 40px;"><p>Stealth</p></div>
+                        <div class="rank-box">
+                            <p class="lang" data-lang-en="Timeline" data-lang-pt="Linha do Tempo">Timeline</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3554/3554612.png"><p>Past & Future</p>
+                        </div>
                     </div>
                     <div class="data-footer">
-                        <div class="data-item"><p>Assaltos</p><span>412</span></div>
-                        <div class="data-item"><p>Cash</p><span>$500M</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/PLogo.jpg">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/Phasmophobia.webp')"><h3>Phasmophobia</h3></div>
-                <div class="panel-back">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div class="stats-header">Professional Investigator</div>
-                        <div style="border: 1px solid #fff; padding: 2px 8px; font-size: 0.7rem; border-radius: 4px;">ACHIEVEMENTS: 54/54</div>
-                    </div>
-
-                    <div class="ranks-grid" style="margin: 20px 0;">
-                        <div class="rank-box"><p>Most Played Location</p><img src="./img/TanglewoodDrive.jpg" style="width: 140px; border-radius: 10px;"><p>6 Tanglewood Drive</p></div>
-                    </div>
-
-                    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;">
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">GHOSTS IDENTIFIED</p><span>707</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">MISIDENTIFIED</p><span>692</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">OBJECTIVES DONE</p><span>2,213</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">TOTAL PHOTOS</p><span>5,539</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">TOTAL DEATHS</p><span style="color:#ff4d4d">618</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">MOST DEATHS TO</p><span style="color:#ffb84d">Poltergeist</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/PCLogo.jpg">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/PC.jpg')"><h3>Pickcrafter</h3></div>
-                <div class="panel-back">
-                    <div class="stats-header">Master Crafter</div>
-                    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">PPS</p><span>12.5B</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">PRESTÍGIO</p><span>85</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.7rem;">PICARETA</p><span style="color:#e67e22">Ender</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" data-bg="./img/RocketLeague.png">
-            <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/RLLogo.jpg')"><h3>Rocket League</h3></div>
-                <div class="panel-back">
-                    <div class="stats-header">Rocket League</div>
-                    <div class="ranks-grid">
-                        <div class="rank-box"><p>Solo</p><img src="./img/Platina3.png" style="width:30px;"><p>Platinum III</p></div>
-                        <div class="rank-box"><p>Duos</p><img src="./img/Dima3.png" style="width:30px;"><p>Diamond III</p></div>
-                        <div class="rank-box"><p>Trios</p><img src="./img/Dima2.png" style="width:30px;"><p>Diamond II</p></div>
-                    </div>
-                    <div class="data-footer">
-                        <div class="data-item"><p>Goals</p><span>5661</span></div>
-                        <div class="data-item"><p>Saves</p><span>5154</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Chapter" data-lang-pt="Capítulo">Chapter</p><span>Both Sides</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Sync" data-lang-pt="Sincronia">Sync</p><span style="color:#4dff88">Perfect</span></div>
                     </div>
                 </div>
             </div>
@@ -731,13 +607,36 @@
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/TOT.jpg')"><h3>The Outlast Trials</h3></div>
                 <div class="panel-back">
+                    <div class="achievement-badge">🏆 27/27 (100%)</div>
                     <div class="stats-header">Program X</div>
-                    <div class="rank-box" style="margin-bottom: 10px;">
-                        <p>Status</p><span style="color: #ff4d4d; font-weight: bold;">RELEASED</span>
+                    <div class="xp-bar-container"><div class="xp-bar-fill" style="width: 100%; background: #ff4d4d;"></div></div>
+                    <div class="stats-grid-compact">
+                        <div class="data-item"><p class="lang" data-lang-en="Trials" data-lang-pt="Ensaios">Trials</p><span>148</span></div>
+                        <div class="data-item"><p class="lang" data-lang-en="Grade" data-lang-pt="Nota">Grade</p><span style="color:#4dff88">A+</span></div>
                     </div>
-                    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; text-align: center;">
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.6rem;">TRIALS</p><span>148</span></div>
-                        <div class="stat-group"><p style="color:#aaa; font-size:0.6rem;">GRADE</p><span style="color:#4dff88">A+</span></div>
+                    <div class="data-footer">
+                        <div class="data-item"><p>Status</p><span style="color: #ff4d4d;" class="lang" data-lang-en="RELEASED" data-lang-pt="LIBERTADO">RELEASED</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" data-bg="./img/WWHBG.png">
+            <div class="panel-inner">
+                <div class="panel-front" style="background-image: url('./img/WWHGPT.png')"><h3>We Were Here</h3></div>
+                <div class="panel-back">
+                    <div class="achievement-badge complete">🏆 26/26 (100%)</div>
+                    <div class="stats-header lang" data-lang-en="Castle Rock Escape" data-lang-pt="Fuga de Castle Rock">Castle Rock Escape</div>
+                    <div class="xp-bar-container"><div class="xp-bar-fill" style="width: 100%; background: #3498db;"></div></div>
+                    <div class="ranks-grid">
+                        <div class="rank-box">
+                            <p class="lang" data-lang-en="Role" data-lang-pt="Papel">Role</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3616/3616550.png" style="filter:invert(1); width: 30px;"><p>Explorer / Librarian</p>
+                        </div>
+                    </div>
+                    <div class="data-footer">
+                        <div class="data-item"><p class="lang" data-lang-en="Puzzles" data-lang-pt="Enigmas">Puzzles</p><span>Solved</span></div>
+                        <div class="data-item"><p>Status</p><span style="color:#3498db" class="lang" data-lang-en="Escaped" data-lang-pt="Escapou">Escaped</span></div>
                     </div>
                 </div>
             </div>
@@ -745,17 +644,28 @@
 
         <div class="panel" data-bg="./img/WROEF.jpg">
             <div class="panel-inner">
-                <div class="panel-front" style="background-image: url('./img/WROEF (2).jpg')">
-                    <h3>What Remains of Edith Finch</h3>
+                <div class="panel-front" style="background-image: url('./img/WROEF (2).jpg')"><h3>What Remains of Edith Finch</h3></div>
+                <div class="panel-back">
+                    <div class="achievement-badge complete">🏆 9/9 (100%)</div>
+                    <div class="stats-header lang" data-lang-en="Family History" data-lang-pt="História da Família">Family History</div>
+                    <div class="xp-bar-container"><div class="xp-bar-fill" style="width: 100%; background: #fff;"></div></div>
+                    <div class="ranks-grid">
+                        <div class="rank-box">
+                            <p class="lang" data-lang-en="Story" data-lang-pt="História">Story</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png"><p>Full Archive</p>
+                        </div>
+                    </div>
+                    <div class="data-footer">
+                        <div class="data-item"><p class="lang" data-lang-en="Ending" data-lang-pt="Final">Ending</p><span>Complete</span></div>
+                        <div class="data-item"><p>Impact</p><span style="color:#4dff88">Masterpiece</span></div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 
-
     <div class="timeline-wrapper">
-        <h2 class="section-title">Favorite Games</h2>
+        <h2 class="section-title lang" data-lang-en="Favorite Games" data-lang-pt="Jogos Favoritos">Favorite Games</h2>
 
         <div class="rope-vertical"></div>
 
@@ -767,35 +677,11 @@
                     <div class="text-group">
                         <span class="date-label">MOJANG STUDIOS</span>
                         <div class="game-title">Minecraft</div>
-                        <div class="game-desc">Um jogo de sandbox infinito onde a exploração e a construção procedimental definem a experiência criativa.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline-row right">
-            <div class="timeline-content">
-                <div class="rope-connector"></div>
-                <div class="glow-card">
-                    <img src="./img/WROEFLogo.jpg" alt="Edith Finch">
-                    <div class="text-group">
-                        <span class="date-label">GIANT SPARROW</span>
-                        <div class="game-title">What Remains of Edith Finch</div>
-                        <div class="game-desc">Uma coleção de contos estranhos sobre uma família amaldiçoada, focada em narrativa e atmosfera imersiva.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline-row left">
-            <div class="timeline-content">
-                <div class="rope-connector"></div>
-                <div class="glow-card">
-                    <img src="./img/TOTLogo.jpg" alt="Outlast">
-                    <div class="text-group">
-                        <span class="date-label">RED BARRELS</span>
-                        <div class="game-title">The Outlast Trials</div>
-                        <div class="game-desc">Survival horror cooperativo onde pacientes enfrentam provações físicas e psicológicas em experimentos da era da Guerra Fria.</div>
+                        <div class="game-desc lang"
+                             data-lang-en="An infinite sandbox game where exploration and procedural building define the creative experience."
+                             data-lang-pt="Um jogo de sandbox infinito onde a exploração e a construção procedimental definem a experiência criativa.">
+                            An infinite sandbox game where exploration and procedural building define the creative experience.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -809,7 +695,11 @@
                     <div class="text-group">
                         <span class="date-label">ACID NERVE</span>
                         <div class="game-title">Death's Door</div>
-                        <div class="game-desc">Um RPG de ação desafiador que segue um corvo ceifador de almas numa jornada por um mundo surreal e sombrio.</div>
+                        <div class="game-desc lang"
+                             data-lang-en="A challenging action RPG following a soul-harvesting crow on a journey through a surreal and dark world."
+                             data-lang-pt="Um RPG de ação desafiador que segue um corvo ceifador de almas numa jornada por um mundo surreal e sombrio.">
+                            A challenging action RPG following a soul-harvesting crow on a journey through a surreal and dark world.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -819,11 +709,15 @@
             <div class="timeline-content">
                 <div class="rope-connector"></div>
                 <div class="glow-card">
-                    <img src="./img/WWHLogo.jpg" alt="We Were Here">
+                    <img src="./img/TOTLogo.jpg" alt="Outlast">
                     <div class="text-group">
-                        <span class="date-label">TOTAL MAYHEM GAMES</span>
-                        <div class="game-title">We Were Here</div>
-                        <div class="game-desc">Uma série de puzzles cooperativos assimétricos onde a comunicação via walkie-talkie é a única forma de sobreviver.</div>
+                        <span class="date-label">RED BARRELS</span>
+                        <div class="game-title">The Outlast Trials</div>
+                        <div class="game-desc lang"
+                             data-lang-en="Cooperative survival horror where patients face physical and psychological trials in Cold War era experiments."
+                             data-lang-pt="Survival horror cooperativo onde pacientes enfrentam provações físicas e psicológicas em experimentos da era da Guerra Fria.">
+                            Cooperative survival horror where patients face physical and psychological trials in Cold War era experiments.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -837,7 +731,47 @@
                     <div class="text-group">
                         <span class="date-label">RUSTY LAKE</span>
                         <div class="game-title">The Past Within</div>
-                        <div class="game-desc">Uma aventura point-and-click cooperativa que desafia os jogadores a resolver mistérios em dimensões temporais diferentes.</div>
+                        <div class="game-desc lang"
+                             data-lang-en="A cooperative point-and-click adventure challenging players to solve mysteries across different time dimensions."
+                             data-lang-pt="Uma aventura point-and-click cooperativa que desafia os jogadores a resolver mistérios em dimensões temporais diferentes.">
+                            A cooperative point-and-click adventure challenging players to solve mysteries across different time dimensions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row left">
+            <div class="timeline-content">
+                <div class="rope-connector"></div>
+                <div class="glow-card">
+                    <img src="./img/WWHLogo.jpg" alt="We Were Here">
+                    <div class="text-group">
+                        <span class="date-label">TOTAL MAYHEM GAMES</span>
+                        <div class="game-title">We Were Here</div>
+                        <div class="game-desc lang"
+                             data-lang-en="Asymmetric cooperative puzzles where walkie-talkie communication is the only way to survive."
+                             data-lang-pt="Puzzles cooperativos assimétricos onde a comunicação via walkie-talkie é a única forma de sobreviver.">
+                            Asymmetric cooperative puzzles where walkie-talkie communication is the only way to survive.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row right">
+            <div class="timeline-content">
+                <div class="rope-connector"></div>
+                <div class="glow-card">
+                    <img src="./img/WROEFLogo.jpg" alt="Edith Finch">
+                    <div class="text-group">
+                        <span class="date-label">GIANT SPARROW</span>
+                        <div class="game-title">What Remains of Edith Finch</div>
+                        <div class="game-desc lang"
+                             data-lang-en="A collection of strange tales about a cursed family, focused on immersive narrative and atmosphere."
+                             data-lang-pt="Uma coleção de contos estranhos sobre uma família amaldiçoada, focada em narrativa e atmosfera imersiva.">
+                            A collection of strange tales about a cursed family, focused on immersive narrative and atmosphere.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -845,7 +779,7 @@
     </div>
 
     <section id="dome-section">
-        <h3 class="gallery-title">Screenshots e Vídeos</h3>
+        <h3 class="gallery-title lang" data-lang-en="Screenshots and Videos" data-lang-pt="Screenshots e Vídeos">Screenshots and Vídeos</h3>
         <div class="sphere-root" id="sphere-root">
             <div class="sphere" id="sphere-container"></div>
         </div>

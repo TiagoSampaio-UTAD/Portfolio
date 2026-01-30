@@ -129,6 +129,7 @@ h1, h2 {
 }
 
 h3 {
+    border-left: 4px solid #1DB954; /* Uma linha vertical verde estilo Spotify */
     font-size: 1.5rem;
     margin-top: 40px;
     margin-bottom: 15px;
@@ -146,8 +147,127 @@ h3 {
 }
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> REDES SOCIAIS (ESTILO MOCKUP) >>>>>>>>>>>>>>>>
+>>>>>> SNAKE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+#snakeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    pointer-events: none; 
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> GRID DE JOGOS (TEASER NO INDEX) >>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/* Container da grid de jogos */
+.games-teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+/* Item individual do jogo */
+.game-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: 0.4s ease;
+    text-decoration: none;
+}
+
+    .game-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(40%);
+        transition: 0.4s;
+    }
+
+/* Overlay com o nome do jogo que aparece no Hover */
+.game-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 15px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+    .game-overlay span {
+        color: white;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+.game-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+    .game-item:hover img {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+    }
+
+    .game-item:hover .game-overlay {
+        opacity: 1;
+    }
+
+
+/* Botão "Ver Todos" estilizado */
+.view-all-games {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    gap: 10px;
+}
+
+    .view-all-games:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: white;
+    }
+
+.games-teaser-grid {
+    display: grid;
+    /* Alteramos o minmax para valores menores e fixamos o tamanho máximo */
+    grid-template-columns: repeat(auto-fit, 150px);
+    gap: 20px;
+    max-width: 600px; /* Reduzimos a largura total da grid */
+    margin-top: 20px;
+    justify-content: flex-start; /* Alinha os itens à esquerda como o resto do teu texto */
+}
+
+.game-item, .view-all-games {
+    width: 150px; /* Tamanho fixo para não esticar */
+    height: 150px; /* Mantém o formato quadrado */
+    border-radius: 12px;
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> AJUSTE REDES SOCIAIS (FOOTER) >>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
 .social-links {
     display: flex;
     justify-content: center;
@@ -171,15 +291,204 @@ h3 {
         display: none;
     }
 
+.social-links li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Reativamos o texto que estava com display:none mas com estilo melhorado */
+.social-links p {
+    display: block !important; /* Força a aparecer */
+    margin-top: 10px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.social-links li a:hover p {
+    color: white;
+    text-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+.social-links img {
+    width: 50px; /* Tamanho ligeiramente mais refinado */
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+
+
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> SNAKE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-#snakeCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
+    >>>>>> MEDIA QUERIES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    /* Secção de Música */
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+    gap: 15px;
+    flex: 2; /* Ocupa mais espaço que a lista */
+}
+
+.tilted-card-figure:hover .tilted-card-inner {
+    transform: scale(1.05); /* O JavaScript tratará da rotação */
+}
+
+.tilted-card-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+    transform: translateZ(40px); /* Dá profundidade ao texto */
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.tilted-card-figure {
+    position: relative;
+    width: 100%; /* Ocupa a largura da coluna da grid */
+    aspect-ratio: 1 / 1; /* Mantém quadrado */
+    max-width: 210px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.tilted-card-inner {
     width: 100%;
     height: 100%;
-    z-index: -1; 
-    pointer-events: none; 
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+}
+
+.tilted-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Legenda (Correção Fixed) */
+.tilted-card-caption {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    background: #fff;
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}   
+
+/* Layout da Secção */
+.music-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1400px; /* Aumentado para dar mais folga */
+    margin: 40px auto;
+    padding: 0 5%;
+}
+
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    transition: all 0.5s ease; /* Animação suave na reorganização */
+    flex: 1;
+}
+.music-layout.panel-open .music-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+/* Painel de Músicas */
+.tracklist-panel {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    transition: width 0.5s ease, opacity 0.3s;
+}
+
+    .tracklist-panel.active {
+        width: 400px; /* Largura do painel da imagem */
+        padding: 25px;
+        opacity: 1;
+        margin-left: 20px;
+    }
+
+.tracklist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#tracks-ul {
+    list-style: none; /* Remove os pontos/bullets */
+    padding: 0;
+    margin: 0;
+}
+
+    #tracks-ul li {
+        display: flex;
+        align-items: center;
+        padding: 12px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: #ccc;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        #tracks-ul li:hover {
+            background: rgba(29, 185, 84, 0.2);
+            color: #fff;
+        }
+
+/* Player Embed */
+.spotify-mini-player {
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease;
+}
+
+    .spotify-mini-player.active {
+        height: 80px;
+        border: 1px solid #1DB954;
+    }
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column; /* Coloca o nome do artista por baixo */
+}
+
+.track-name {
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.track-artist {
+    font-size: 0.75rem; /* Letra mais pequena */
+    color: rgba(255, 255, 255, 0.5); /* Menos cor (opacidade 50%) */
+    margin-top: 2px;
 }
