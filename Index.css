@@ -1,7 +1,6 @@
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> RESET E CONFIGURA«’ES GERAIS >>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-*/
+Ôªø/* ==========================================================================
+   1. RESET E CONFIGURA√á√ïES GERAIS
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -23,10 +22,76 @@ body {
     overflow-x: hidden;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> SELETOR DE IDIOMAS (FIXO) >>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-*/
+/* ==========================================================================
+   2. MENU DE NAVEGA√á√ÉO (DOUBLE UNDERLINE EFFECT)
+   ========================================================================== */
+.nav-menu {
+    width: 100%;
+    padding: 20px 0;
+}
+
+    .nav-menu .list {
+        display: flex;
+        justify-content: space-around; /* Espalha os t√≠tulos pelo topo */
+        align-items: center;
+        list-style: none;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .nav-menu li .link {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0.8;
+        position: relative;
+        padding: 10px 0; /* Espa√ßo para as linhas superior/inferior */
+        transition: all 0.3s ease;
+    }
+
+        /* Cria√ß√£o das duas linhas (superior e inferior) */
+        .nav-menu li .link::before,
+        .nav-menu li .link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Posicionamento das linhas */
+        .nav-menu li .link::before {
+            top: 0;
+            transform: translateY(-5px);
+        }
+
+        .nav-menu li .link::after {
+            bottom: 0;
+            transform: translateY(5px);
+        }
+
+        /* Estado Hover: Linhas aparecem e brilho no texto */
+        .nav-menu li .link:hover {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+            .nav-menu li .link:hover::before,
+            .nav-menu li .link:hover::after {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+/* ==========================================================================
+   3. SELETOR DE IDIOMAS (FIXO)
+   ========================================================================== */
 .lang-switcher {
     position: fixed;
     top: 20px;
@@ -58,43 +123,26 @@ body {
     opacity: 0.3;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> MENU DE NAVEGA«√O (TOPO ESPALHADO) >>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-*/
-.nav-menu {
-    width: 100%; /* Ocupa a largura total para espalhar os itens */
-    padding: 20px 0;
+/* ==========================================================================
+   4. PERFIL (FOTO E NOME)
+   ========================================================================== */
+/* Estilo base para o cargo */
+.software-rank {
+    cursor: pointer;
+    transition: all 0.3s ease; /* Faz a anima√ß√£o ser suave */
+    display: inline-block; /* Permite que o efeito de escala funcione bem */
+    color: white;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
-    .nav-menu ul {
-        display: flex;
-        justify-content: space-around; /* ESPALHA os tÌtulos pelo topo */
-        align-items: center;
-        list-style: none;
-        max-width: 100%;
-        margin: 0 auto;
+    /* Efeito ao passar o rato (Hover) */
+    .software-rank:hover {
+        color: #ff0000; /* Muda a cor para vermelho */
+        transform: scale(1.1); /* Aumenta o tamanho em 10% */
+        text-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000; /* Adiciona um brilho intenso */
+        letter-spacing: 2px; /* Espa√ßa levemente as letras */
     }
 
-    .nav-menu li a {
-        text-decoration: none;
-        color: white;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        opacity: 0.8;
-        transition: 0.3s;
-    }
-
-        .nav-menu li a:hover {
-            opacity: 1;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> PERFIL (FOTO E NOME CENTRALIZADOS) >>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-*/
 header .center-top {
     text-align: center;
     width: 100%;
@@ -116,20 +164,17 @@ h1, h2 {
     margin-bottom: 10px;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> CONTE⁄DO PRINCIPAL (TEXTO ¿ ESQUERDA) >>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-*/
+/* ==========================================================================
+   5. CONTE√öDO PRINCIPAL (TEXTO √Ä ESQUERDA)
+   ========================================================================== */
 .main-content {
-    width: 100%; /* Ocupa tudo para podermos controlar a margem */
+    width: 100%;
     text-align: left;
     padding: 20px;
-    /* Aqui ajustamos o qu„o encostado ‡ esquerda o bloco todo fica */
     margin-left: 5%;
 }
 
 h3 {
-    border-left: 4px solid #1DB954; /* Uma linha vertical verde estilo Spotify */
     font-size: 1.5rem;
     margin-top: 40px;
     margin-bottom: 15px;
@@ -142,45 +187,31 @@ h3 {
     max-width: 600px;
     line-height: 1.4;
     color: #bbb;
-    margin-bottom: 5px; /* Frases bem juntas como pediste */
+    margin-bottom: 5px;
     font-size: 0.95rem;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> SNAKE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-#snakeCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; 
-    pointer-events: none; 
-}
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> GRID DE JOGOS (TEASER NO INDEX) >>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-
-/* Container da grid de jogos */
+/* ==========================================================================
+   6. GRID DE JOGOS (TEASER)
+   ========================================================================== */
 .games-teaser-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, 150px);
     gap: 20px;
-    max-width: 800px;
+    max-width: 600px;
     margin-top: 20px;
+    justify-content: flex-start;
 }
 
-/* Item individual do jogo */
-.game-item {
+.game-item, .view-all-games {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
     position: relative;
-    border-radius: 15px;
     overflow: hidden;
-    aspect-ratio: 1 / 1;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: 0.4s ease;
     text-decoration: none;
+    transition: 0.4s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
     .game-item img {
@@ -191,7 +222,6 @@ h3 {
         transition: 0.4s;
     }
 
-/* Overlay com o nome do jogo que aparece no Hover */
 .game-overlay {
     position: absolute;
     inset: 0;
@@ -226,8 +256,6 @@ h3 {
         opacity: 1;
     }
 
-
-/* Bot„o "Ver Todos" estilizado */
 .view-all-games {
     display: flex;
     flex-direction: column;
@@ -235,10 +263,7 @@ h3 {
     justify-content: center;
     background: rgba(255, 255, 255, 0.05);
     border: 2px dashed rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
     color: white;
-    text-decoration: none;
-    transition: 0.3s;
     gap: 10px;
 }
 
@@ -247,93 +272,19 @@ h3 {
         border-color: white;
     }
 
-.games-teaser-grid {
-    display: grid;
-    /* Alteramos o minmax para valores menores e fixamos o tamanho m·ximo */
-    grid-template-columns: repeat(auto-fit, 150px);
-    gap: 20px;
-    max-width: 600px; /* Reduzimos a largura total da grid */
-    margin-top: 20px;
-    justify-content: flex-start; /* Alinha os itens ‡ esquerda como o resto do teu texto */
-}
-
-.game-item, .view-all-games {
-    width: 150px; /* Tamanho fixo para n„o esticar */
-    height: 150px; /* MantÈm o formato quadrado */
-    border-radius: 12px;
-}
-
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> AJUSTE REDES SOCIAIS (FOOTER) >>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* EspaÁo entre Ìcones */
-    list-style: none;
-    margin-top: 50px;
-}
-
-    .social-links img {
-        width: 60px; /* Tamanho aproximado da mockup */
-        transition: 0.3s ease;
-    }
-
-        .social-links img:hover {
-            opacity: 1;
-            transform: scale(1.1); /* Pequeno zoom ao passar o rato */
-        }
-
-    /* Esconde o texto <p> para aparecerem sÛ as imagens */
-    .social-links p {
-        display: none;
-    }
-
-.social-links li a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-}
-
-/* Reativamos o texto que estava com display:none mas com estilo melhorado */
-.social-links p {
-    display: block !important; /* ForÁa a aparecer */
-    margin-top: 10px;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.social-links li a:hover p {
-    color: white;
-    text-shadow: 0 0 8px rgba(255,255,255,0.8);
-}
-
-.social-links img {
-    width: 50px; /* Tamanho ligeiramente mais refinado */
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-}
-
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    >>>>>> MEDIA QUERIES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    /* SecÁ„o de M˙sica */
+/* ==========================================================================
+   7. SEC√á√ÉO DE M√öSICA (LAYOUT & GRID)
+   ========================================================================== */
 .music-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+
     gap: 15px;
-    flex: 2; /* Ocupa mais espaÁo que a lista */
+    flex: 2; /* Ocupa mais espa√ßo que a lista */
 }
 
 .tilted-card-figure:hover .tilted-card-inner {
-    transform: scale(1.05); /* O JavaScript tratar· da rotaÁ„o */
+    transform: scale(1.05); /* O JavaScript tratar√° da rota√ß√£o */
 }
 
 .tilted-card-overlay {
@@ -341,7 +292,7 @@ h3 {
     bottom: 20px;
     left: 20px;
     z-index: 2;
-    transform: translateZ(40px); /* D· profundidade ao texto */
+    transform: translateZ(40px); /* D√° profundidade ao texto */
     color: white;
     text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     font-weight: bold;
@@ -351,7 +302,7 @@ h3 {
 .tilted-card-figure {
     position: relative;
     width: 100%; /* Ocupa a largura da coluna da grid */
-    aspect-ratio: 1 / 1; /* MantÈm quadrado */
+    aspect-ratio: 1 / 1; /* Mant√©m quadrado */
     max-width: 210px;
     perspective: 1000px;
     cursor: pointer;
@@ -371,7 +322,7 @@ h3 {
     border-radius: 12px;
 }
 
-/* Legenda (CorreÁ„o Fixed) */
+/* Legenda (Corre√ß√£o Fixed) */
 .tilted-card-caption {
     position: fixed;
     pointer-events: none;
@@ -399,18 +350,18 @@ h3 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    flex: 1; /* Isto faz a grid esticar-se sempre que possÌvel */
+    flex: 1; /* Isto faz a grid esticar-se sempre que poss√≠vel */
     transition: all 0.4s ease;
 }
 
-/* Quando o painel est· aberto (Classe aplicada no layout) */
+/* Quando o painel est√° aberto (Classe aplicada no layout) */
 .music-layout.panel-open .music-grid {
     grid-template-columns: repeat(2, 1fr);
     flex: 0 0 60%; /* Ocupa 60% e deixa 40% para a lista */
 }
 
 .tracklist-panel {
-    display: none; /* ESCONDE TOTALMENTE por padr„o */
+    display: none; /* ESCONDE TOTALMENTE por padr√£o */
     flex-direction: column;
     background: rgba(15, 15, 15, 0.95);
     backdrop-filter: blur(15px);
@@ -420,27 +371,26 @@ h3 {
     transition: opacity 0.3s ease;
 }
 
-    /* Quando ativo: muda para flex para aparecer e ganhar largura */
     .tracklist-panel.active {
         display: flex;
         width: 35%; /* Largura fixa relativa */
         opacity: 1;
         padding: 25px;
-        margin-left: 30px; /* Cria o espaÁo entre grid e lista */
+        margin-left: 30px; /* Cria o espa√ßo entre grid e lista */
     }
 
 .tracklist-header {
-    flex-shrink: 0; /* Impede que o cabeÁalho seja esmagado pelo scroll */
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-    }
+    flex-shrink: 0; /* Impede que o cabe√ßalho seja esmagado pelo scroll */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
 
 #tracks-ul {
     list-style: none;
@@ -520,4 +470,158 @@ h3 {
     font-size: 0.75rem; /* Letra mais pequena */
     color: rgba(255, 255, 255, 0.5); /* Menos cor (opacidade 50%) */
     margin-top: 2px;
+}
+
+
+
+/* ==========================================================================
+   8. REDES SOCIAIS (FOOTER)
+   ========================================================================== */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    margin-top: 50px;
+    padding: 0;
+}
+
+    .social-links li a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .social-links img {
+        width: 50px;
+        transition: 0.3s ease;
+        filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+    }
+
+    .social-links li a:hover img {
+        transform: scale(1.1);
+    }
+
+    .social-links p {
+        display: block !important;
+        margin-top: 10px;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .social-links li a:hover p {
+        color: white;
+        text-shadow: 0 0 8px rgba(255,255,255,0.8);
+    }
+
+/* ==========================================================================
+   9. ELEMENTOS EXTRA (SNAKE & UTILS)
+   ========================================================================== */
+#snakeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    /* Alterar de 0.8 para 1.0 para opacidade total */
+    opacity: 1.0;
+    /* REMOVER ou mudar para 'normal'. O 'screen' faz o preto desaparecer */               
+    filter: blur(0.5px) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+/* ==========================================================================
+   10. ARSENAL DE LINGUAGENS (HOVER REVEAL EFFECT)
+   ========================================================================== */
+.arsenal-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+.arsenal-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 80px;
+}
+
+/* Quadrados das Linguagens */
+.skill-item {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    color: #000;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    opacity: 0; /* Come√ßam invis√≠veis */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Bot√£o Central */
+.reveal-btn {
+    position: absolute;
+    width: 180px;
+    height: 60px;
+    background: #000;
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 2; /* Fica por cima inicialmente */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* --- LOGICA DE HOVER --- */
+
+/* 1. Faz o bot√£o sumir */
+.arsenal-wrapper:hover .reveal-btn {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+/* 2. Faz as linguagens aparecerem e dispararem */
+.arsenal-wrapper:hover .skill-item {
+    opacity: 1;
+}
+
+.arsenal-wrapper:hover .left-far {
+    transform: translateX(-330px);
+}
+
+.arsenal-wrapper:hover .left-near {
+    transform: translateX(-165px);
+}
+
+/* Python apenas aparece no centro, no lugar do bot√£o */
+.arsenal-wrapper:hover .center-item {
+    transform: translateX(0);
+    z-index: 3;
+}
+
+.arsenal-wrapper:hover .right-near {
+    transform: translateX(165px);
+}
+
+.arsenal-wrapper:hover .right-far {
+    transform: translateX(330px);
 }

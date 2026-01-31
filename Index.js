@@ -156,20 +156,20 @@ function closeTracks() {
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>> SNAKE GHOUL BACKGROUND >>>>>>>>>>>>>>>>>>>>>>>
+>>>>>> KAGUNE RINKAKU BACKGROUND (TOKYO GHOUL) >>>>>>>
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 const canvas = document.getElementById('snakeCanvas');
 const ctx = canvas.getContext('2d');
 let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 let segments = [];
-const numSegments = 30;
-const segmentDist = 10;
+const numSegments = 45; // Mais segmentos para parecer mais fluida
+const segmentDist = 8;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 for (let i = 0; i < numSegments; i++) {
-    segments.push({ x: mouse.x, y: mouse.y, angle: 0 });
+    segments.push({ x: mouse.x, y: mouse.y, angle: 0, pulse: i * 0.2 });
 }
 
 window.addEventListener('mousemove', (e) => {
@@ -179,48 +179,81 @@ window.addEventListener('mousemove', (e) => {
 
 function updateSnake() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Adiciona um leve rasto (opcional, para look cinemático)
+    // ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
+    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     let targetX = mouse.x;
     let targetY = mouse.y;
 
     segments.forEach((seg, i) => {
+        // Movimento com "atraso" orgânico
         const dx = targetX - seg.x;
         const dy = targetY - seg.y;
         seg.angle = Math.atan2(dy, dx);
+
+        // Efeito de pulsação biológica
+        seg.pulse += 0.05;
+        const wave = Math.sin(seg.pulse) * 2;
+
         seg.x = targetX - Math.cos(seg.angle) * segmentDist;
         seg.y = targetY - Math.sin(seg.angle) * segmentDist;
 
-        drawGhoulSegment(seg.x, seg.y, seg.angle, i);
+        drawKaguneSegment(seg.x, seg.y, seg.angle, i, wave);
+
         targetX = seg.x;
         targetY = seg.y;
     });
     requestAnimationFrame(updateSnake);
 }
 
-function drawGhoulSegment(x, y, angle, index) {
+function drawKaguneSegment(x, y, angle, index, wave) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(angle);
-    const alpha = 1 - (index / numSegments);
 
-    // Patas
-    if (index % 2 === 0 && index > 2 && index < numSegments - 2) {
+    const alpha = 1 - (index / numSegments);
+    const size = (22 - (index * 0.4)) + wave; // Engrossa perto da cabeça
+
+    // --- Brilho Externo (Glow) ---
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = `rgba(255, 0, 0, ${alpha * 0.7})`;
+
+    // --- Desenho das "Patas/Espinhos" (Kagune spikes) ---
+    if (index % 3 === 0 && index > 4) {
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(150, 0, 0, ${alpha * 0.8})`;
+        ctx.strokeStyle = `rgba(100, 0, 0, ${alpha})`;
+        ctx.lineWidth = 3;
+        // Espinhos curvos para trás
         ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(-10, -35, -30, -25);
+        ctx.quadraticCurveTo(-15, -size * 2, -40, -size);
         ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(-10, 35, -30, 25);
+        ctx.quadraticCurveTo(-15, size * 2, -40, size);
         ctx.stroke();
     }
 
-    // Vértebra
+    // --- Corpo Principal (Vértebras de Carne) ---
+    const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, size);
+    grad.addColorStop(0, `rgba(0, 0, 0, ${alpha})`);       // PRETO ABSOLUTO no centro
+    grad.addColorStop(0.5, `rgba(20, 0, 0, ${alpha})`);    // Transição muito escura
+    grad.addColorStop(1, `rgba(150, 0, 0, ${alpha})`);     // Bordas vermelhas para dar volume
     ctx.beginPath();
-    ctx.fillStyle = `rgba(40, 40, 40, ${alpha})`;
-    ctx.strokeStyle = `rgba(120, 120, 120, ${alpha})`;
-    const size = 12 - (index * 0.3);
-    ctx.rect(-size / 2, -size / 2, size, size);
+    ctx.fillStyle = grad;
+    // Forma de losango arredondado para parecer vértebras
+    ctx.moveTo(-size, 0);
+    ctx.lineTo(0, -size / 1.5);
+    ctx.lineTo(size, 0);
+    ctx.lineTo(0, size / 1.5);
+    ctx.closePath();
     ctx.fill();
-    ctx.stroke();
+
+    // Detalhe de "veias" ou brilho interno
+    ctx.beginPath();
+    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.2})`;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(-size / 4, -size / 4, size / 2, size / 2);
+
     ctx.restore();
 }
 
@@ -230,3 +263,18 @@ window.addEventListener('resize', () => {
 });
 
 updateSnake();
+
+function revealArsenal() {
+    const btn = document.getElementById('arsenal-trigger');
+    const grid = document.getElementById('languages-grid');
+
+    // Esconde o botão com um efeito de fade/scale
+    btn.style.opacity = '0';
+    btn.style.transform = 'scale(0.8)';
+
+    setTimeout(() => {
+        btn.style.display = 'none';
+        // Mostra os quadrados
+        grid.classList.add('active');
+    }, 400);
+}
