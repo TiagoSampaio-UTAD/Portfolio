@@ -1,0 +1,718 @@
+/* ==========================================================================
+   Game.css — Tiago Sampaio
+   Extraído e expandido do <style> inline de Game.html
+   Responsivo: mobile (≤480px) → tablet (≤768px) → desktop → TV (≥1600px)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. RESET & IMPORTS
+   -------------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   2. BODY
+   -------------------------------------------------------------------------- */
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('./img/FundoTokyoGhoul.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    overflow-x: hidden;
+    padding-bottom: 150px;
+    transition: background 0.8s ease;
+}
+
+/* --------------------------------------------------------------------------
+   3. BACK LINK
+   -------------------------------------------------------------------------- */
+.back-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    z-index: 1001;
+    transition: opacity 0.3s ease;
+    background: rgba(0,0,0,0.4);
+    padding: 6px 12px;
+    border-radius: 4px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.back-link:hover {
+    opacity: 1;
+    border-color: rgba(255,255,255,0.4);
+}
+
+/* --------------------------------------------------------------------------
+   4. SELECTOR DE IDIOMAS
+   -------------------------------------------------------------------------- */
+.lang-switcher {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: 0.3s;
+    font-size: 0.8rem;
+}
+
+.lang-btn.active {
+    opacity: 1;
+    border-bottom: 1px solid white;
+}
+
+.pipe {
+    color: white;
+    margin: 0 5px;
+    opacity: 0.3;
+}
+
+/* --------------------------------------------------------------------------
+   5. SECTION TITLE (pill)
+   -------------------------------------------------------------------------- */
+.section-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    margin-top: 50px;
+    margin-bottom: 80px;
+    letter-spacing: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+    padding: 10px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+}
+
+/* --------------------------------------------------------------------------
+   6. PANELS WRAPPER (carrossel horizontal)
+   -------------------------------------------------------------------------- */
+.panels-wrapper {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 100px 42vw;
+    gap: 40px;
+    height: 650px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.panels-wrapper::-webkit-scrollbar { display: none; }
+
+/* --------------------------------------------------------------------------
+   7. PANEL (card de jogo — frente e verso)
+   -------------------------------------------------------------------------- */
+.panel {
+    flex: 0 0 350px;
+    height: 500px;
+    perspective: 1000px;
+    scroll-snap-align: center;
+    transition: all 0.5s ease;
+    opacity: 0.2;
+    transform: scale(0.8);
+    filter: grayscale(100%) blur(2px);
+    cursor: pointer;
+}
+
+.panel.active {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: grayscale(0%) blur(0px);
+    z-index: 10;
+}
+
+.panel-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+}
+
+.panel.flipped .panel-inner { transform: rotateY(180deg); }
+
+.panel-front,
+.panel-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.panel-front {
+    background-size: cover;
+    background-position: center;
+}
+
+.panel-front h3 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.panel-back {
+    background: #0a0a0a;
+    transform: rotateY(180deg);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   8. STATS (verso do card)
+   -------------------------------------------------------------------------- */
+.stats-header {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.xp-bar-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.xp-bar-fill {
+    height: 100%;
+    background: #4ec9b0;
+    border-radius: 2px;
+}
+
+.ranks-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.rank-box {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 15px;
+    flex: 1;
+    font-size: 0.8rem;
+}
+
+.rank-box img {
+    width: 45px;
+    height: auto;
+    margin: 8px 0;
+}
+
+.stats-grid-compact {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.date-label {
+    font-size: 0.75rem;
+    color: #bbb;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.data-footer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    border-radius: 15px;
+}
+
+.data-item {
+    text-align: center;
+}
+
+.data-item p {
+    font-size: 0.7rem;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+.data-item span {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Achievement badge */
+.achievement-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid #ffd700;
+    color: #ffd700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.achievement-badge.complete {
+    background: #ffd700;
+    color: #000;
+}
+
+/* --------------------------------------------------------------------------
+   9. TIMELINE
+   -------------------------------------------------------------------------- */
+.timeline-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 150px auto;
+    padding: 20px 20px;
+}
+
+/* Corda vertical central */
+.rope-vertical {
+    position: absolute;
+    top: 160px;
+    bottom: 0;
+    left: 50%;
+    width: 20px;
+    transform: translateX(-50%);
+    background:
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.4) 0px, rgba(0,0,0,0.4) 8px, transparent 8px, transparent 16px),
+        linear-gradient(to right, #3e2716 0%, #8b5a2b 25%, #b38b67 50%, #8b5a2b 75%, #3e2716 100%);
+    border-radius: 10px;
+    filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.8)) contrast(1.2);
+    z-index: 1;
+}
+
+.rope-vertical::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-radial-gradient(circle, #b38b67 1px, transparent 2px);
+    background-size: 5px 15px;
+    opacity: 0.3;
+    filter: blur(0.5px);
+}
+
+/* Conector horizontal (corda lateral) */
+.rope-connector {
+    position: absolute;
+    top: 50%;
+    height: 12px;
+    background:
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 6px, transparent 6px, transparent 12px),
+        linear-gradient(to bottom, #3e2716 0%, #8b5a2b 50%, #3e2716 100%);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    z-index: -1;
+    border-radius: 4px;
+}
+
+/* Nó da corda */
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 36px;
+    height: 46px;
+    background:
+        linear-gradient(90deg, transparent 40%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.5) 55%, transparent 60%),
+        repeating-linear-gradient(0deg, #3e2716 0px, #8b5a2b 3px, #b38b67 5px, #3e2716 8px);
+    border-radius: 8px;
+    transform: translateY(-50%);
+    z-index: 5;
+    box-shadow: 3px 5px 10px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.5);
+    border: 1px solid #2a1a0e;
+}
+
+.timeline-row.left  .timeline-content::after { right: -66px; }
+.timeline-row.right .timeline-content::after { left: -66px; }
+
+/* Linhas da timeline */
+.timeline-row {
+    position: relative;
+    width: 100%;
+    display: flex;
+    margin-bottom: 80px;
+    z-index: 2;
+}
+
+.timeline-row.left {
+    justify-content: flex-start;
+    padding-right: 50%;
+}
+
+.timeline-row.right {
+    justify-content: flex-end;
+    padding-left: 50%;
+}
+
+.timeline-content {
+    position: relative;
+    width: 90%;
+    max-width: 480px;
+    margin: 0 50px;
+}
+
+.timeline-row.left  .rope-connector { right: -55px; transform: translateY(-50%) rotate(10deg);  width: 110px; }
+.timeline-row.right .rope-connector { left:  -55px; transform: translateY(-50%) rotate(-10deg); width: 110px; }
+
+/* --------------------------------------------------------------------------
+   10. GLOW CARD (card de jogo na timeline)
+   -------------------------------------------------------------------------- */
+.glow-card {
+    background: #000;
+    border: 3px solid #fff;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.4), inset 0 0 20px rgba(255,255,255,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glow-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 35px rgba(255,255,255,0.6), inset 0 0 25px rgba(255,255,255,0.2);
+}
+
+.glow-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #555;
+    flex-shrink: 0;
+}
+
+.game-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.game-desc {
+    font-size: 0.82rem;
+    color: #aaa;
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   11. GALERIA 3D (esfera)
+   -------------------------------------------------------------------------- */
+#dome-section {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.gallery-title {
+    font-size: clamp(1.2rem, 4vw, 2.5rem);
+    margin: 50px 0;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    z-index: 100;
+    backface-visibility: hidden;
+    will-change: transform;
+    transform-style: preserve-3d;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.sphere-root {
+    width: 100%;
+    height: 100%;
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+}
+
+.sphere-root:active { cursor: grabbing; }
+
+.sphere {
+    position: relative;
+    width: 180px;
+    height: 110px;
+    transform-style: preserve-3d;
+}
+
+.gallery-item {
+    position: absolute;
+    width: 180px;
+    height: 110px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backface-visibility: hidden;
+    cursor: pointer;
+}
+
+.gallery-item img,
+.gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.6);
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-item:hover img,
+.gallery-item:hover video {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   12. MODAL VIEWER (imagem/vídeo em fullscreen)
+   -------------------------------------------------------------------------- */
+#custom-viewer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    z-index: 999999;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#custom-viewer .content-wrapper {
+    width: 90vw;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#custom-viewer img,
+#custom-viewer video {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border: 1px solid #333;
+    box-shadow: 0 0 50px rgba(0,0,0,1);
+    animation: zoomAnim 0.3s ease-out;
+}
+
+@keyframes zoomAnim {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 60px;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.close-btn:hover { opacity: 0.6; }
+
+/* ==========================================================================
+   13. RESPONSIVIDADE
+   ========================================================================== */
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
+    .timeline-wrapper {
+        max-width: 90vw;
+        margin: 80px auto;
+    }
+
+    .glow-card img { width: 80px; height: 80px; }
+}
+
+/* Tablet (≤ 768px) — timeline linear, panels menores */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        padding-bottom: 80px;
+    }
+
+    /* Panels: mais pequenos */
+    .panels-wrapper {
+        padding: 80px 35vw;
+        height: 520px;
+        gap: 24px;
+    }
+
+    .panel {
+        flex: 0 0 280px;
+        height: 420px;
+    }
+
+    .panel-front h3 { font-size: 1.1rem; padding: 14px; }
+
+    /* Timeline: colapsa para layout linear (sem alternância) */
+    .rope-vertical { display: none; }
+    .rope-connector { display: none; }
+    .timeline-content::after { display: none; }
+
+    .timeline-wrapper {
+        margin: 60px auto;
+        padding: 0 16px;
+    }
+
+    .timeline-row,
+    .timeline-row.left,
+    .timeline-row.right {
+        justify-content: center;
+        padding: 0;
+        margin-bottom: 24px;
+    }
+
+    .timeline-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .glow-card {
+        border-radius: 14px;
+        padding: 14px;
+        gap: 14px;
+    }
+
+    .glow-card img { width: 70px; height: 70px; border-radius: 8px; }
+    .game-title { font-size: 0.9rem; }
+    .game-desc  { font-size: 0.78rem; }
+
+    /* Galeria */
+    #dome-section { height: 700px; }
+    .gallery-title { letter-spacing: 4px; margin: 30px 0; }
+
+    /* Modal */
+    .close-btn { font-size: 40px; top: 16px; right: 20px; }
+}
+
+/* Mobile (≤ 480px) */
+@media (max-width: 480px) {
+    .back-link {
+        font-size: 0.7rem;
+        padding: 5px 10px;
+        letter-spacing: 1px;
+    }
+
+    .lang-switcher { right: 16px; top: 16px; }
+
+    .section-title {
+        padding: 8px 20px;
+        letter-spacing: 3px;
+        margin-bottom: 50px;
+    }
+
+    /* Panels */
+    .panels-wrapper {
+        padding: 60px 25vw;
+        height: 460px;
+        gap: 16px;
+    }
+
+    .panel {
+        flex: 0 0 240px;
+        height: 360px;
+    }
+
+    .panel-front h3 { font-size: 0.95rem; }
+    .stats-header   { font-size: 1rem; }
+    .data-item span { font-size: 0.9rem; }
+    .rank-box img   { width: 32px; }
+
+    /* Glow card */
+    .glow-card { flex-direction: column; align-items: flex-start; }
+    .glow-card img { width: 100%; height: 140px; }
+    .game-title { font-size: 0.85rem; }
+
+    /* Galeria */
+    #dome-section { height: 550px; }
+    .gallery-title { font-size: 1rem; letter-spacing: 2px; margin: 20px 0; }
+}
+
+/* TV / Ecrãs grandes (≥ 1600px) */
+@media (min-width: 1600px) {
+    .panels-wrapper {
+        padding: 100px 45vw;
+        height: 750px;
+    }
+
+    .panel {
+        flex: 0 0 420px;
+        height: 600px;
+    }
+
+    .panel-front h3 { font-size: 1.8rem; }
+
+    .timeline-wrapper { max-width: 1300px; }
+    .glow-card img { width: 130px; height: 130px; }
+    .game-title { font-size: 1.2rem; }
+    .game-desc  { font-size: 0.95rem; }
+
+    #dome-section { height: 1200px; }
+}

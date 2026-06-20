@@ -624,4 +624,303 @@ h3 {
 
 .arsenal-wrapper:hover .right-far {
     transform: translateX(330px);
+}/* ==========================================================================
+   RESPONSIVE ADDITIONS — appended to Index.css
+   Handles mobile (≤480px), tablet (481–768px), desktop-md (769–1024px)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   HAMBURGER MENU (mobile nav)
+   -------------------------------------------------------------------------- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    top: 14px;
+    left: 16px;
+    z-index: 1100;
+    background: rgba(0,0,0,0.6);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* --------------------------------------------------------------------------
+   ARSENAL — TECH STACK ICONS
+   Make skill items carry brand colour and emoji/icon feel
+   -------------------------------------------------------------------------- */
+.skill-item[data-lang="C"]      { --brand: #555; --text: #fff; }
+.skill-item[data-lang="C++"]    { --brand: #004482; --text: #fff; }
+.skill-item[data-lang="Python"] { --brand: #1a1a2e; --text: #FFD43B; }
+.skill-item[data-lang="Java"]   { --brand: #fff; --text: #EA2D2E; }
+.skill-item[data-lang="JS"]     { --brand: #1a1a00; --text: #F7DF1E; }
+
+.skill-item {
+    background: var(--brand, #fff) !important;
+    color: var(--text, #fff) !important;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    border: 2px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.skill-item span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+}
+
+.skill-logo {
+    display: block;
+    flex-shrink: 0;
+}
+
+/* ── Section header with inline link ───────────────────────────────────── */
+.section-header-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 4px;
+}
+
+.section-header-row h3 {
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.section-more-btn {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 6px 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.section-more-btn:hover {
+    border-color: #fff;
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+}
+
+@media (max-width: 480px) {
+    .section-header-row { flex-wrap: wrap; gap: 8px; }
+    .section-more-btn { margin-top: 0; font-size: 0.7rem; }
+}
+
+/* --------------------------------------------------------------------------
+   TABLET (≤ 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .music-layout.panel-open .music-grid {
+        grid-template-columns: repeat(2, 1fr);
+        flex: 0 0 55%;
+    }
+
+    .tracklist-panel.active {
+        width: 40%;
+    }
+
+    .arsenal-wrapper:hover .left-far  { transform: translateX(-260px); }
+    .arsenal-wrapper:hover .left-near { transform: translateX(-130px); }
+    .arsenal-wrapper:hover .right-near{ transform: translateX(130px); }
+    .arsenal-wrapper:hover .right-far { transform: translateX(260px); }
+}
+
+/* --------------------------------------------------------------------------
+   TABLET (≤ 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    /* Body */
+    body {
+        background-attachment: scroll; /* Fixes iOS fixed bg bug */
+    }
+
+    /* --- Nav menu: hamburger drawer --- */
+    .hamburger { display: flex; }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 75vw;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(5,5,5,0.97);
+        backdrop-filter: blur(20px);
+        z-index: 1000;
+        padding: 80px 24px 40px;
+        transition: left 0.35s cubic-bezier(0.4,0,0.2,1);
+        border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-menu.open { left: 0; }
+
+    .nav-menu .list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-menu li .link {
+        display: block;
+        padding: 18px 4px;
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+    }
+
+    /* --- Profile section --- */
+    .center img {
+        width: 120px;
+        height: 120px;
+    }
+
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1rem; }
+    h3 { font-size: 1.15rem; margin-top: 30px; }
+
+    /* --- Main content --- */
+    .main-content {
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    /* --- Music grid: 2 cols on tablet --- */
+    .music-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Tracklist: full width overlay on mobile */
+    .music-layout.panel-open {
+        flex-direction: column;
+    }
+
+    .music-layout.panel-open .music-grid {
+        flex: unset;
+        width: 100%;
+    }
+
+    .tracklist-panel.active {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    /* --- Arsenal --- */
+    .arsenal-container { padding: 60px 0; }
+
+    .arsenal-wrapper:hover .left-far  { transform: translateX(-210px); }
+    .arsenal-wrapper:hover .left-near { transform: translateX(-105px); }
+    .arsenal-wrapper:hover .right-near{ transform: translateX(105px); }
+    .arsenal-wrapper:hover .right-far { transform: translateX(210px); }
+
+    /* --- Games teaser --- */
+    .games-teaser-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        gap: 12px;
+    }
+
+    .game-item, .view-all-games {
+        width: 100%;
+        height: 130px;
+    }
+
+    /* --- Footer --- */
+    .social-links {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: 0 16px;
+    }
+
+    .social-links img { width: 38px; }
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE (≤ 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+    /* Lang switcher repositioned so it doesn't overlap hamburger */
+    .lang-switcher {
+        top: 18px;
+        right: 16px;
+    }
+
+    /* Profile */
+    .center img { width: 100px; height: 100px; }
+    h1 { font-size: 1.3rem; }
+
+    /* Music: stack grid 1 col on very small screens */
+    .music-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px;
+    }
+
+    .tilted-card-figure { max-width: 100%; }
+
+    /* Arsenal: scale down the items so they fit */
+    .skill-item { width: 75px !important; height: 75px !important; font-size: 0.7rem; }
+
+    .arsenal-wrapper:hover .left-far  { transform: translateX(-160px); }
+    .arsenal-wrapper:hover .left-near { transform: translateX(-80px); }
+    .arsenal-wrapper:hover .right-near{ transform: translateX(80px); }
+    .arsenal-wrapper:hover .right-far { transform: translateX(160px); }
+
+    .arsenal-wrapper { width: 140px; }
+    .reveal-btn { width: 140px; font-size: 0.75rem; }
+
+    /* Games */
+    .games-teaser-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .game-item, .view-all-games { height: 110px; }
+
+    /* Social */
+    .social-links { gap: 16px; }
+    .social-links img { width: 32px; }
+    .social-links p { font-size: 9px; letter-spacing: 1px; }
+}
+
+/* --------------------------------------------------------------------------
+   TV / Large screens (≥ 1600px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1600px) {
+    .main-content { max-width: 1400px; margin: 0 auto; }
+    .music-layout { max-width: 1500px; }
+    h3 { font-size: 1.8rem; }
+    .text-block p { font-size: 1.05rem; max-width: 800px; }
 }

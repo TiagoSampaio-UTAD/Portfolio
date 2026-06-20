@@ -278,3 +278,65 @@ function revealArsenal() {
         grid.classList.add('active');
     }, 400);
 }
+/* ==========================================================================
+   HAMBURGER MENU (mobile)
+   ========================================================================== */
+(function () {
+    const btn = document.getElementById('hamburger');
+    const nav = document.querySelector('.nav-menu');
+    if (!btn || !nav) return;
+
+    btn.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        btn.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close drawer when a link is tapped
+    nav.querySelectorAll('.link').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('open');
+            btn.classList.remove('open');
+        });
+    });
+
+    // Close on outside tap
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !btn.contains(e.target)) {
+            nav.classList.remove('open');
+            btn.classList.remove('open');
+        }
+    });
+})();
+
+/* ==========================================================================
+   TILT CARDS — single shared tooltip appended to <body> to avoid transform offsets
+   ========================================================================== */
+const _tooltip = document.createElement('div');
+_tooltip.className = 'tilted-card-caption';
+_tooltip.style.display = 'none';
+document.body.appendChild(_tooltip);
+
+function handleTilt(e, el) {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const rotateX = -(y / rect.height) * 15;
+    const rotateY = (x / rect.width) * 15;
+    el.querySelector('.tilted-card-inner').style.transform =
+        `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+    _tooltip.textContent = el.dataset.caption || '';
+    _tooltip.style.display = 'block';
+
+    // Keep tooltip inside viewport
+    const tx = Math.min(e.clientX + 14, window.innerWidth - _tooltip.offsetWidth - 10);
+    const ty = Math.min(e.clientY + 14, window.innerHeight - _tooltip.offsetHeight - 10);
+    _tooltip.style.left = tx + 'px';
+    _tooltip.style.top  = ty + 'px';
+}
+
+function resetTilt(el) {
+    el.querySelector('.tilted-card-inner').style.transform = '';
+    _tooltip.style.display = 'none';
+}
