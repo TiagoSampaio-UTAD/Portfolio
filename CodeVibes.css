@@ -81,7 +81,7 @@ header h1 {
    -------------------------------------------------------------------------- */
 .grid-vibes {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
 }
 
@@ -339,4 +339,140 @@ header h1 {
 
     .terminal-body   { height: 480px; }
     #display-content { font-size: 1rem; }
+}
+
+/* ==========================================================================
+   NOVOS ELEMENTOS — Tech Stack update
+   ========================================================================== */
+
+/* ── Header com duas colunas ── */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* ── Stack pills (C · C++ · Python · Java · JS) ── */
+.stack-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.pill {
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: 1px solid;
+}
+
+.pill.c       { background: rgba(85,85,85,0.2);    border-color: #555;    color: #aaa; }
+.pill.cpp     { background: rgba(0,68,130,0.2);    border-color: #004482; color: #5b9bd5; }
+.pill.python  { background: rgba(53,114,165,0.15); border-color: #3572A5; color: #FFD43B; }
+.pill.java    { background: rgba(234,45,46,0.15);  border-color: #EA2D2E; color: #f89820; }
+.pill.js      { background: rgba(247,223,30,0.1);  border-color: #F7DF1E; color: #F7DF1E; }
+
+/* ── GitHub button ── */
+.github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ccc;
+    text-decoration: none;
+    border: 1px solid #444;
+    padding: 7px 14px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.github-btn:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255,255,255,0.05);
+}
+
+/* ── Copy button no viewer ── */
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.copy-btn {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #ccc;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.copy-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border-color: rgba(255,255,255,0.35);
+}
+
+/* ── C++ acento de cor ── */
+.lang-block[data-lang="C++"] .lang-label { background: #004482; color: #fff; }
+.lang-block[data-lang="JS"]  .lang-label { background: #F7DF1E; color: #000; }
+
+/* ── Grid de 5 linguagens ──────────────────────────────────────
+   Mobile  (≤600px)  : 1 coluna
+   Tablet  (601-900) : 2 colunas
+   Desktop (≥901px)  : 2 colunas, 5ª card centrada na linha 3
+   ─────────────────────────────────────────────────────────── */
+
+/* Base: 2 colunas (funciona bem em tablet e desktop) */
+/* 5ª card (JavaScript) — ocupa a coluna 1 mas está centrada */
+@media (min-width: 601px) {
+    .lang-block:nth-child(5) {
+        grid-column: 1 / -1;          /* ocupa as 2 colunas */
+        max-width: calc(50% - 15px);  /* largura de 1 card */
+        margin: 0 auto;               /* centra */
+    }
+}
+
+/* Desktop largo: 3 colunas, 4ª e 5ª centradas na 2ª linha */
+@media (min-width: 1100px) {
+    .grid-vibes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .lang-block:nth-child(4) {
+        grid-column: 1 / 2;
+        justify-self: end;
+    }
+    .lang-block:nth-child(5) {
+        grid-column: 2 / 3;
+        max-width: 100%;
+        margin: 0;
+        justify-self: start;
+    }
+}
+
+/* Mobile: stack pills e header */
+@media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .header-right { width: 100%; justify-content: flex-end; }
+    .github-btn { font-size: 0.75rem; padding: 6px 10px; }
+    .stack-pills { gap: 4px; }
+    .pill { font-size: 0.65rem; padding: 2px 8px; }
 }

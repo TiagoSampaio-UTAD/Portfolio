@@ -3,232 +3,906 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Vibes - Tiago Sampaio</title>
+    <title>Tech Stack - Tiago Sampaio</title>
     <link rel="stylesheet" href="CodeVibes.css">
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Code Vibes <small style="font-size: 0.4em; opacity: 0.5;"></small></h1>
-            <a href="Index.html" class="back-btn">← Sair</a>
-        </header>
+<div class="container">
+    <header>
+        <div class="header-left">
+            <h1>Tech Stack</h1>
+            <div class="stack-pills">
+                <span class="pill c">C</span>
+                <span class="pill cpp">C++</span>
+                <span class="pill python">Python</span>
+                <span class="pill java">Java</span>
+                <span class="pill js">JS</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="https://github.com/TiagoSampaio-UTAD" target="_blank" class="github-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+            <a href="Index.html" class="back-btn">← Voltar</a>
+        </div>
+    </header>
 
-        <main class="grid-vibes">
-            <div class="lang-block" data-lang="C">
-                <div class="lang-label">C</div>
-                <div class="project-item">
-                    <div><span class="project-name">Matrix.c</span><span class="project-desc">Fluxo de dados binários.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('c_matrix')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('C', 'matrix')">[Run]</button>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div><span class="project-name">Memory.c</span><span class="project-desc">Simulador de RAM Pointers.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('c_mem')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('C', 'mem')">[Run]</button>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div><span class="project-name">Physic.c</span><span class="project-desc">Cálculo de Gravidade.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('c_phys')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('C', 'phys')">[Run]</button>
-                    </div>
+    <main class="grid-vibes">
+
+        <!-- C -->
+        <div class="lang-block" data-lang="C">
+            <div class="lang-label">C</div>
+            <div class="project-item">
+                <div><span class="project-name">Calculator.c</span><span class="project-desc">Calculadora com as 4 operações.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('c_calc')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('C', 'calc')">[Run]</button>
                 </div>
             </div>
-
-            <div class="lang-block" data-lang="C#">
-                <div class="lang-label">C#</div>
-                <div class="project-item">
-                    <div><span class="project-name">Bank.cs</span><span class="project-desc">ATM Simulator.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('cs_bank')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('C#', 'bank')">[Run]</button>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div><span class="project-name">GameStat.cs</span><span class="project-desc">XP & Level System.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('cs_game')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('C#', 'game')">[Run]</button>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div><span class="project-name">Temp.cs</span><span class="project-desc">Celsius Converter.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('cs_temp')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('C#', 'temp')">[Run]</button>
-                    </div>
+            <div class="project-item">
+                <div><span class="project-name">Fibonacci.c</span><span class="project-desc">Sequência de Fibonacci até N.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('c_fib')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('C', 'fib')">[Run]</button>
                 </div>
             </div>
-
-            <div class="lang-block" data-lang="Java">
-                <div class="lang-label">Java</div>
-                <div class="project-item">
-                    <div><span class="project-name">Binary.java</span><span class="project-desc">Base Numeric Converter.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('java_bin')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('Java', 'bin')">[Run]</button>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div><span class="project-name">Thread.java</span><span class="project-desc">Multi-tasking simulation.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('java_thread')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('Java', 'thread')">[Run]</button>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div><span class="project-name">Lotto.java</span><span class="project-desc">Random Key Generator.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('java_lotto')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('Java', 'lotto')">[Run]</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lang-block" data-lang="Python">
-                <div class="lang-label">Python</div>
-                <div class="project-item">
-                    <div><span class="project-name">Secure.py</span><span class="project-desc">Password Strength.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('py_sec')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('Python', 'sec')">[Run]</button>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div><span class="project-name">Stocks.py</span><span class="project-desc">Compound Interest.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('py_stock')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('Python', 'stock')">[Run]</button>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div><span class="project-name">AI_Bot.py</span><span class="project-desc">Simple Chat Logic.</span></div>
-                    <div class="actions">
-                        <button class="btn btn-code" onclick="show('py_ai')">[Code]</button>
-                        <button class="btn btn-run" onclick="run('Python', 'ai')">[Run]</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <div id="viewer">
-            <div class="display-top">
-                <span id="display-title">Terminal</span>
-                <span class="close-btn" onclick="hide()">X</span>
-            </div>
-            <div class="terminal-body" onclick="document.getElementById('terminal-input').focus()">
-                <pre id="display-content"></pre>
-                <div class="input-line" id="input-area" style="display: none;">
-                    <span class="prompt" id="current-prompt">></span>
-                    <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+            <div class="project-item">
+                <div><span class="project-name">Physic.c</span><span class="project-desc">Cálculo de queda livre (g=9.8).</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('c_phys')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('C', 'phys')">[Run]</button>
                 </div>
             </div>
         </div>
+
+        <!-- C++ -->
+        <div class="lang-block" data-lang="C++">
+            <div class="lang-label">C++</div>
+            <div class="project-item">
+                <div><span class="project-name">Calculator.cpp</span><span class="project-desc">Calculadora com classes e OOP.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('cpp_calc')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('C++', 'calc')">[Run]</button>
+                </div>
+            </div>
+            <div class="project-item">
+                <div><span class="project-name">Sorter.cpp</span><span class="project-desc">Bubble Sort com vector.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('cpp_sort')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('C++', 'sort')">[Run]</button>
+                </div>
+            </div>
+            <div class="project-item">
+                <div><span class="project-name">Temp.cpp</span><span class="project-desc">Conversor Celsius/Fahrenheit.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('cpp_temp')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('C++', 'temp')">[Run]</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Python -->
+        <div class="lang-block" data-lang="Python">
+            <div class="lang-label">Python</div>
+            <div class="project-item">
+                <div><span class="project-name">Calculator.py</span><span class="project-desc">Calculadora interactiva no terminal.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('py_calc')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('Python', 'calc')">[Run]</button>
+                </div>
+            </div>
+            <div class="project-item">
+                <div><span class="project-name">Secure.py</span><span class="project-desc">Validador de força de password.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('py_sec')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('Python', 'sec')">[Run]</button>
+                </div>
+            </div>
+            <div class="project-item">
+                <div><span class="project-name">Stocks.py</span><span class="project-desc">Calculadora de juros compostos.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('py_stock')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('Python', 'stock')">[Run]</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Java -->
+        <div class="lang-block" data-lang="Java">
+            <div class="lang-label">Java</div>
+            <div class="project-item">
+                <div><span class="project-name">Calculator.java</span><span class="project-desc">Calculadora com Scanner e switch.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('java_calc')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('Java', 'calc')">[Run]</button>
+                </div>
+            </div>
+            <div class="project-item">
+                <div><span class="project-name">Lotto.java</span><span class="project-desc">Gerador de chave do Euromilhões.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('java_lotto')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('Java', 'lotto')">[Run]</button>
+                </div>
+            </div>
+            <div class="project-item">
+                <div><span class="project-name">Binary.java</span><span class="project-desc">Conversor Decimal → Binário/Hex.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('java_bin')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('Java', 'bin')">[Run]</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="lang-block" data-lang="JS">
+            <div class="lang-label">JavaScript</div>
+            <div class="project-item">
+                <div><span class="project-name">calculator.js</span><span class="project-desc">Calculadora com eval e histórico.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('js_calc')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('JS', 'calc')">[Run]</button>
+                </div>
+            </div>
+            <div class="project-item">
+                <div><span class="project-name">todo.js</span><span class="project-desc">Lista de tarefas com localStorage.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('js_todo')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('JS', 'todo')">[Run]</button>
+                </div>
+            </div>
+            <div class="project-item">
+                <div><span class="project-name">quiz.js</span><span class="project-desc">Quiz interactivo com pontuação.</span></div>
+                <div class="actions">
+                    <button class="btn btn-code" onclick="showCode('js_quiz')">[Code]</button>
+                    <button class="btn btn-run" onclick="runDemo('JS', 'quiz')">[Run]</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- VIEWER -->
+    <div id="viewer">
+        <div class="display-top">
+            <span id="display-title">Terminal</span>
+            <div class="top-actions">
+                <button id="copy-btn" class="copy-btn" onclick="copyCode()" style="display:none">📋 Copiar</button>
+                <span class="close-btn" onclick="hide()">✕</span>
+            </div>
+        </div>
+        <div class="terminal-body" onclick="document.getElementById('terminal-input').focus()">
+            <pre id="display-content"></pre>
+            <div class="input-line" id="input-area" style="display: none;">
+                <span class="prompt" id="current-prompt">></span>
+                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="escreve aqui...">
+            </div>
+        </div>
     </div>
+</div>
 
-    <script>
-        const db = {
-            'c_matrix': 'while(1) { printf("%d", rand() % 2); }',
-            'c_mem': 'int a = 10; printf("%p", (void*)&a);',
-            'c_phys': 'v = g * t; // g=9.8m/s²',
-            'cs_bank': 'balance += depositAmount;',
-            'cs_game': 'if(xp >= 100) { level++; xp = 0; }',
-            'cs_temp': 'F = (C * 9/5) + 32;',
-            'java_bin': 'Integer.toBinaryString(n);',
-            'java_thread': 'new Thread(() -> { ... }).start();',
-            'java_lotto': 'Random r = new Random(); r.nextInt(50);',
-            'py_sec': 'return len(p) > 8 and any(c.isdigit() for c in p)',
-            'py_stock': 'A = P * (1 + r/n)**(nt)',
-            'py_ai': 'if "olá" in msg: print("Boas!")'
-        };
+<script>
+// ════════════════════════════════════════════════════════════════
+// CÓDIGO COMPLETO E FUNCIONAL POR PROJECTO
+// ════════════════════════════════════════════════════════════════
+const codeDB = {
 
-        let activeLang = ""; let activeProj = ""; let balance = 1250; let xp = 0; let level = 1;
+// ── C ──────────────────────────────────────────────────────────
+c_calc: `#include <stdio.h>
 
-        function show(id) {
-            hide();
-            const v = document.getElementById('viewer');
-            const c = document.getElementById('display-content');
-            document.getElementById('display-title').innerText = "Source Code Viewer";
-            document.getElementById('input-area').style.display = "none";
-            c.innerText = db[id]; c.style.color = "#569cd6"; v.style.display = 'block';
+int main() {
+    double a, b, resultado;
+    char op;
+
+    printf("=== Calculadora em C ===\\n");
+    printf("Exemplo: 10 + 5\\n");
+    printf("Operacao (+, -, *, /): ");
+    scanf("%lf %c %lf", &a, &op, &b);
+
+    switch (op) {
+        case '+': resultado = a + b; break;
+        case '-': resultado = a - b; break;
+        case '*': resultado = a * b; break;
+        case '/':
+            if (b == 0) { printf("Erro: divisao por zero!\\n"); return 1; }
+            resultado = a / b; break;
+        default:
+            printf("Operador invalido!\\n"); return 1;
+    }
+
+    printf("Resultado: %.2f %c %.2f = %.2f\\n", a, op, b, resultado);
+    return 0;
+}`,
+
+c_fib: `#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Sequencia de Fibonacci\\n");
+    printf("Quantos termos? ");
+    scanf("%d", &n);
+
+    if (n <= 0) { printf("Numero invalido.\\n"); return 1; }
+
+    long long a = 0, b = 1, proximo;
+    printf("Fibonacci(%d): ", n);
+
+    for (int i = 0; i < n; i++) {
+        printf("%lld", a);
+        if (i < n - 1) printf(", ");
+        proximo = a + b;
+        a = b;
+        b = proximo;
+    }
+    printf("\\n");
+    return 0;
+}`,
+
+c_phys: `#include <stdio.h>
+
+int main() {
+    double t, v, d;
+    const double g = 9.8;
+
+    printf("=== Queda Livre (g = 9.8 m/s^2) ===\\n");
+    printf("Tempo de queda (segundos): ");
+    scanf("%lf", &t);
+
+    v = g * t;            // velocidade final
+    d = 0.5 * g * t * t; // distancia percorrida
+
+    printf("\\nResultados apos %.2f s:\\n", t);
+    printf("  Velocidade final : %.2f m/s\\n", v);
+    printf("  Distancia caida  : %.2f m\\n", d);
+    return 0;
+}`,
+
+// ── C++ ────────────────────────────────────────────────────────
+cpp_calc: `#include <iostream>
+using namespace std;
+
+class Calculadora {
+public:
+    double add(double a, double b) { return a + b; }
+    double sub(double a, double b) { return a - b; }
+    double mul(double a, double b) { return a * b; }
+    double div(double a, double b) {
+        if (b == 0) throw invalid_argument("Divisao por zero!");
+        return a / b;
+    }
+};
+
+int main() {
+    Calculadora calc;
+    double a, b;
+    char op;
+
+    cout << "=== Calculadora C++ (OOP) ===" << endl;
+    cout << "Exemplo: 10 * 3" << endl;
+    cout << "Expressao: ";
+    cin >> a >> op >> b;
+
+    try {
+        double res;
+        switch (op) {
+            case '+': res = calc.add(a, b); break;
+            case '-': res = calc.sub(a, b); break;
+            case '*': res = calc.mul(a, b); break;
+            case '/': res = calc.div(a, b); break;
+            default: cout << "Operador invalido!" << endl; return 1;
+        }
+        cout << "Resultado: " << a << " " << op << " " << b << " = " << res << endl;
+    } catch (const exception& e) {
+        cout << "Erro: " << e.what() << endl;
+    }
+    return 0;
+}`,
+
+cpp_sort: `#include <iostream>
+#include <vector>
+using namespace std;
+
+void bubbleSort(vector<int>& v) {
+    int n = v.size();
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (v[j] > v[j + 1])
+                swap(v[j], v[j + 1]);
+}
+
+void print(const vector<int>& v) {
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i];
+        if (i < v.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> nums = {64, 34, 25, 12, 22, 11, 90};
+
+    cout << "=== Bubble Sort em C++ ===" << endl;
+    cout << "Antes: "; print(nums);
+
+    bubbleSort(nums);
+
+    cout << "Depois: "; print(nums);
+    return 0;
+}`,
+
+cpp_temp: `#include <iostream>
+#include <iomanip>
+using namespace std;
+
+double celsiusToFahr(double c) { return c * 9.0 / 5.0 + 32; }
+double fahrToCelsius(double f) { return (f - 32) * 5.0 / 9.0; }
+double celsiusToKelvin(double c) { return c + 273.15; }
+
+int main() {
+    double valor;
+    char tipo;
+
+    cout << "=== Conversor de Temperatura ===" << endl;
+    cout << "Tipo (C = Celsius, F = Fahrenheit): ";
+    cin >> tipo;
+    cout << "Valor: ";
+    cin >> valor;
+
+    cout << fixed << setprecision(2);
+    if (tipo == 'C' || tipo == 'c') {
+        cout << valor << " C = " << celsiusToFahr(valor) << " F" << endl;
+        cout << valor << " C = " << celsiusToKelvin(valor) << " K" << endl;
+    } else if (tipo == 'F' || tipo == 'f') {
+        cout << valor << " F = " << fahrToCelsius(valor) << " C" << endl;
+    } else {
+        cout << "Tipo invalido!" << endl;
+    }
+    return 0;
+}`,
+
+// ── Python ─────────────────────────────────────────────────────
+py_calc: `def calcular(expressao):
+    """Avalia uma expressao matematica simples."""
+    partes = expressao.strip().split()
+    if len(partes) != 3:
+        return "Formato: numero operador numero  (ex: 10 + 5)"
+
+    try:
+        a, op, b = float(partes[0]), partes[1], float(partes[2])
+    except ValueError:
+        return "Valores invalidos."
+
+    if op == '+': return f"Resultado: {a + b}"
+    if op == '-': return f"Resultado: {a - b}"
+    if op == '*': return f"Resultado: {a * b}"
+    if op == '/':
+        if b == 0: return "Erro: divisao por zero!"
+        return f"Resultado: {a / b:.4f}"
+    return "Operador invalido. Use: + - * /"
+
+print("=== Calculadora Python ===")
+print("Formato: numero operador numero  (ex: 10 * 3)")
+print("'sair' para terminar\\n")
+
+while True:
+    entrada = input(">>> ").strip()
+    if entrada.lower() == 'sair':
+        print("Ate logo!")
+        break
+    print(calcular(entrada))`,
+
+py_sec: `import re
+
+def avaliar_password(password):
+    pontos = 0
+    mensagens = []
+
+    if len(password) >= 8:
+        pontos += 1
+    else:
+        mensagens.append("- Minimo 8 caracteres")
+
+    if re.search(r'[A-Z]', password):
+        pontos += 1
+    else:
+        mensagens.append("- Precisa de letra maiuscula")
+
+    if re.search(r'[0-9]', password):
+        pontos += 1
+    else:
+        mensagens.append("- Precisa de numero")
+
+    if re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        pontos += 1
+    else:
+        mensagens.append("- Precisa de simbolo (!@#$...)")
+
+    niveis = ["MUITO FRACA", "FRACA", "MEDIA", "FORTE", "MUITO FORTE"]
+    nivel = niveis[pontos]
+
+    return nivel, mensagens
+
+print("=== Validador de Password ===")
+while True:
+    pw = input("Password (ou 'sair'): ")
+    if pw.lower() == 'sair': break
+    nivel, dicas = avaliar_password(pw)
+    print(f"Forca: {nivel}")
+    if dicas:
+        print("Melhorias:")
+        for d in dicas: print(d)
+    print()`,
+
+py_stock: `def juros_compostos(capital, taxa_anual, anos, periodos_ano=12):
+    """
+    Calcula juros compostos.
+    capital      : valor inicial (€)
+    taxa_anual   : taxa em % (ex: 5 para 5%)
+    anos         : duracao do investimento
+    periodos_ano : quantas vezes os juros sao aplicados por ano
+    """
+    r = taxa_anual / 100
+    n = periodos_ano
+    t = anos
+    montante = capital * (1 + r / n) ** (n * t)
+    lucro = montante - capital
+    return montante, lucro
+
+print("=== Calculadora de Juros Compostos ===")
+print("Formato: capital taxa% anos  (ex: 1000 5 10)\\n")
+
+entrada = input(">>> ").split()
+try:
+    capital = float(entrada[0])
+    taxa    = float(entrada[1])
+    anos    = int(entrada[2])
+
+    montante, lucro = juros_compostos(capital, taxa, anos)
+
+    print(f"\\nCapital inicial : {capital:.2f} €")
+    print(f"Taxa anual      : {taxa}%")
+    print(f"Periodo         : {anos} anos")
+    print(f"Montante final  : {montante:.2f} €")
+    print(f"Lucro obtido    : {lucro:.2f} €")
+except (ValueError, IndexError):
+    print("Formato invalido. Exemplo: 1000 5 10")`,
+
+// ── Java ───────────────────────────────────────────────────────
+java_calc: `import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=== Calculadora Java ===");
+        System.out.println("Formato: numero operador numero  (ex: 10 / 4)");
+        System.out.print("Expressao: ");
+
+        double a = sc.nextDouble();
+        String op = sc.next();
+        double b = sc.nextDouble();
+
+        double resultado;
+
+        switch (op) {
+            case "+": resultado = a + b; break;
+            case "-": resultado = a - b; break;
+            case "*": resultado = a * b; break;
+            case "/":
+                if (b == 0) { System.out.println("Erro: divisao por zero!"); return; }
+                resultado = a / b; break;
+            default:
+                System.out.println("Operador invalido!"); return;
         }
 
-        function run(lang, proj) {
-            activeLang = lang; activeProj = proj;
-            const v = document.getElementById('viewer');
-            const c = document.getElementById('display-content');
-            const ia = document.getElementById('input-area');
-            const pr = document.getElementById('current-prompt');
+        System.out.printf("%.2f %s %.2f = %.2f%n", a, op, b, resultado);
+        sc.close();
+    }
+}`,
 
-            v.style.display = 'block'; ia.style.display = "flex";
-            c.style.color = "#4ec9b0"; pr.innerText = lang === 'Python' ? ">>>" : lang === 'C' ? "$" : ">";
+java_lotto: `import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
-            if (proj === 'matrix') {
-                ia.style.display = "none"; c.innerText = "Matrix Initialized...\n";
-                let i = 0; let int = setInterval(() => { c.innerText += Math.round(Math.random()); if (i++ > 400) { clearInterval(int); c.innerText += "\n[STREAM ENDED]"; } document.querySelector('.terminal-body').scrollTop = 9999; }, 5);
-            } else if (proj === 'mem') { c.innerText = "C-Memory Map:\n0x7ffee3b2a -> [Allocated]\nDigite 'alloc' para novo ponteiro:"; }
-            else if (proj === 'bank') { c.innerText = `C# Bank. Saldo Atual: ${balance}€\nComandos: deposit [valor], withdraw [valor]`; }
-            else if (proj === 'game') { c.innerText = `Level: ${level} | XP: ${xp}/100\nEscreve 'farm' para ganhar experiência!`; }
-            else if (proj === 'bin') { c.innerText = "Java Binary Converter. Digite um número decimal:"; }
-            else if (proj === 'sec') { c.innerText = "Python Security. Digite uma password para teste:"; }
-            else if (proj === 'stock') { c.innerText = "Juros Compostos. Digite: [Capital] [Taxa %] [Anos]"; }
-            else if (proj === 'ai') { c.innerText = "Python AI: Olá! Pergunta-me 'quem és' ou 'horas'."; }
-            else if (proj === 'phys') { c.innerText = "Gravidade (g=9.8). Digite o tempo de queda (s):"; }
-            else if (proj === 'temp') { c.innerText = "Conversor C# -> Digite graus Celsius:"; }
-            else if (proj === 'thread') { c.innerText = "Multi-thread Java. Digite 'start' para lançar tarefa."; }
-            else if (proj === 'lotto') { c.innerText = "Java Lotto. Digite 'gerar' para chave da sorte."; }
+public class Lotto {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        List<Integer> pool = new ArrayList<>();
 
-            document.getElementById('terminal-input').value = "";
-            document.getElementById('terminal-input').focus();
-            v.scrollIntoView({ behavior: 'smooth' });
+        // Euromilhoes: 5 numeros de 1-50 + 2 estrelas de 1-12
+        for (int i = 1; i <= 50; i++) pool.add(i);
+        Collections.shuffle(pool, rand);
+
+        List<Integer> numeros = pool.subList(0, 5);
+        Collections.sort(numeros);
+
+        List<Integer> estrelas = new ArrayList<>();
+        while (estrelas.size() < 2) {
+            int e = rand.nextInt(12) + 1;
+            if (!estrelas.contains(e)) estrelas.add(e);
+        }
+        Collections.sort(estrelas);
+
+        System.out.println("=== Gerador Euromilhoes ===");
+        System.out.print("Numeros : ");
+        numeros.forEach(n -> System.out.printf("%02d ", n));
+        System.out.print("\\nEstrelas: ");
+        estrelas.forEach(e -> System.out.printf("%02d ", e));
+        System.out.println("\\nBoa sorte!");
+    }
+}`,
+
+java_bin: `import java.util.Scanner;
+
+public class Binary {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=== Conversor de Bases (Java) ===");
+        System.out.print("Numero decimal: ");
+
+        if (!sc.hasNextInt()) { System.out.println("Numero invalido."); return; }
+        int n = sc.nextInt();
+
+        if (n < 0) { System.out.println("Apenas numeros positivos."); return; }
+
+        System.out.println("\\nConversoes:");
+        System.out.printf("  Decimal  (base 10): %d%n", n);
+        System.out.printf("  Binario  (base  2): %s%n", Integer.toBinaryString(n));
+        System.out.printf("  Octal    (base  8): %s%n", Integer.toOctalString(n));
+        System.out.printf("  Hex      (base 16): %s%n", Integer.toHexString(n).toUpperCase());
+
+        sc.close();
+    }
+}`,
+
+// ── JavaScript ─────────────────────────────────────────────────
+js_calc: `// calculator.js — Calculadora com histórico
+const historico = [];
+
+function calcular(expressao) {
+    expressao = expressao.trim();
+    const partes = expressao.split(/\\s+/);
+    if (partes.length !== 3) return 'Formato: numero operador numero  (ex: 10 + 5)';
+
+    const a  = parseFloat(partes[0]);
+    const op = partes[1];
+    const b  = parseFloat(partes[2]);
+
+    if (isNaN(a) || isNaN(b)) return 'Valores invalidos.';
+
+    let res;
+    switch (op) {
+        case '+': res = a + b; break;
+        case '-': res = a - b; break;
+        case '*': res = a * b; break;
+        case '/':
+            if (b === 0) return 'Erro: divisao por zero!';
+            res = a / b; break;
+        default: return 'Operador invalido. Use: + - * /';
+    }
+
+    const linha = \`\${expressao} = \${parseFloat(res.toFixed(4))}\`;
+    historico.push(linha);
+    return linha;
+}
+
+// Exemplos de uso:
+console.log(calcular('10 + 5'));   // 10 + 5 = 15
+console.log(calcular('9 * 8'));    // 9 * 8 = 72
+console.log(calcular('100 / 4')); // 100 / 4 = 25
+console.log('Historico:', historico);`,
+
+js_todo: `// todo.js — Lista de tarefas com localStorage
+const STORAGE_KEY = 'minhas_tarefas';
+
+function getTarefas() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+}
+
+function saveTarefas(tarefas) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tarefas));
+}
+
+function adicionar(texto) {
+    const tarefas = getTarefas();
+    tarefas.push({ id: Date.now(), texto, feita: false });
+    saveTarefas(tarefas);
+    console.log('Adicionada:', texto);
+}
+
+function completar(id) {
+    const tarefas = getTarefas().map(t =>
+        t.id === id ? { ...t, feita: true } : t
+    );
+    saveTarefas(tarefas);
+    console.log('Completada ID:', id);
+}
+
+function remover(id) {
+    saveTarefas(getTarefas().filter(t => t.id !== id));
+    console.log('Removida ID:', id);
+}
+
+function listar() {
+    const tarefas = getTarefas();
+    if (!tarefas.length) { console.log('Sem tarefas.'); return; }
+    tarefas.forEach(t => {
+        console.log(\`[\${t.feita ? 'X' : ' '}] (\${t.id}) \${t.texto}\`);
+    });
+}
+
+// Exemplos de uso (corre no browser console ou Node.js):
+adicionar('Estudar JavaScript');
+adicionar('Fazer o portfolio');
+listar();`,
+
+js_quiz: `// quiz.js — Quiz interactivo no terminal (Node.js)
+const readline = require('readline');
+
+const perguntas = [
+    { pergunta: 'Qual linguagem criou a web?',        opcoes: ['Java', 'Python', 'JavaScript', 'C'], correta: 2 },
+    { pergunta: 'O que significa HTML?',               opcoes: ['HyperText Markup Language', 'High Text Machine Language', 'Hyper Transfer Method Link', 'None'], correta: 0 },
+    { pergunta: 'Qual simbulo usa Python para comentarios?', opcoes: ['//', '/*', '#', '--'], correta: 2 },
+];
+
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+let idx = 0, pontos = 0;
+
+function perguntarProxima() {
+    if (idx >= perguntas.length) {
+        console.log(\`\\nFim! Pontuacao: \${pontos}/\${perguntas.length}\`);
+        rl.close(); return;
+    }
+    const q = perguntas[idx];
+    console.log(\`\\nP\${idx + 1}: \${q.pergunta}\`);
+    q.opcoes.forEach((op, i) => console.log(\`  \${i}) \${op}\`));
+    rl.question('Resposta (numero): ', (ans) => {
+        if (parseInt(ans) === q.correta) { console.log('Correto!'); pontos++; }
+        else console.log(\`Errado. Resposta: \${q.opcoes[q.correta]}\`);
+        idx++; perguntarProxima();
+    });
+}
+
+console.log('=== Quiz JavaScript ===');
+perguntarProxima();`
+};
+
+// ════════════════════════════════════════════════════════════════
+// DESCRIÇÕES DO TERMINAL (demo interactivo para [Run])
+// ════════════════════════════════════════════════════════════════
+let activeProj = '';
+let activeCalcHistory = [];
+
+// Estado da demo JS/todo
+let jsTodos = [];
+let jsQuizIdx = 0;
+let jsQuizPontos = 0;
+const jsQuizQs = [
+    { q: 'Qual linguagem criou a web?', ops: ['Java','Python','JavaScript','C'], c: 2 },
+    { q: 'O que significa HTML?', ops: ['HyperText Markup Language','High Text Machine Language','Hyper Transfer','None'], c: 0 },
+    { q: 'Qual simbolo usa Python para comentarios?', ops: ['//','/*','#','--'], c: 2 },
+];
+
+function showCode(id) {
+    const v  = document.getElementById('viewer');
+    const c  = document.getElementById('display-content');
+    const cb = document.getElementById('copy-btn');
+
+    document.getElementById('display-title').innerText = id.replace('_', '.').replace('c_','').replace('cpp_','').replace('py_','').replace('java_','').replace('js_','') + ' — Código Fonte';
+    document.getElementById('input-area').style.display = 'none';
+    cb.style.display = 'inline-flex';
+    c.style.color = '#569cd6';
+    c.innerText = codeDB[id];
+    v.style.display = 'block';
+    v.scrollIntoView({ behavior: 'smooth' });
+    activeProj = '';
+}
+
+function runDemo(lang, proj) {
+    activeProj = proj + '_' + lang.toLowerCase().replace('++','pp').replace('#','s');
+    const v  = document.getElementById('viewer');
+    const c  = document.getElementById('display-content');
+    const ia = document.getElementById('input-area');
+    const pr = document.getElementById('current-prompt');
+    const cb = document.getElementById('copy-btn');
+
+    cb.style.display = 'none';
+    v.style.display = 'block';
+    ia.style.display = 'flex';
+    c.style.color = '#4ec9b0';
+    pr.innerText = lang === 'Python' ? '>>>' : lang === 'JS' ? 'js>' : lang === 'C' || lang === 'C++' ? '$' : '>';
+
+    activeCalcHistory = [];
+    jsTodos = [];
+    jsQuizIdx = 0; jsQuizPontos = 0;
+
+    // Mensagem inicial por demo
+    const msgs = {
+        'calc_c':      '=== Calculadora C ===\nFormato: numero op numero  (ex: 10 + 5)',
+        'calc_cpp':    '=== Calculadora C++ (OOP) ===\nFormato: numero op numero  (ex: 9 * 3)',
+        'calc_python': '=== Calculadora Python ===\nFormato: numero op numero  (ex: 10 * 3)\n"historico" para ver operacoes anteriores',
+        'calc_java':   '=== Calculadora Java ===\nFormato: numero op numero  (ex: 10 / 4)',
+        'calc_js':     '=== Calculadora JS ===\nFormato: numero op numero  (ex: 100 - 37)\n"historico" para ver operacoes',
+        'fib_c':       'Sequencia Fibonacci\nQuantos termos? (digita um numero ex: 10)',
+        'phys_c':      '=== Queda Livre (g=9.8) ===\nTempo de queda em segundos: (ex: 3)',
+        'sort_cpp':    '=== Bubble Sort C++ ===\nLista original: 64, 34, 25, 12, 22, 11, 90\nEscreve "sort" para ordenar',
+        'temp_cpp':    '=== Conversor de Temperatura ===\nFormato: C 25   ou   F 77  (tipo e valor)',
+        'sec_python':  '=== Validador de Password ===\nEscreve uma password para testar:',
+        'stock_python':'=== Juros Compostos ===\nFormato: capital taxa% anos  (ex: 1000 5 10)',
+        'lotto_java':  'Gerador Euromilhoes — escreve "gerar"',
+        'bin_java':    '=== Conversor de Bases ===\nEscreve um numero decimal (ex: 42)',
+        'todo_js':     '=== To-Do List JS ===\nComandos:\n  add [tarefa]  — adicionar\n  done [num]    — completar\n  list          — listar\n  clear         — limpar',
+        'quiz_js':     `=== Quiz JavaScript ===\n\nP1: ${jsQuizQs[0].q}\n${jsQuizQs[0].ops.map((o,i)=>`  ${i}) ${o}`).join('\n')}\nResposta (0-3):`,
+    };
+
+    const key = proj + '_' + lang.toLowerCase().replace('++','pp').replace('#','s');
+    c.innerText = msgs[key] || '> Pronto.';
+    document.getElementById('terminal-input').value = '';
+    document.getElementById('terminal-input').focus();
+    document.getElementById('display-title').innerText = `[Run] ${proj}`;
+    v.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── Lógica do input ────────────────────────────────────────────
+document.getElementById('terminal-input').addEventListener('keypress', function(e) {
+    if (e.key !== 'Enter') return;
+    const val = this.value.trim();
+    this.value = '';
+    if (!val) return;
+
+    const c  = document.getElementById('display-content');
+    const pr = document.getElementById('current-prompt').innerText;
+    let res  = '';
+
+    // Calculadora partilhada para C, C++, Python, Java, JS
+    if (activeProj.startsWith('calc_')) {
+        const parts = val.split(/\s+/);
+        if (parts.length === 3) {
+            const a = parseFloat(parts[0]), op = parts[1], b = parseFloat(parts[2]);
+            if (!isNaN(a) && !isNaN(b)) {
+                let r;
+                if (op==='+') r = a+b;
+                else if (op==='-') r = a-b;
+                else if (op==='*') r = a*b;
+                else if (op==='/') { r = b===0 ? null : a/b; }
+                if (r === null) res = 'Erro: divisao por zero!';
+                else if (r === undefined) res = 'Operador invalido. Use: + - * /';
+                else {
+                    res = `= ${parseFloat(r.toFixed(6))}`;
+                    activeCalcHistory.push(`${val} ${res}`);
+                }
+            } else res = 'Valores invalidos.';
+        } else if (val.toLowerCase() === 'historico') {
+            res = activeCalcHistory.length ? activeCalcHistory.join('\n') : '(sem historico ainda)';
+        } else {
+            res = 'Formato: numero op numero  (ex: 10 + 5)';
         }
 
-        document.getElementById('terminal-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                const val = this.value.trim().toLowerCase();
-                const c = document.getElementById('display-content');
-                const p = document.getElementById('current-prompt').innerText;
-                let res = "";
+    } else if (activeProj === 'fib_c') {
+        const n = parseInt(val);
+        if (isNaN(n) || n <= 0) { res = 'Numero invalido.'; }
+        else {
+            let a=0, b=1, seq=[];
+            for (let i=0; i<n; i++) { seq.push(a); [a,b]=[b,a+b]; }
+            res = `Fibonacci(${n}):\n${seq.join(', ')}`;
+        }
 
-                if (activeProj === 'bank') {
-                    let a = parseFloat(val.split(' ')[1]);
-                    if (val.includes('deposit')) { balance += a; res = `Sucesso. Saldo: ${balance}€`; }
-                    else if (val.includes('withdraw')) { balance -= a; res = `Sucesso. Saldo: ${balance}€`; }
-                } else if (activeProj === 'game') {
-                    if (val === 'farm') { xp += 35; if (xp >= 100) { level++; xp = 0; res = "LEVEL UP! Nível " + level; } else res = `XP +35 (${xp}/100)`; }
-                } else if (activeProj === 'bin') {
-                    let n = parseInt(val); res = isNaN(n) ? "Erro" : `BIN: ${n.toString(2)} | HEX: ${n.toString(16).toUpperCase()}`;
-                } else if (activeProj === 'sec') {
-                    res = (val.length > 8 && /[0-9]/.test(val)) ? "FORTE 🟢" : "FRACA 🔴";
-                } else if (activeProj === 'ai') {
-                    if (val.includes('quem')) res = "Sou um Chatbot simples em Python.";
-                    else if (val.includes('horas')) res = new Date().toLocaleTimeString();
-                    else res = "Comando não reconhecido.";
-                } else if (activeProj === 'phys') {
-                    res = `Velocidade Final: ${(parseFloat(val) * 9.8).toFixed(2)} m/s`;
-                } else if (activeProj === 'temp') {
-                    res = `${(parseFloat(val) * 1.8 + 32).toFixed(2)} °F`;
-                } else if (activeProj === 'lotto') {
-                    if (val === 'gerar') { let n = []; while (n.length < 5) { let r = Math.floor(Math.random() * 50) + 1; if (!n.includes(r)) n.push(r); } res = "Chave: " + n.join(" - "); }
-                } else if (activeProj === 'mem') {
-                    if (val === 'alloc') res = "Alocado em: 0x" + Math.random().toString(16).slice(2, 10);
-                } else if (activeProj === 'stock') {
-                    let pts = val.split(' '); let cap = parseFloat(pts[0]); let tax = parseFloat(pts[1]) / 100; let yrs = parseFloat(pts[2]);
-                    res = `Montante: ${(cap * Math.pow(1 + tax, yrs)).toFixed(2)}€`;
-                } else if (activeProj === 'start') { res = "Thread ID " + Math.floor(Math.random() * 1000) + " concluída."; }
+    } else if (activeProj === 'phys_c') {
+        const t = parseFloat(val);
+        if (isNaN(t) || t < 0) { res = 'Tempo invalido.'; }
+        else {
+            const v2 = (9.8 * t).toFixed(2);
+            const d  = (0.5 * 9.8 * t * t).toFixed(2);
+            res = `Velocidade final: ${v2} m/s\nDistancia caida : ${d} m`;
+        }
 
-                c.innerText += `\n${p} ${val}\n${res}\n`;
-                this.value = "";
-                document.querySelector('.terminal-body').scrollTop = 9999;
+    } else if (activeProj === 'sort_cpp') {
+        if (val.toLowerCase() === 'sort') {
+            const arr = [64,34,25,12,22,11,90];
+            arr.sort((a,b)=>a-b);
+            res = `Ordenado: ${arr.join(', ')}`;
+        } else res = 'Escreve "sort" para ordenar.';
+
+    } else if (activeProj === 'temp_cpp') {
+        const parts = val.split(/\s+/);
+        if (parts.length === 2) {
+            const tipo = parts[0].toUpperCase();
+            const v2   = parseFloat(parts[1]);
+            if (tipo === 'C') {
+                res = `${v2}°C = ${(v2*9/5+32).toFixed(2)}°F = ${(v2+273.15).toFixed(2)}K`;
+            } else if (tipo === 'F') {
+                res = `${v2}°F = ${((v2-32)*5/9).toFixed(2)}°C`;
+            } else res = 'Tipo invalido. Usa C ou F';
+        } else res = 'Formato: C 25  ou  F 77';
+
+    } else if (activeProj === 'sec_python') {
+        const p = val;
+        let pts=0, dicas=[];
+        if (p.length>=8) pts++; else dicas.push('- Min 8 caracteres');
+        if (/[A-Z]/.test(p)) pts++; else dicas.push('- Falta maiuscula');
+        if (/[0-9]/.test(p)) pts++; else dicas.push('- Falta numero');
+        if (/[!@#$%^&*]/.test(p)) pts++; else dicas.push('- Falta simbolo');
+        const niveis = ['MUITO FRACA','FRACA','MEDIA','FORTE','MUITO FORTE'];
+        res = `Forca: ${niveis[pts]}${dicas.length ? '\n'+dicas.join('\n') : ''}`;
+
+    } else if (activeProj === 'stock_python') {
+        const pts2 = val.split(/\s+/);
+        if (pts2.length === 3) {
+            const cap = parseFloat(pts2[0]), taxa = parseFloat(pts2[1])/100, anos = parseInt(pts2[2]);
+            if (!isNaN(cap)&&!isNaN(taxa)&&!isNaN(anos)) {
+                const m = cap * Math.pow(1+taxa/12, 12*anos);
+                res = `Capital: ${cap.toFixed(2)}€\nTaxa: ${(taxa*100)}% ao ano\nAnos: ${anos}\nMontante final: ${m.toFixed(2)}€\nLucro: ${(m-cap).toFixed(2)}€`;
+            } else res = 'Formato invalido.';
+        } else res = 'Formato: capital taxa% anos  (ex: 1000 5 10)';
+
+    } else if (activeProj === 'lotto_java') {
+        if (val.toLowerCase() === 'gerar') {
+            const pool = [...Array(50)].map((_,i)=>i+1).sort(()=>Math.random()-0.5).slice(0,5).sort((a,b)=>a-b);
+            const stars = [];
+            while(stars.length<2){const r=Math.floor(Math.random()*12)+1;if(!stars.includes(r))stars.push(r);}
+            stars.sort((a,b)=>a-b);
+            res = `Numeros : ${pool.map(n=>String(n).padStart(2,'0')).join('  ')}\nEstrelas: ${stars.map(n=>String(n).padStart(2,'0')).join('  ')}\nBoa sorte!`;
+        } else res = 'Escreve "gerar"';
+
+    } else if (activeProj === 'bin_java') {
+        const n = parseInt(val);
+        if (isNaN(n)||n<0) res = 'Numero invalido (positivo).';
+        else res = `Decimal: ${n}\nBinario: ${n.toString(2)}\nOctal  : ${n.toString(8)}\nHex    : ${n.toString(16).toUpperCase()}`;
+
+    } else if (activeProj === 'todo_js') {
+        const cmd = val.toLowerCase();
+        if (cmd.startsWith('add ')) {
+            const txt = val.slice(4).trim();
+            if (txt) { jsTodos.push({txt, done:false}); res = `Adicionada: "${txt}"`; }
+            else res = 'Escreve uma tarefa.';
+        } else if (cmd.startsWith('done ')) {
+            const idx2 = parseInt(val.slice(5))-1;
+            if (jsTodos[idx2]) { jsTodos[idx2].done=true; res = `Feita: "${jsTodos[idx2].txt}"`; }
+            else res = 'Numero invalido.';
+        } else if (cmd === 'list') {
+            res = jsTodos.length ? jsTodos.map((t,i)=>`[${t.done?'X':' '}] ${i+1}. ${t.txt}`).join('\n') : '(lista vazia)';
+        } else if (cmd === 'clear') {
+            jsTodos = []; res = 'Lista limpa.';
+        } else res = 'Comandos: add [texto] | done [num] | list | clear';
+
+    } else if (activeProj === 'quiz_js') {
+        const resp = parseInt(val);
+        const q    = jsQuizQs[jsQuizIdx];
+        if (isNaN(resp)||resp<0||resp>3) { res = 'Escreve 0, 1, 2 ou 3.'; }
+        else {
+            if (resp === q.c) { jsQuizPontos++; res = '✓ Correto!'; }
+            else res = `✗ Errado. Resposta: ${q.ops[q.c]}`;
+            jsQuizIdx++;
+            if (jsQuizIdx < jsQuizQs.length) {
+                const nq = jsQuizQs[jsQuizIdx];
+                res += `\n\nP${jsQuizIdx+1}: ${nq.q}\n${nq.ops.map((o,i)=>`  ${i}) ${o}`).join('\n')}\nResposta (0-3):`;
+            } else {
+                res += `\n\n=== FIM ===\nPontuacao: ${jsQuizPontos}/${jsQuizQs.length}`;
+                document.getElementById('input-area').style.display='none';
             }
-        });
+        }
+    }
 
-        function hide() { document.getElementById('viewer').style.display = 'none'; }
-    </script>
+    c.innerText += `\n${pr} ${val}\n${res}\n`;
+    document.querySelector('.terminal-body').scrollTop = 9999;
+});
+
+function hide() {
+    document.getElementById('viewer').style.display = 'none';
+    activeProj = '';
+}
+
+function copyCode() {
+    const text = document.getElementById('display-content').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.innerText = '✅ Copiado!';
+        setTimeout(() => { btn.innerText = '📋 Copiar'; }, 2000);
+    });
+}
+</script>
 </body>
 </html>

@@ -27,8 +27,67 @@
         <p class="lang" data-lang-en="Games" data-lang-pt="Jogos">Games</p>
     </h2>
 
+    <!-- ═══════════════════════════════════════════════
+         PLAYER CARD GLOBAL
+    ═══════════════════════════════════════════════ -->
+    <div class="player-card-wrapper">
+        <div class="player-card">
+
+            <!-- NOW PLAYING -->
+            <div class="now-playing-block">
+                <div class="now-playing-label">
+                    <span class="np-dot"></span>
+                    <span class="lang" data-lang-en="NOW PLAYING" data-lang-pt="A JOGAR">NOW PLAYING</span>
+                </div>
+                <div class="np-game-name">The Outlast Trials</div>
+                <div class="np-game-sub lang" data-lang-en="Program X — Searching for freedom" data-lang-pt="Programa X — À procura da liberdade">Program X — Searching for freedom</div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="pc-divider"></div>
+
+            <!-- GLOBAL STATS -->
+            <div class="pc-stats">
+                <div class="pc-stat">
+                    <span class="pc-stat-value">6</span>
+                    <span class="pc-stat-label lang" data-lang-en="Games" data-lang-pt="Jogos">Games</span>
+                </div>
+                <div class="pc-stat">
+                    <span class="pc-stat-value" style="color:#ffd700">5</span>
+                    <span class="pc-stat-label">Platinas</span>
+                </div>
+                <div class="pc-stat">
+                    <span class="pc-stat-value" style="color:#4dff88">100%</span>
+                    <span class="pc-stat-label lang" data-lang-en="Avg. Completion" data-lang-pt="Conclusão Média">Avg. Completion</span>
+                </div>
+                <div class="pc-stat">
+                    <span class="pc-stat-value">Co-op</span>
+                    <span class="pc-stat-label lang" data-lang-en="Fav. Genre" data-lang-pt="Género Fav.">Fav. Genre</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         FILTRO POR GÉNERO
+    ═══════════════════════════════════════════════ -->
+    <div class="genre-filter-wrapper">
+        <div class="genre-filter">
+            <button class="genre-btn active" data-genre="all">
+                <span class="lang" data-lang-en="All" data-lang-pt="Todos">All</span>
+            </button>
+            <button class="genre-btn" data-genre="sandbox">Sandbox</button>
+            <button class="genre-btn" data-genre="coop">Co-op</button>
+            <button class="genre-btn" data-genre="horror">Horror</button>
+            <button class="genre-btn" data-genre="narrative">
+                <span class="lang" data-lang-en="Narrative" data-lang-pt="Narrativa">Narrative</span>
+            </button>
+        </div>
+    </div>
+
     <div class="panels-wrapper" id="panels-track">
-        <div class="panel active" data-bg="./img/MineL.png">
+        <div class="panel active" data-bg="./img/MineL.png" data-genre="sandbox">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/MineL.jpg')"><h3>Minecraft</h3></div>
                 <div class="panel-back">
@@ -49,7 +108,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/DsDLogo.jpg">
+        <div class="panel" data-bg="./img/DsDLogo.jpg" data-genre="narrative">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/DLogo.jpg')"><h3>Death's Door</h3></div>
                 <div class="panel-back">
@@ -70,7 +129,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/PW.jpg">
+        <div class="panel" data-bg="./img/PW.jpg" data-genre="coop">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/TPWRL.png')"><h3>The Past Within</h3></div>
                 <div class="panel-back">
@@ -91,7 +150,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/TOT (2).jpg">
+        <div class="panel" data-bg="./img/TOT (2).jpg" data-genre="horror">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/TOT.jpg')"><h3>The Outlast Trials</h3></div>
                 <div class="panel-back">
@@ -109,7 +168,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/WWHBG.png">
+        <div class="panel" data-bg="./img/WWHBG.png" data-genre="coop">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/WWHGPT.png')"><h3>We Were Here</h3></div>
                 <div class="panel-back">
@@ -130,7 +189,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/WROEF.jpg">
+        <div class="panel" data-bg="./img/WROEF.jpg" data-genre="narrative">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/WROEF (2).jpg')"><h3>What Remains of Edith Finch</h3></div>
                 <div class="panel-back">
@@ -318,106 +377,219 @@
 
         if (track) track.addEventListener('scroll', updateActivePanel);
 
-        // 2. GALERIA 3D - FOCO EM PERFORMANCE DE TRANSIÇÃO
+        // ═══════════════════════════════════════════════════════════
+        // GALERIA 3D — OTIMIZADA PARA PERFORMANCE
+        // Só carrega imagens/vídeos que estão na frente da esfera.
+        // Vídeos: só dão play quando estão visíveis + galeria em view.
+        // ═══════════════════════════════════════════════════════════
         const sphereContainer = document.getElementById('sphere-container');
-        const viewer = document.getElementById('custom-viewer');
-        const viewerContent = document.getElementById('viewer-content');
-        const domeSection = document.getElementById('dome-section');
+        const viewer          = document.getElementById('custom-viewer');
+        const viewerContent   = document.getElementById('viewer-content');
+        const domeSection     = document.getElementById('dome-section');
 
         const minhasImagens = [
-            './img/CS.png', './img/DD.png', './img/DIR.png', './img/ETB.png', './img/ETB1.png', './img/ETB2.png', './img/FNAFSOTM.png', './img/GI.png', './img/GI0.png', './img/GI1.png',
-            './img/GI2.png', './img/GI3.png', './img/GTA.png', './img/GWYF.png', './img/HF.png', './img/HFF.png', './img/HFF1.png', './img/KF.png', './img/KF1.png', './img/L4D2.png',
-            './img/M.png', './img/Mine.png', './img/OAC.png', './img/OAR.png', './img/P.png', './img/Panicore.png', './img/P1.png', './img/P2.png', './img/P3.png', './img/P4.png',
-            './img/P5.png', './img/P6.png', './img/RLR.png', './img/RR.png', './img/TPW.png', './img/V.png', './img/V1.png', './img/WWH.png', './img/WWH1.png', './img/WWH2.png',
-            './img/BS.mp4', './img/BS1.mp4', './img/CSGO.mp4', './img/CSGO (1).mp4', './img/CSGO (2).mp4', './img/CSGO (3).mp4', './img/CSGO (4).mp4', './img/CSGO (5).mp4', './img/CSGO (6).mp4', './img/DIR.mp4',
-            './img/ETB.mp4', './img/ETB (1).mp4', './img/ETB (2).mp4', './img/ETB (3).mp4', './img/F.mp4', './img/F1.mp4', './img/GTA.mp4', './img/KF.mp4', './img/L4D.mp4', './img/L4D2.mp4',
-            './img/OAC.mp4', './img/PANKAPU.mp4', './img/Phasmos.mp4', './img/Phasmos (1).mp4', './img/Phasmos (2).mp4', './img/Phasmos (3).mp4', './img/Pool.mp4', './img/RL.mp4', './img/RL (1).mp4', './img/RL (2).mp4',
-            './img/RL (3).mp4', './img/RL (4).mp4', './img/RL (5).mp4', './img/RL (6).mp4', './img/VAVA.mp4', './img/VAVA (1).mp4', './img/VAVA (2).mp4', './img/VAVA (3).mp4', './img/VAVA (4).mp4', './img/VAVA (5).mp4'
+            './img/CS.png','./img/DD.png','./img/DIR.png','./img/ETB.png','./img/ETB1.png',
+            './img/ETB2.png','./img/FNAFSOTM.png','./img/GI.png','./img/GI0.png','./img/GI1.png',
+            './img/GI2.png','./img/GI3.png','./img/GTA.png','./img/GWYF.png','./img/HF.png',
+            './img/HFF.png','./img/HFF1.png','./img/KF.png','./img/KF1.png','./img/L4D2.png',
+            './img/M.png','./img/Mine.png','./img/OAC.png','./img/OAR.png','./img/P.png',
+            './img/Panicore.png','./img/P1.png','./img/P2.png','./img/P3.png','./img/P4.png',
+            './img/P5.png','./img/P6.png','./img/RLR.png','./img/RR.png','./img/TPW.png',
+            './img/V.png','./img/V1.png','./img/WWH.png','./img/WWH1.png','./img/WWH2.png',
+            './img/BS.mp4','./img/BS1.mp4','./img/CSGO.mp4','./img/CSGO (1).mp4','./img/CSGO (2).mp4',
+            './img/CSGO (3).mp4','./img/CSGO (4).mp4','./img/CSGO (5).mp4','./img/CSGO (6).mp4','./img/DIR.mp4',
+            './img/ETB.mp4','./img/ETB (1).mp4','./img/ETB (2).mp4','./img/ETB (3).mp4','./img/F.mp4',
+            './img/F1.mp4','./img/GTA.mp4','./img/KF.mp4','./img/L4D.mp4','./img/L4D2.mp4',
+            './img/OAC.mp4','./img/PANKAPU.mp4','./img/Phasmos.mp4','./img/Phasmos (1).mp4','./img/Phasmos (2).mp4',
+            './img/Phasmos (3).mp4','./img/Pool.mp4','./img/RL.mp4','./img/RL (1).mp4','./img/RL (2).mp4',
+            './img/RL (3).mp4','./img/RL (4).mp4','./img/RL (5).mp4','./img/RL (6).mp4','./img/VAVA.mp4',
+            './img/VAVA (1).mp4','./img/VAVA (2).mp4','./img/VAVA (3).mp4','./img/VAVA (4).mp4','./img/VAVA (5).mp4'
         ];
 
-        const cols = 20, radius = 650;
-        let isGalleryInView = false; // Controlo de visibilidade
+        const COLS       = 20;
+        const RADIUS     = 650;
+        const VISIBLE_ARC = 90; // graus de arco considerados "frente" (±45° de 0°)
+
+        // ── Constrói os items da esfera SEM src (lazy real) ──────────────
+        const galleryItems = [];
 
         minhasImagens.forEach((src, i) => {
-            const item = document.createElement('div');
+            const item    = document.createElement('div');
             item.className = 'gallery-item';
-            item.style.backfaceVisibility = 'hidden'; // Não renderiza o que está de costas
 
-            const col = i % cols;
-            const row = Math.floor(i / cols);
-            const angle = col * (360 / cols);
-            const yPos = (row - 2) * 130;
+            const col    = i % COLS;
+            const row    = Math.floor(i / COLS);
+            const angle  = col * (360 / COLS);       // ângulo deste item na esfera
+            const yPos   = (row - 2) * 130;
 
-            // Usa translate3d para ativar a Placa de Vídeo
-            item.style.transform = `rotateY(${angle}deg) translate3d(0, ${yPos}px, ${radius}px)`;
+            item.style.transform        = `rotateY(${angle}deg) translate3d(0, ${yPos}px, ${RADIUS}px)`;
+            item.style.backfaceVisibility = 'hidden';
 
-            const isVideo = src.match(/\.(mp4|webm|ogg|mov)$/i);
-            const media = document.createElement(isVideo ? 'video' : 'img');
+            const isVideo = /\.(mp4|webm|ogg|mov)$/i.test(src);
 
-            media.src = src;
-            if (isVideo) {
-                media.muted = true;
-                media.loop = true;
-                media.setAttribute('playsinline', '');
-                media.setAttribute('preload', 'none'); // CRÍTICO: Não carrega nada até mandarmos
-            } else {
-                media.loading = 'lazy';
-            }
-
-            item.appendChild(media);
-            sphereContainer.appendChild(item);
+            // Placeholder visual enquanto não carrega
+            const placeholder = document.createElement('div');
+            placeholder.className = 'gallery-placeholder';
+            item.appendChild(placeholder);
 
             item.onclick = (e) => {
                 e.stopPropagation();
+                // Carrega e abre no viewer ao clicar (sempre funciona)
                 viewerContent.innerHTML = '';
-                const clone = media.cloneNode(true);
-                if (isVideo) { clone.muted = false; clone.controls = true; clone.play(); }
-                viewerContent.appendChild(clone);
+                if (isVideo) {
+                    const v = document.createElement('video');
+                    v.src = src; v.muted = false; v.controls = true;
+                    v.setAttribute('playsinline', '');
+                    viewerContent.appendChild(v);
+                    v.play().catch(() => {});
+                } else {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    viewerContent.appendChild(img);
+                }
                 viewer.style.display = 'flex';
                 isPaused = true;
             };
+
+            sphereContainer.appendChild(item);
+
+            // Guarda metadados para o lazy loader
+            galleryItems.push({ item, src, angle, isVideo, loaded: false, mediaEl: null });
         });
 
-        // OTIMIZAÇÃO: Só ativa os vídeos e a animação quando chegas à galeria
+        // ── Lazy loader: carrega só os items "na frente" da esfera ───────
+        let isGalleryInView = false;
+
+        function normalizeAngle(a) {
+            return ((a % 360) + 360) % 360;
+        }
+
+        function isInFront(itemAngle, rotY) {
+            // A frente da esfera é o ponto onde rotY ≈ 0 (ou múltiplo de 360).
+            // Um item está "na frente" se o seu ângulo absoluto na cena
+            // (itemAngle + rotY) está dentro do arco visível (±VISIBLE_ARC/2).
+            const absAngle = normalizeAngle(itemAngle + rotY);
+            const diff = Math.min(absAngle, 360 - absAngle); // distância a 0°
+            return diff < VISIBLE_ARC / 2;
+        }
+
+        function loadItemMedia(entry) {
+            if (entry.loaded) return;
+            entry.loaded = true;
+
+            const el = entry.isVideo ? document.createElement('video') : document.createElement('img');
+            el.src = entry.src;
+
+            if (entry.isVideo) {
+                el.muted = true;
+                el.loop  = true;
+                el.setAttribute('playsinline', '');
+                el.setAttribute('preload', 'metadata'); // só metadata (~1-5KB), não o vídeo inteiro
+            } else {
+                el.loading = 'lazy';
+            }
+
+            // Remove placeholder, insere media
+            entry.item.innerHTML = '';
+            entry.item.appendChild(el);
+            entry.mediaEl = el;
+        }
+
+        function unloadVideoMedia(entry) {
+            // Pausa e limpa o src de vídeos fora de view para libertar memória
+            if (!entry.isVideo || !entry.mediaEl) return;
+            entry.mediaEl.pause();
+            entry.mediaEl.src = '';
+            entry.mediaEl.load();
+            // Volta a pôr placeholder para re-carregar quando voltar
+            entry.item.innerHTML = '<div class="gallery-placeholder"></div>';
+            entry.loaded  = false;
+            entry.mediaEl = null;
+        }
+
+        let lastUpdateRotY = null;
+
+        function updateVisibleMedia() {
+            if (!isGalleryInView) return;
+
+            // Evita re-calcular se a esfera não rodou muito
+            if (lastUpdateRotY !== null && Math.abs(rotationY - lastUpdateRotY) < 3) return;
+            lastUpdateRotY = rotationY;
+
+            galleryItems.forEach(entry => {
+                const front = isInFront(entry.angle, rotationY);
+
+                if (front) {
+                    loadItemMedia(entry);
+                    // Dá play só a vídeos carregados que estão na frente
+                    if (entry.isVideo && entry.mediaEl && isGalleryInView) {
+                        entry.mediaEl.play().catch(() => {});
+                    }
+                } else {
+                    // Pausa vídeos atrás da esfera mas não descarrega imagens
+                    if (entry.isVideo && entry.mediaEl) {
+                        entry.mediaEl.pause();
+                    }
+                }
+            });
+        }
+
+        // ── IntersectionObserver: pausa tudo quando a galeria sai do viewport ──
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 isGalleryInView = entry.isIntersecting;
-                const videos = sphereContainer.querySelectorAll('video');
-
-                if (isGalleryInView) {
-                    videos.forEach(v => {
-                        v.setAttribute('preload', 'auto');
-                        v.play().catch(() => { }); // Só dá play quando vês a galeria
+                if (!isGalleryInView) {
+                    // Página foi para outra secção — pausa todos os vídeos
+                    galleryItems.forEach(e => {
+                        if (e.isVideo && e.mediaEl) e.mediaEl.pause();
                     });
                 } else {
-                    videos.forEach(v => v.pause()); // Pausa tudo quando sais da zona para parar o lag
+                    // Voltou — actualiza media visível
+                    lastUpdateRotY = null;
+                    updateVisibleMedia();
                 }
             });
         }, { threshold: 0.1 });
 
         observer.observe(domeSection);
 
-        // 3. ANIMAÇÃO DA ESFERA
+        // ── Animação da esfera ────────────────────────────────────────────
         let rotationY = 0, isDragging = false, isPaused = false, startX = 0;
+        let animFrame = null;
 
         function animateSphere() {
-            // Só consome processador se a galeria estiver visível
             if (!isDragging && !isPaused && isGalleryInView) {
                 rotationY -= 0.03;
                 sphereContainer.style.transform = `rotateY(${rotationY}deg) translateZ(0)`;
             }
-            requestAnimationFrame(animateSphere);
+            updateVisibleMedia();
+            animFrame = requestAnimationFrame(animateSphere);
         }
 
+        // Touch support para mobile
         const sphereRoot = document.getElementById('sphere-root');
-        sphereRoot.onmousedown = (e) => { isDragging = true; startX = e.clientX; };
-        window.onmousemove = (e) => {
+
+        sphereRoot.onmousedown  = (e) => { isDragging = true; startX = e.clientX; };
+        window.onmousemove      = (e) => {
             if (!isDragging) return;
             rotationY += (e.clientX - startX) * 0.1;
             startX = e.clientX;
             sphereContainer.style.transform = `rotateY(${rotationY}deg) translateZ(0)`;
         };
         window.onmouseup = () => { isDragging = false; };
+
+        // Touch events (telemóvel)
+        sphereRoot.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+        sphereRoot.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            rotationY += (e.touches[0].clientX - startX) * 0.15;
+            startX = e.touches[0].clientX;
+            sphereContainer.style.transform = `rotateY(${rotationY}deg) translateZ(0)`;
+        }, { passive: true });
+        sphereRoot.addEventListener('touchend', () => { isDragging = false; });
 
         window.addEventListener('load', () => {
             updateActivePanel();
@@ -442,6 +614,58 @@
                 // Opcional: Marcar o botão ativo visualmente
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+            });
+        });
+
+        // ── FILTRO POR GÉNERO ─────────────────────────────────────────────
+        const genreBtns = document.querySelectorAll('.genre-btn');
+        const allPanels = document.querySelectorAll('.panel');
+
+        genreBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Activa o botão clicado
+                genreBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const selected = btn.dataset.genre;
+
+                allPanels.forEach(panel => {
+                    const genre = panel.dataset.genre;
+                    if (selected === 'all' || genre === selected) {
+                        panel.style.display = '';
+                        panel.style.opacity  = '';
+                        panel.style.pointerEvents = '';
+                    } else {
+                        panel.style.opacity  = '0';
+                        panel.style.pointerEvents = 'none';
+                        panel.style.transform = 'scale(0.7)';
+                        panel.style.filter = 'grayscale(100%) blur(3px)';
+                        // Re-aplica display depois de transition acabar
+                        setTimeout(() => {
+                            if (btn.classList.contains('active') && genre !== btn.dataset.genre && btn.dataset.genre !== 'all') {
+                                panel.style.display = 'none';
+                            }
+                        }, 400);
+                    }
+                });
+
+                // Repõe os estilos nos visíveis
+                allPanels.forEach(panel => {
+                    const genre = panel.dataset.genre;
+                    if (selected === 'all' || genre === selected) {
+                        panel.style.display = '';
+                        panel.style.opacity  = '';
+                        panel.style.pointerEvents = '';
+                        panel.style.transform = '';
+                        panel.style.filter = '';
+                    }
+                });
+
+                // Reposiciona o scroll para o primeiro panel visível
+                const firstVisible = document.querySelector('.panel:not([style*="display: none"])');
+                if (firstVisible) {
+                    firstVisible.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
             });
         });
 
