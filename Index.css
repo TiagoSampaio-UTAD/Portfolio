@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    1. RESET E CONFIGURAÇÕES GERAIS
    ========================================================================== */
 * {
@@ -15,11 +15,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fundo fixo via pseudo-elemento — garante que carrega sempre ao voltar atrás */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./img/fundo.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    overflow-x: hidden;
+    z-index: -2;
+    will-change: transform;
 }
 
 /* ==========================================================================
@@ -170,14 +179,14 @@ h1, h2 {
 .main-content {
     width: 100%;
     text-align: left;
-    padding: 20px;
+    padding: 40px 40px 60px;
     margin-left: 5%;
 }
 
 h3 {
     font-size: 1.5rem;
-    margin-top: 40px;
-    margin-bottom: 15px;
+    margin-top: 60px;
+    margin-bottom: 20px;
     border-left: 4px solid rgba(255,255,255,0.3);
     padding-left: 15px;
 }
@@ -482,8 +491,9 @@ h3 {
     justify-content: center;
     gap: 30px;
     list-style: none;
-    margin-top: 50px;
-    padding: 0;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    padding: 0 20px;
 }
 
     .social-links li a {
@@ -757,11 +767,6 @@ h3 {
    TABLET (≤ 768px)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-    /* Body */
-    body {
-        background-attachment: scroll; /* Fixes iOS fixed bg bug */
-    }
-
     /* --- Nav menu: hamburger drawer --- */
     .hamburger { display: flex; }
 
@@ -808,12 +813,12 @@ h3 {
 
     h1 { font-size: 1.5rem; }
     h2 { font-size: 1rem; }
-    h3 { font-size: 1.15rem; margin-top: 30px; }
+    h3 { font-size: 1.15rem; margin-top: 44px; }
 
     /* --- Main content --- */
     .main-content {
         margin-left: 0;
-        padding: 16px;
+        padding: 24px 24px 48px;
     }
 
     /* --- Music grid: 2 cols on tablet --- */
@@ -923,4 +928,374 @@ h3 {
     .music-layout { max-width: 1500px; }
     h3 { font-size: 1.8rem; }
     .text-block p { font-size: 1.05rem; max-width: 800px; }
+}
+
+/* ==========================================================================
+   JOURNEY STATS
+   ========================================================================== */
+.journey-stats {
+    display: flex;
+    gap: 0;
+    margin-top: 28px;
+    max-width: 560px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.journey-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 10px;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+    transition: background 0.25s ease;
+}
+
+.journey-stat:last-child { border-right: none; }
+
+.journey-stat:hover { background: rgba(255,255,255,0.05); }
+
+.jstat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.jstat-label {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 6px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   MINI TIMELINE
+   ========================================================================== */
+.mini-timeline {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 500px;
+    position: relative;
+    padding-left: 80px;
+}
+
+.mini-timeline::before {
+    content: '';
+    position: absolute;
+    left: 64px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0.15) 80%, transparent);
+}
+
+.mt-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.mt-year {
+    position: absolute;
+    left: -76px;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.35);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    width: 42px;
+    text-align: right;
+}
+
+.mt-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.mt-dot.active {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.6);
+    border-color: #fff;
+}
+
+.mt-text {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   GAME CARDS V2 — Virtual Worlds teaser
+   ========================================================================== */
+.games-teaser-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+    max-width: 780px;
+}
+
+/* Card com flip */
+.game-card-v2 {
+    height: 200px;
+    perspective: 900px;
+    cursor: pointer;
+}
+
+.gcv2-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+}
+
+.game-card-v2:hover .gcv2-inner {
+    transform: rotateY(180deg);
+}
+
+.gcv2-front, .gcv2-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+}
+
+/* FRENTE */
+.gcv2-front {
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.gcv2-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+}
+
+.gcv2-info {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.gcv2-genre {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 700;
+}
+
+.gcv2-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+}
+
+/* VERSO */
+.gcv2-back {
+    background: rgba(12,12,12,0.97);
+    border: 1px solid rgba(255,255,255,0.12);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    gap: 6px;
+}
+
+.gcv2-studio {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 700;
+}
+
+.gcv2-name {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.gcv2-stat-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.gcv2-badge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+.gcv2-badge.platinum { background: rgba(212,175,55,0.15); color: #ffd700; border: 1px solid rgba(212,175,55,0.3); }
+.gcv2-badge.gold     { background: rgba(212,175,55,0.15); color: #ffd700; border: 1px solid rgba(212,175,55,0.3); }
+
+.gcv2-hours {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.4);
+}
+
+.gcv2-desc {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+    margin-top: auto;
+}
+
+/* Card "Ver Todos" */
+.gcv2-view-all {
+    height: 200px;
+    border-radius: 10px;
+    border: 1px dashed rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.gcv2-view-all:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.35);
+    transform: translateY(-3px);
+}
+
+.gcv2-all-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.gcv2-icon {
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.3);
+}
+
+.gcv2-all-count {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.gcv2-all-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.4);
+}
+
+/* ==========================================================================
+   GAME CARDS V2 — RESPONSIVO
+   ========================================================================== */
+
+/* Tablet (≤ 900px): 2 colunas */
+@media (max-width: 900px) {
+    .games-teaser-grid-v2 {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+    }
+    .game-card-v2 { height: 180px; }
+    .gcv2-view-all { height: 180px; }
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+    .games-teaser-grid-v2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .game-card-v2 { height: 160px; }
+    .gcv2-view-all { height: 160px; }
+    .gcv2-title { font-size: 0.78rem; }
+    .gcv2-name  { font-size: 0.75rem; }
+    .gcv2-back  { padding: 12px; gap: 4px; }
+}
+
+/* Mobile pequeno (≤ 480px): 2 colunas apertadas */
+@media (max-width: 480px) {
+    .games-teaser-grid-v2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .game-card-v2 { height: 140px; }
+    .gcv2-view-all { height: 140px; }
+    .gcv2-title { font-size: 0.72rem; }
+    .gcv2-genre { font-size: 0.55rem; }
+    .gcv2-name  { font-size: 0.7rem; }
+    .gcv2-studio { display: none; }
+    .gcv2-desc  { font-size: 0.65rem; }
+    .gcv2-badge { font-size: 0.55rem; padding: 1px 5px; }
+    .gcv2-back  { padding: 10px; }
+    .gcv2-all-count { font-size: 0.95rem; }
+    .gcv2-all-label { font-size: 0.6rem; }
+    .gcv2-icon  { font-size: 1.1rem; }
+}
+
+/* ==========================================================================
+   JOURNEY STATS — RESPONSIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+    .journey-stats { max-width: 100%; }
+    .jstat-value { font-size: 1.25rem; }
+    .jstat-label { font-size: 0.6rem; }
+
+    .mini-timeline { padding-left: 70px; }
+    .mt-year { left: -66px; font-size: 0.65rem; }
+    .mt-text { font-size: 0.78rem; }
+}
+
+@media (max-width: 480px) {
+    .journey-stats {
+        flex-wrap: wrap;
+        border-radius: 8px;
+    }
+    .journey-stat {
+        flex: 1 1 calc(50% - 0px);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        padding: 12px 8px;
+    }
+    .journey-stat:nth-child(2) { border-right: none; }
+    .journey-stat:nth-child(3) { border-bottom: none; }
+    .journey-stat:last-child   { border-bottom: none; }
+    .jstat-value { font-size: 1.1rem; }
+    .jstat-label { font-size: 0.58rem; }
+
+    .mini-timeline { padding-left: 60px; max-width: 100%; }
+    .mini-timeline::before { left: 54px; }
+    .mt-year { left: -56px; width: 38px; font-size: 0.6rem; }
+    .mt-text { font-size: 0.74rem; }
+    .mt-dot  { width: 7px; height: 7px; }
 }
