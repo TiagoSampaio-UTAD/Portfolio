@@ -55,10 +55,54 @@
             <h3 class="lang" data-lang-en="My Journey" data-lang-pt="Minha Jornada">My Journey</h3>
             <div class="text-block">
                 <p class="lang"
-                   data-lang-en="I'm a Software Engineering student at UTAD, passionate about building digital solutions and exploring new technologies."
-                   data-lang-pt="Sou estudante de Engenharia Informática na UTAD, apaixonado por criar soluções digitais e explorar novas tecnologias.">
-                    I'm a Software Engineering student at UTAD, passionate about building digital solutions and exploring new technologies.
+                   data-lang-en="I'm a Software Engineering student at UTAD, passionate about building digital solutions and exploring new technologies. I'm driven by curiosity — whether it's debugging at 2am, crafting a mechanic in a game, or diving into a new language just to see how it thinks."
+                   data-lang-pt="Sou estudante de Engenharia Informática na UTAD, apaixonado por criar soluções digitais e explorar novas tecnologias. Sou movido pela curiosidade — seja a depurar código às 2 da manhã, criar uma mecânica num jogo, ou mergulhar numa nova linguagem só para ver como ela pensa.">
+                    I'm a Software Engineering student at UTAD, passionate about building digital solutions and exploring new technologies. I'm driven by curiosity — whether it's debugging at 2am, crafting a mechanic in a game, or diving into a new language just to see how it thinks.
                 </p>
+            </div>
+
+            <!-- Stats rápidas -->
+            <div class="journey-stats">
+                <div class="journey-stat">
+                    <span class="jstat-value">5+</span>
+                    <span class="jstat-label lang" data-lang-en="Languages" data-lang-pt="Linguagens">Languages</span>
+                </div>
+                <div class="journey-stat">
+                    <span class="jstat-value">6</span>
+                    <span class="jstat-label lang" data-lang-en="Games 100%'d" data-lang-pt="Jogos 100%">Games 100%'d</span>
+                </div>
+                <div class="journey-stat">
+                    <span class="jstat-value">∞</span>
+                    <span class="jstat-label lang" data-lang-en="Hours in Minecraft" data-lang-pt="Horas no Minecraft">Hours in Minecraft</span>
+                </div>
+                <div class="journey-stat">
+                    <span class="jstat-value">1</span>
+                    <span class="jstat-label lang" data-lang-en="Kagune (active)" data-lang-pt="Kagune (ativo)">Kagune (active)</span>
+                </div>
+            </div>
+
+            <!-- Mini timeline -->
+            <div class="mini-timeline">
+                <div class="mt-item">
+                    <span class="mt-year">2014</span>
+                    <div class="mt-dot"></div>
+                    <span class="mt-text lang" data-lang-en="First lines of code" data-lang-pt="Primeiras linhas de código">First lines of code</span>
+                </div>
+                <div class="mt-item">
+                    <span class="mt-year">2018</span>
+                    <div class="mt-dot"></div>
+                    <span class="mt-text lang" data-lang-en="Fell deep into Minecraft" data-lang-pt="Mergulhou fundo no Minecraft">Fell deep into Minecraft</span>
+                </div>
+                <div class="mt-item">
+                    <span class="mt-year">2022</span>
+                    <div class="mt-dot"></div>
+                    <span class="mt-text lang" data-lang-en="Started Computer Engineering @ UTAD" data-lang-pt="Começou Eng. Informática na UTAD">Started Computer Engineering @ UTAD</span>
+                </div>
+                <div class="mt-item">
+                    <span class="mt-year">Now</span>
+                    <div class="mt-dot active"></div>
+                    <span class="mt-text lang" data-lang-en="Building, exploring, levelling up" data-lang-pt="A construir, explorar e evoluir">Building, exploring, levelling up</span>
+                </div>
             </div>
         </section>
 
@@ -181,19 +225,88 @@
                 <h3 class="lang" data-lang-en="Virtual Worlds" data-lang-pt="Mundos Virtuais">Virtual Worlds</h3>
                 <a href="Game.html" class="section-more-btn lang" data-lang-en="Open Full Library →" data-lang-pt="Ver Todos →">Open Full Library →</a>
             </div>
-            <div class="games-teaser-grid">
-                <a href="Game.html" class="game-item">
-                    <img src="./img/MineLogo.jpg" alt="Minecraft">
-                    <div class="game-overlay"><span>Minecraft</span></div>
+
+            <!-- Teaser de jogos: cards com flip e info -->
+            <div class="games-teaser-grid-v2">
+
+                <div class="game-card-v2" data-genre="Sandbox">
+                    <div class="gcv2-inner">
+                        <div class="gcv2-front" style="background-image: url('./img/MineL.jpg')">
+                            <div class="gcv2-gradient"></div>
+                            <div class="gcv2-info">
+                                <span class="gcv2-genre">Sandbox</span>
+                                <span class="gcv2-title">Minecraft</span>
+                            </div>
+                        </div>
+                        <div class="gcv2-back">
+                            <span class="gcv2-studio">MOJANG STUDIOS</span>
+                            <span class="gcv2-name">Minecraft</span>
+                            <div class="gcv2-stat-row">
+                                <span class="gcv2-badge platinum">🏆 Platinum</span>
+                                <span class="gcv2-hours lang" data-lang-en="+10 Years" data-lang-pt="+10 Anos">+10 Years</span>
+                            </div>
+                            <p class="gcv2-desc lang"
+                               data-lang-en="The sandbox that started everything."
+                               data-lang-pt="O sandbox que começou tudo.">The sandbox that started everything.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-v2" data-genre="Horror">
+                    <div class="gcv2-inner">
+                        <div class="gcv2-front" style="background-image: url('./img/TOTLogo.jpg')">
+                            <div class="gcv2-gradient"></div>
+                            <div class="gcv2-info">
+                                <span class="gcv2-genre">Horror</span>
+                                <span class="gcv2-title">The Outlast Trials</span>
+                            </div>
+                        </div>
+                        <div class="gcv2-back">
+                            <span class="gcv2-studio">RED BARRELS</span>
+                            <span class="gcv2-name">The Outlast Trials</span>
+                            <div class="gcv2-stat-row">
+                                <span class="gcv2-badge gold">🏆 27/27</span>
+                                <span class="gcv2-hours">148 Trials</span>
+                            </div>
+                            <p class="gcv2-desc lang"
+                               data-lang-en="Co-op horror. Program X. Grade A+."
+                               data-lang-pt="Horror co-op. Programa X. Nota A+.">Co-op horror. Program X. Grade A+.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-v2" data-genre="Narrative">
+                    <div class="gcv2-inner">
+                        <div class="gcv2-front" style="background-image: url('./img/DLogo.jpg')">
+                            <div class="gcv2-gradient"></div>
+                            <div class="gcv2-info">
+                                <span class="gcv2-genre">Narrative</span>
+                                <span class="gcv2-title">Death's Door</span>
+                            </div>
+                        </div>
+                        <div class="gcv2-back">
+                            <span class="gcv2-studio">ACID NERVE</span>
+                            <span class="gcv2-name">Death's Door</span>
+                            <div class="gcv2-stat-row">
+                                <span class="gcv2-badge gold">🏆 24/24</span>
+                                <span class="gcv2-hours lang" data-lang-en="True Ending" data-lang-pt="Final Verdadeiro">True Ending</span>
+                            </div>
+                            <p class="gcv2-desc lang"
+                               data-lang-en="A crow, a sword, and a dark surreal world."
+                               data-lang-pt="Um corvo, uma espada e um mundo sombrio e surreal.">A crow, a sword, and a dark surreal world.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card "Ver Todos" -->
+                <a href="Game.html" class="gcv2-view-all">
+                    <div class="gcv2-all-inner">
+                        <i class="fas fa-gamepad gcv2-icon"></i>
+                        <span class="gcv2-all-count">+3 <span class="lang" data-lang-en="more" data-lang-pt="mais">more</span></span>
+                        <span class="gcv2-all-label lang" data-lang-en="Full Library" data-lang-pt="Ver Todos">Full Library</span>
+                    </div>
                 </a>
-                <a href="Game.html" class="game-item">
-                    <img src="./img/TOTLogo.jpg" alt="Outlast">
-                    <div class="game-overlay"><span>Outlast Trials</span></div>
-                </a>
-                <a href="Game.html" class="view-all-games">
-                    <i class="fas fa-arrow-right"></i>
-                    <span class="lang" data-lang-en="Full Library" data-lang-pt="Ver Todos">Full Library</span>
-                </a>
+
             </div>
         </section>
     </main>
