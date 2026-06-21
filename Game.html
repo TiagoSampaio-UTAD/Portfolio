@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -9,85 +9,18 @@
 <body>
     <a href="Index.html" class="back-link">← VOLTAR</a>
 
-    <header class="header">
-        <div class="header-container container">
-            <nav class="nav-top">
-                <div class="language">
-                    <div class="lang-switcher">
-                        <button class="lang-btn pt" data-lang="pt">PT</button>
-                        <span class="pipe">|</span>
-                        <button class="lang-btn en active" data-lang="en">EN</button>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <div class="lang-switcher">
+        <button class="lang-btn pt" data-lang="pt">PT</button>
+        <span class="pipe">|</span>
+        <button class="lang-btn en active" data-lang="en">EN</button>
+    </div>
 
     <h2 class="section-title">
         <p class="lang" data-lang-en="Games" data-lang-pt="Jogos">Games</p>
     </h2>
 
-    <!-- ═══════════════════════════════════════════════
-         PLAYER CARD GLOBAL
-    ═══════════════════════════════════════════════ -->
-    <div class="player-card-wrapper">
-        <div class="player-card">
-
-            <!-- NOW PLAYING -->
-            <div class="now-playing-block">
-                <div class="now-playing-label">
-                    <span class="np-dot"></span>
-                    <span class="lang" data-lang-en="NOW PLAYING" data-lang-pt="A JOGAR">NOW PLAYING</span>
-                </div>
-                <div class="np-game-name">The Outlast Trials</div>
-                <div class="np-game-sub lang" data-lang-en="Program X — Searching for freedom" data-lang-pt="Programa X — À procura da liberdade">Program X — Searching for freedom</div>
-            </div>
-
-            <!-- DIVIDER -->
-            <div class="pc-divider"></div>
-
-            <!-- GLOBAL STATS -->
-            <div class="pc-stats">
-                <div class="pc-stat">
-                    <span class="pc-stat-value">6</span>
-                    <span class="pc-stat-label lang" data-lang-en="Games" data-lang-pt="Jogos">Games</span>
-                </div>
-                <div class="pc-stat">
-                    <span class="pc-stat-value" style="color:#ffd700">5</span>
-                    <span class="pc-stat-label">Platinas</span>
-                </div>
-                <div class="pc-stat">
-                    <span class="pc-stat-value" style="color:#4dff88">100%</span>
-                    <span class="pc-stat-label lang" data-lang-en="Avg. Completion" data-lang-pt="Conclusão Média">Avg. Completion</span>
-                </div>
-                <div class="pc-stat">
-                    <span class="pc-stat-value">Co-op</span>
-                    <span class="pc-stat-label lang" data-lang-en="Fav. Genre" data-lang-pt="Género Fav.">Fav. Genre</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════
-         FILTRO POR GÉNERO
-    ═══════════════════════════════════════════════ -->
-    <div class="genre-filter-wrapper">
-        <div class="genre-filter">
-            <button class="genre-btn active" data-genre="all">
-                <span class="lang" data-lang-en="All" data-lang-pt="Todos">All</span>
-            </button>
-            <button class="genre-btn" data-genre="sandbox">Sandbox</button>
-            <button class="genre-btn" data-genre="coop">Co-op</button>
-            <button class="genre-btn" data-genre="horror">Horror</button>
-            <button class="genre-btn" data-genre="narrative">
-                <span class="lang" data-lang-en="Narrative" data-lang-pt="Narrativa">Narrative</span>
-            </button>
-        </div>
-    </div>
-
     <div class="panels-wrapper" id="panels-track">
-        <div class="panel active" data-bg="./img/MineL.png" data-genre="sandbox">
+        <div class="panel active" data-bg="./img/MineL.png">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/MineL.jpg')"><h3>Minecraft</h3></div>
                 <div class="panel-back">
@@ -108,7 +41,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/DsDLogo.jpg" data-genre="narrative">
+        <div class="panel" data-bg="./img/DsDLogo.jpg">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/DLogo.jpg')"><h3>Death's Door</h3></div>
                 <div class="panel-back">
@@ -129,7 +62,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/PW.jpg" data-genre="coop">
+        <div class="panel" data-bg="./img/PW.jpg">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/TPWRL.png')"><h3>The Past Within</h3></div>
                 <div class="panel-back">
@@ -150,7 +83,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/TOT (2).jpg" data-genre="horror">
+        <div class="panel" data-bg="./img/TOT (2).jpg">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/TOT.jpg')"><h3>The Outlast Trials</h3></div>
                 <div class="panel-back">
@@ -168,7 +101,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/WWHBG.png" data-genre="coop">
+        <div class="panel" data-bg="./img/WWHBG.png">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/WWHGPT.png')"><h3>We Were Here</h3></div>
                 <div class="panel-back">
@@ -189,7 +122,7 @@
             </div>
         </div>
 
-        <div class="panel" data-bg="./img/WROEF.jpg" data-genre="narrative">
+        <div class="panel" data-bg="./img/WROEF.jpg">
             <div class="panel-inner">
                 <div class="panel-front" style="background-image: url('./img/WROEF (2).jpg')"><h3>What Remains of Edith Finch</h3></div>
                 <div class="panel-back">
@@ -614,58 +547,6 @@
                 // Opcional: Marcar o botão ativo visualmente
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-            });
-        });
-
-        // ── FILTRO POR GÉNERO ─────────────────────────────────────────────
-        const genreBtns = document.querySelectorAll('.genre-btn');
-        const allPanels = document.querySelectorAll('.panel');
-
-        genreBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Activa o botão clicado
-                genreBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const selected = btn.dataset.genre;
-
-                allPanels.forEach(panel => {
-                    const genre = panel.dataset.genre;
-                    if (selected === 'all' || genre === selected) {
-                        panel.style.display = '';
-                        panel.style.opacity  = '';
-                        panel.style.pointerEvents = '';
-                    } else {
-                        panel.style.opacity  = '0';
-                        panel.style.pointerEvents = 'none';
-                        panel.style.transform = 'scale(0.7)';
-                        panel.style.filter = 'grayscale(100%) blur(3px)';
-                        // Re-aplica display depois de transition acabar
-                        setTimeout(() => {
-                            if (btn.classList.contains('active') && genre !== btn.dataset.genre && btn.dataset.genre !== 'all') {
-                                panel.style.display = 'none';
-                            }
-                        }, 400);
-                    }
-                });
-
-                // Repõe os estilos nos visíveis
-                allPanels.forEach(panel => {
-                    const genre = panel.dataset.genre;
-                    if (selected === 'all' || genre === selected) {
-                        panel.style.display = '';
-                        panel.style.opacity  = '';
-                        panel.style.pointerEvents = '';
-                        panel.style.transform = '';
-                        panel.style.filter = '';
-                    }
-                });
-
-                // Reposiciona o scroll para o primeiro panel visível
-                const firstVisible = document.querySelector('.panel:not([style*="display: none"])');
-                if (firstVisible) {
-                    firstVisible.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }
             });
         });
 
